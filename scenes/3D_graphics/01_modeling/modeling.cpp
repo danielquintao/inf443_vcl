@@ -56,11 +56,7 @@ void scene_model::frame_draw(std::map<std::string,GLuint>& shaders, scene_struct
     // Before displaying a textured surface: bind the associated texture id
     glBindTexture(GL_TEXTURE_2D, terrain.texture_id);
     //---------------------------------
-    //glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_BORDER);
-    //glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_BORDER);
-    //glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_MIRRORED_REPEAT);
-    //glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_MIRRORED_REPEAT);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_R, GL_REPEAT);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
     //----------------------------------
     // Display terrain
@@ -144,8 +140,8 @@ mesh create_terrain()
             terrain.position[kv + N * ku] = evaluate_terrain(u, v);
 
             // Add texture
-            //terrain.texture_uv[kv + N * ku] = {(float)ku/N,(float)kv/N};
-            terrain.texture_uv[kv + N * ku] = vec2(fabsf(ku % 2), fabsf((kv + 1) % 2));
+            int tiles_param = 10;
+            terrain.texture_uv[kv + N * ku] = { (float)tiles_param * ku / N,(float)tiles_param * kv / N };
         }
     }
 
