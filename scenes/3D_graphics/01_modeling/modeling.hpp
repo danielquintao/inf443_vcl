@@ -31,6 +31,7 @@ struct scene_model : scene_base
 
     // visual representation of a surface
     vcl::mesh_drawable terrain;
+    GLuint texture_id;
 
     gui_scene_structure gui_scene;
 };

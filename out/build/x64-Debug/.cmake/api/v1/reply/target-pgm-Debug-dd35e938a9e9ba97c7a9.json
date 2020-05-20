@@ -1,0 +1,3928 @@
+{
+	"artifacts" : 
+	[
+		{
+			"path" : "pgm.exe"
+		},
+		{
+			"path" : "pgm.pdb"
+		}
+	],
+	"backtrace" : 1,
+	"backtraceGraph" : 
+	{
+		"commands" : 
+		[
+			"add_executable",
+			"add_definitions",
+			"include_directories"
+		],
+		"files" : 
+		[
+			"CMakeLists.txt"
+		],
+		"nodes" : 
+		[
+			{
+				"file" : 0
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 35,
+				"parent" : 0
+			},
+			{
+				"command" : 1,
+				"file" : 0,
+				"line" : 5,
+				"parent" : 0
+			},
+			{
+				"command" : 2,
+				"file" : 0,
+				"line" : 18,
+				"parent" : 0
+			},
+			{
+				"command" : 2,
+				"file" : 0,
+				"line" : 23,
+				"parent" : 0
+			},
+			{
+				"command" : 2,
+				"file" : 0,
+				"line" : 24,
+				"parent" : 0
+			}
+		]
+	},
+	"compileGroups" : 
+	[
+		{
+			"compileCommandFragments" : 
+			[
+				{
+					"fragment" : "/DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1  "
+				}
+			],
+			"defines" : 
+			[
+				{
+					"backtrace" : 2,
+					"define" : "IMGUI_IMPL_OPENGL_LOADER_GLAD"
+				}
+			],
+			"includes" : 
+			[
+				{
+					"backtrace" : 3,
+					"path" : "C:/Users/Lucas/Desktop/MaiaFocoTotal/INF443/Projet/inf443_vcl/lib_windows/glfw3_win/include"
+				},
+				{
+					"backtrace" : 4,
+					"path" : "C:/Users/Lucas/Desktop/MaiaFocoTotal/INF443/Projet/inf443_vcl/."
+				},
+				{
+					"backtrace" : 5,
+					"path" : "C:/Users/Lucas/Desktop/MaiaFocoTotal/INF443/Projet/inf443_vcl/third_party/eigen"
+				}
+			],
+			"language" : "CXX",
+			"sourceIndexes" : 
+			[
+				0,
+				2,
+				3,
+				5,
+				7,
+				9,
+				11,
+				13,
+				15,
+				17,
+				19,
+				21,
+				315,
+				317,
+				319,
+				320,
+				321,
+				323,
+				326,
+				330,
+				332,
+				335,
+				337,
+				339,
+				341,
+				344,
+				353,
+				355,
+				358,
+				361,
+				363,
+				365,
+				367,
+				369,
+				372,
+				374,
+				378,
+				380,
+				382,
+				385,
+				387,
+				392,
+				394,
+				396,
+				398,
+				401,
+				403,
+				406,
+				408,
+				411,
+				414,
+				416,
+				418,
+				421,
+				423,
+				425,
+				428,
+				430,
+				432,
+				435,
+				437,
+				439,
+				442,
+				444,
+				446,
+				448,
+				453,
+				455,
+				458,
+				460,
+				462,
+				464
+			]
+		}
+	],
+	"id" : "pgm::@6890427a1f51a3e7e1df",
+	"link" : 
+	{
+		"commandFragments" : 
+		[
+			{
+				"fragment" : "/DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1",
+				"role" : "flags"
+			},
+			{
+				"fragment" : "/machine:x64 /debug /INCREMENTAL /subsystem:console",
+				"role" : "flags"
+			},
+			{
+				"fragment" : "..\\..\\..\\lib_windows\\glfw3_win\\lib\\glfw3.lib",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib",
+				"role" : "libraries"
+			}
+		],
+		"language" : "CXX"
+	},
+	"name" : "pgm",
+	"nameOnDisk" : "pgm.exe",
+	"paths" : 
+	{
+		"build" : ".",
+		"source" : "."
+	},
+	"sourceGroups" : 
+	[
+		{
+			"name" : "main\\helper_scene",
+			"sourceIndexes" : 
+			[
+				0,
+				1
+			]
+		},
+		{
+			"name" : "main",
+			"sourceIndexes" : 
+			[
+				2
+			]
+		},
+		{
+			"name" : "main\\scene_base",
+			"sourceIndexes" : 
+			[
+				3,
+				4
+			]
+		},
+		{
+			"name" : "scenes\\3D_graphics\\00_default",
+			"sourceIndexes" : 
+			[
+				5,
+				6
+			]
+		},
+		{
+			"name" : "scenes\\3D_graphics\\01_modeling",
+			"sourceIndexes" : 
+			[
+				7,
+				8
+			]
+		},
+		{
+			"name" : "scenes\\3D_graphics\\02_texture",
+			"sourceIndexes" : 
+			[
+				9,
+				10,
+				11,
+				12,
+				13,
+				14
+			]
+		},
+		{
+			"name" : "scenes\\3D_graphics\\03_animation",
+			"sourceIndexes" : 
+			[
+				15,
+				16,
+				17,
+				18
+			]
+		},
+		{
+			"name" : "scenes\\3D_graphics\\04_simulation",
+			"sourceIndexes" : 
+			[
+				19,
+				20,
+				21,
+				22
+			]
+		},
+		{
+			"name" : "scenes",
+			"sourceIndexes" : 
+			[
+				23,
+				24
+			]
+		},
+		{
+			"name" : "scenes\\shared_assets\\shaders\\curve",
+			"sourceIndexes" : 
+			[
+				25,
+				26
+			]
+		},
+		{
+			"name" : "scenes\\shared_assets\\shaders\\mesh",
+			"sourceIndexes" : 
+			[
+				27,
+				28
+			]
+		},
+		{
+			"name" : "scenes\\shared_assets\\shaders\\mesh_back_illumination",
+			"sourceIndexes" : 
+			[
+				29,
+				30
+			]
+		},
+		{
+			"name" : "scenes\\shared_assets\\shaders\\normals",
+			"sourceIndexes" : 
+			[
+				31,
+				32,
+				33
+			]
+		},
+		{
+			"name" : "scenes\\shared_assets\\shaders\\segment_immediate_mode",
+			"sourceIndexes" : 
+			[
+				34,
+				35
+			]
+		},
+		{
+			"name" : "scenes\\shared_assets\\shaders\\wireframe",
+			"sourceIndexes" : 
+			[
+				36,
+				37,
+				38
+			]
+		},
+		{
+			"name" : "scenes\\shared_assets\\shaders\\wireframe_quads",
+			"sourceIndexes" : 
+			[
+				39,
+				40,
+				41
+			]
+		},
+		{
+			"name" : "third_party\\eigen\\Eigen\\src\\Cholesky",
+			"sourceIndexes" : 
+			[
+				42,
+				43,
+				44
+			]
+		},
+		{
+			"name" : "third_party\\eigen\\Eigen\\src\\CholmodSupport",
+			"sourceIndexes" : 
+			[
+				45
+			]
+		},
+		{
+			"name" : "third_party\\eigen\\Eigen\\src\\Core",
+			"sourceIndexes" : 
+			[
+				46,
+				47,
+				48,
+				49,
+				50,
+				51,
+				52,
+				53,
+				54,
+				55,
+				56,
+				57,
+				58,
+				59,
+				60,
+				61,
+				62,
+				63,
+				64,
+				65,
+				66,
+				67,
+				68,
+				69,
+				70,
+				71,
+				72,
+				73,
+				74,
+				75,
+				76,
+				77,
+				78,
+				79,
+				80,
+				81,
+				82,
+				83,
+				84,
+				85,
+				86,
+				87,
+				88,
+				89,
+				90,
+				91,
+				92,
+				93,
+				94,
+				95,
+				96,
+				97,
+				98,
+				99,
+				100,
+				101,
+				102,
+				103,
+				104,
+				105,
+				106,
+				107,
+				108,
+				109,
+				110,
+				111,
+				112
+			]
+		},
+		{
+			"name" : "third_party\\eigen\\Eigen\\src\\Core\\arch\\AVX",
+			"sourceIndexes" : 
+			[
+				113,
+				114,
+				115,
+				116
+			]
+		},
+		{
+			"name" : "third_party\\eigen\\Eigen\\src\\Core\\arch\\AVX512",
+			"sourceIndexes" : 
+			[
+				117,
+				118
+			]
+		},
+		{
+			"name" : "third_party\\eigen\\Eigen\\src\\Core\\arch\\AltiVec",
+			"sourceIndexes" : 
+			[
+				119,
+				120,
+				121
+			]
+		},
+		{
+			"name" : "third_party\\eigen\\Eigen\\src\\Core\\arch\\CUDA",
+			"sourceIndexes" : 
+			[
+				122,
+				123,
+				124,
+				125,
+				126,
+				127
+			]
+		},
+		{
+			"name" : "third_party\\eigen\\Eigen\\src\\Core\\arch\\Default",
+			"sourceIndexes" : 
+			[
+				128,
+				129
+			]
+		},
+		{
+			"name" : "third_party\\eigen\\Eigen\\src\\Core\\arch\\NEON",
+			"sourceIndexes" : 
+			[
+				130,
+				131,
+				132
+			]
+		},
+		{
+			"name" : "third_party\\eigen\\Eigen\\src\\Core\\arch\\SSE",
+			"sourceIndexes" : 
+			[
+				133,
+				134,
+				135,
+				136
+			]
+		},
+		{
+			"name" : "third_party\\eigen\\Eigen\\src\\Core\\arch\\ZVector",
+			"sourceIndexes" : 
+			[
+				137,
+				138,
+				139
+			]
+		},
+		{
+			"name" : "third_party\\eigen\\Eigen\\src\\Core\\functors",
+			"sourceIndexes" : 
+			[
+				140,
+				141,
+				142,
+				143,
+				144,
+				145
+			]
+		},
+		{
+			"name" : "third_party\\eigen\\Eigen\\src\\Core\\products",
+			"sourceIndexes" : 
+			[
+				146,
+				147,
+				148,
+				149,
+				150,
+				151,
+				152,
+				153,
+				154,
+				155,
+				156,
+				157,
+				158,
+				159,
+				160,
+				161,
+				162,
+				163,
+				164,
+				165,
+				166
+			]
+		},
+		{
+			"name" : "third_party\\eigen\\Eigen\\src\\Core\\util",
+			"sourceIndexes" : 
+			[
+				167,
+				168,
+				169,
+				170,
+				171,
+				172,
+				173,
+				174,
+				175,
+				176,
+				177,
+				178
+			]
+		},
+		{
+			"name" : "third_party\\eigen\\Eigen\\src\\Eigenvalues",
+			"sourceIndexes" : 
+			[
+				179,
+				180,
+				181,
+				182,
+				183,
+				184,
+				185,
+				186,
+				187,
+				188,
+				189,
+				190,
+				191,
+				192
+			]
+		},
+		{
+			"name" : "third_party\\eigen\\Eigen\\src\\Geometry",
+			"sourceIndexes" : 
+			[
+				193,
+				194,
+				195,
+				196,
+				197,
+				198,
+				199,
+				200,
+				201,
+				202,
+				203,
+				204,
+				205,
+				206
+			]
+		},
+		{
+			"name" : "third_party\\eigen\\Eigen\\src\\Geometry\\arch",
+			"sourceIndexes" : 
+			[
+				207
+			]
+		},
+		{
+			"name" : "third_party\\eigen\\Eigen\\src\\Householder",
+			"sourceIndexes" : 
+			[
+				208,
+				209,
+				210
+			]
+		},
+		{
+			"name" : "third_party\\eigen\\Eigen\\src\\IterativeLinearSolvers",
+			"sourceIndexes" : 
+			[
+				211,
+				212,
+				213,
+				214,
+				215,
+				216,
+				217,
+				218
+			]
+		},
+		{
+			"name" : "third_party\\eigen\\Eigen\\src\\Jacobi",
+			"sourceIndexes" : 
+			[
+				219
+			]
+		},
+		{
+			"name" : "third_party\\eigen\\Eigen\\src\\LU",
+			"sourceIndexes" : 
+			[
+				220,
+				221,
+				222,
+				223,
+				224
+			]
+		},
+		{
+			"name" : "third_party\\eigen\\Eigen\\src\\LU\\arch",
+			"sourceIndexes" : 
+			[
+				225
+			]
+		},
+		{
+			"name" : "third_party\\eigen\\Eigen\\src\\MetisSupport",
+			"sourceIndexes" : 
+			[
+				226
+			]
+		},
+		{
+			"name" : "third_party\\eigen\\Eigen\\src\\OrderingMethods",
+			"sourceIndexes" : 
+			[
+				227,
+				228,
+				229
+			]
+		},
+		{
+			"name" : "third_party\\eigen\\Eigen\\src\\PaStiXSupport",
+			"sourceIndexes" : 
+			[
+				230
+			]
+		},
+		{
+			"name" : "third_party\\eigen\\Eigen\\src\\PardisoSupport",
+			"sourceIndexes" : 
+			[
+				231
+			]
+		},
+		{
+			"name" : "third_party\\eigen\\Eigen\\src\\QR",
+			"sourceIndexes" : 
+			[
+				232,
+				233,
+				234,
+				235,
+				236,
+				237
+			]
+		},
+		{
+			"name" : "third_party\\eigen\\Eigen\\src\\SPQRSupport",
+			"sourceIndexes" : 
+			[
+				238
+			]
+		},
+		{
+			"name" : "third_party\\eigen\\Eigen\\src\\SVD",
+			"sourceIndexes" : 
+			[
+				239,
+				240,
+				241,
+				242,
+				243
+			]
+		},
+		{
+			"name" : "third_party\\eigen\\Eigen\\src\\SparseCholesky",
+			"sourceIndexes" : 
+			[
+				244,
+				245
+			]
+		},
+		{
+			"name" : "third_party\\eigen\\Eigen\\src\\SparseCore",
+			"sourceIndexes" : 
+			[
+				246,
+				247,
+				248,
+				249,
+				250,
+				251,
+				252,
+				253,
+				254,
+				255,
+				256,
+				257,
+				258,
+				259,
+				260,
+				261,
+				262,
+				263,
+				264,
+				265,
+				266,
+				267,
+				268,
+				269,
+				270,
+				271,
+				272,
+				273,
+				274,
+				275
+			]
+		},
+		{
+			"name" : "third_party\\eigen\\Eigen\\src\\SparseLU",
+			"sourceIndexes" : 
+			[
+				276,
+				277,
+				278,
+				279,
+				280,
+				281,
+				282,
+				283,
+				284,
+				285,
+				286,
+				287,
+				288,
+				289,
+				290,
+				291,
+				292
+			]
+		},
+		{
+			"name" : "third_party\\eigen\\Eigen\\src\\SparseQR",
+			"sourceIndexes" : 
+			[
+				293
+			]
+		},
+		{
+			"name" : "third_party\\eigen\\Eigen\\src\\StlSupport",
+			"sourceIndexes" : 
+			[
+				294,
+				295,
+				296,
+				297
+			]
+		},
+		{
+			"name" : "third_party\\eigen\\Eigen\\src\\SuperLUSupport",
+			"sourceIndexes" : 
+			[
+				298
+			]
+		},
+		{
+			"name" : "third_party\\eigen\\Eigen\\src\\UmfPackSupport",
+			"sourceIndexes" : 
+			[
+				299
+			]
+		},
+		{
+			"name" : "third_party\\eigen\\Eigen\\src\\misc",
+			"sourceIndexes" : 
+			[
+				300,
+				301,
+				302,
+				303,
+				304,
+				305,
+				306
+			]
+		},
+		{
+			"name" : "third_party\\eigen\\Eigen\\src\\plugins",
+			"sourceIndexes" : 
+			[
+				307,
+				308,
+				309,
+				310,
+				311,
+				312,
+				313
+			]
+		},
+		{
+			"name" : "third_party\\glad\\include\\glad",
+			"sourceIndexes" : 
+			[
+				314
+			]
+		},
+		{
+			"name" : "third_party\\glad\\src",
+			"sourceIndexes" : 
+			[
+				315
+			]
+		},
+		{
+			"name" : "third_party\\imgui",
+			"sourceIndexes" : 
+			[
+				316,
+				317,
+				318,
+				319,
+				320,
+				321,
+				322,
+				323,
+				324,
+				325,
+				326,
+				327,
+				328,
+				329
+			]
+		},
+		{
+			"name" : "third_party\\lodepng",
+			"sourceIndexes" : 
+			[
+				330,
+				331
+			]
+		},
+		{
+			"name" : "third_party\\simplexnoise",
+			"sourceIndexes" : 
+			[
+				332,
+				333
+			]
+		},
+		{
+			"name" : "vcl\\base",
+			"sourceIndexes" : 
+			[
+				334
+			]
+		},
+		{
+			"name" : "vcl\\base\\basic_types",
+			"sourceIndexes" : 
+			[
+				335,
+				336
+			]
+		},
+		{
+			"name" : "vcl\\base\\error",
+			"sourceIndexes" : 
+			[
+				337,
+				338
+			]
+		},
+		{
+			"name" : "vcl\\base\\file",
+			"sourceIndexes" : 
+			[
+				339,
+				340
+			]
+		},
+		{
+			"name" : "vcl\\base\\rand",
+			"sourceIndexes" : 
+			[
+				341,
+				342
+			]
+		},
+		{
+			"name" : "vcl\\base\\stl",
+			"sourceIndexes" : 
+			[
+				343
+			]
+		},
+		{
+			"name" : "vcl\\base\\string",
+			"sourceIndexes" : 
+			[
+				344,
+				345
+			]
+		},
+		{
+			"name" : "vcl\\base\\types",
+			"sourceIndexes" : 
+			[
+				346
+			]
+		},
+		{
+			"name" : "vcl\\containers\\buffer",
+			"sourceIndexes" : 
+			[
+				347
+			]
+		},
+		{
+			"name" : "vcl\\containers\\buffer\\buffer",
+			"sourceIndexes" : 
+			[
+				348
+			]
+		},
+		{
+			"name" : "vcl\\containers\\buffer\\buffer2D",
+			"sourceIndexes" : 
+			[
+				349
+			]
+		},
+		{
+			"name" : "vcl\\containers\\buffer\\buffer3D",
+			"sourceIndexes" : 
+			[
+				350
+			]
+		},
+		{
+			"name" : "vcl\\containers\\buffer_stack",
+			"sourceIndexes" : 
+			[
+				351
+			]
+		},
+		{
+			"name" : "vcl\\containers",
+			"sourceIndexes" : 
+			[
+				352
+			]
+		},
+		{
+			"name" : "vcl\\interaction\\camera",
+			"sourceIndexes" : 
+			[
+				353,
+				354
+			]
+		},
+		{
+			"name" : "vcl\\interaction\\camera_control_glfw",
+			"sourceIndexes" : 
+			[
+				355,
+				356
+			]
+		},
+		{
+			"name" : "vcl\\interaction",
+			"sourceIndexes" : 
+			[
+				357
+			]
+		},
+		{
+			"name" : "vcl\\interaction\\picking\\info",
+			"sourceIndexes" : 
+			[
+				358,
+				359
+			]
+		},
+		{
+			"name" : "vcl\\interaction\\picking",
+			"sourceIndexes" : 
+			[
+				360
+			]
+		},
+		{
+			"name" : "vcl\\interaction\\picking\\primitives",
+			"sourceIndexes" : 
+			[
+				361,
+				362
+			]
+		},
+		{
+			"name" : "vcl\\interaction\\picking\\ray",
+			"sourceIndexes" : 
+			[
+				363,
+				364
+			]
+		},
+		{
+			"name" : "vcl\\interaction\\screen_motion",
+			"sourceIndexes" : 
+			[
+				365,
+				366
+			]
+		},
+		{
+			"name" : "vcl\\interaction\\time_period",
+			"sourceIndexes" : 
+			[
+				367,
+				368
+			]
+		},
+		{
+			"name" : "vcl\\interaction\\time_slider",
+			"sourceIndexes" : 
+			[
+				369,
+				370
+			]
+		},
+		{
+			"name" : "vcl\\math\\helper_functions",
+			"sourceIndexes" : 
+			[
+				371
+			]
+		},
+		{
+			"name" : "vcl\\math\\helper_functions\\linspace",
+			"sourceIndexes" : 
+			[
+				372,
+				373
+			]
+		},
+		{
+			"name" : "vcl\\math\\helper_functions\\norm",
+			"sourceIndexes" : 
+			[
+				374,
+				375
+			]
+		},
+		{
+			"name" : "vcl\\math\\mat",
+			"sourceIndexes" : 
+			[
+				376
+			]
+		},
+		{
+			"name" : "vcl\\math\\mat\\mat",
+			"sourceIndexes" : 
+			[
+				377
+			]
+		},
+		{
+			"name" : "vcl\\math\\mat\\mat2",
+			"sourceIndexes" : 
+			[
+				378,
+				379
+			]
+		},
+		{
+			"name" : "vcl\\math\\mat\\mat3",
+			"sourceIndexes" : 
+			[
+				380,
+				381
+			]
+		},
+		{
+			"name" : "vcl\\math\\mat\\mat4",
+			"sourceIndexes" : 
+			[
+				382,
+				383
+			]
+		},
+		{
+			"name" : "vcl\\math",
+			"sourceIndexes" : 
+			[
+				384
+			]
+		},
+		{
+			"name" : "vcl\\math\\transformation\\affine_transform",
+			"sourceIndexes" : 
+			[
+				385,
+				386
+			]
+		},
+		{
+			"name" : "vcl\\math\\transformation\\special_transform",
+			"sourceIndexes" : 
+			[
+				387,
+				388
+			]
+		},
+		{
+			"name" : "vcl\\math\\transformation",
+			"sourceIndexes" : 
+			[
+				389
+			]
+		},
+		{
+			"name" : "vcl\\math\\vec",
+			"sourceIndexes" : 
+			[
+				390
+			]
+		},
+		{
+			"name" : "vcl\\math\\vec\\vec",
+			"sourceIndexes" : 
+			[
+				391
+			]
+		},
+		{
+			"name" : "vcl\\math\\vec\\vec2",
+			"sourceIndexes" : 
+			[
+				392,
+				393
+			]
+		},
+		{
+			"name" : "vcl\\math\\vec\\vec3",
+			"sourceIndexes" : 
+			[
+				394,
+				395
+			]
+		},
+		{
+			"name" : "vcl\\math\\vec\\vec4",
+			"sourceIndexes" : 
+			[
+				396,
+				397
+			]
+		},
+		{
+			"name" : "vcl\\opengl\\debug",
+			"sourceIndexes" : 
+			[
+				398,
+				399
+			]
+		},
+		{
+			"name" : "vcl\\opengl",
+			"sourceIndexes" : 
+			[
+				400
+			]
+		},
+		{
+			"name" : "vcl\\opengl\\shader",
+			"sourceIndexes" : 
+			[
+				401,
+				402
+			]
+		},
+		{
+			"name" : "vcl\\opengl\\texture\\image",
+			"sourceIndexes" : 
+			[
+				403,
+				404
+			]
+		},
+		{
+			"name" : "vcl\\opengl\\texture",
+			"sourceIndexes" : 
+			[
+				405
+			]
+		},
+		{
+			"name" : "vcl\\opengl\\texture\\texture_gpu",
+			"sourceIndexes" : 
+			[
+				406,
+				407
+			]
+		},
+		{
+			"name" : "vcl\\opengl\\uniform",
+			"sourceIndexes" : 
+			[
+				408,
+				409
+			]
+		},
+		{
+			"name" : "vcl\\shape\\curve",
+			"sourceIndexes" : 
+			[
+				410
+			]
+		},
+		{
+			"name" : "vcl\\shape\\curve\\curve_drawable",
+			"sourceIndexes" : 
+			[
+				411,
+				412
+			]
+		},
+		{
+			"name" : "vcl\\shape\\curve\\curve_drawable\\curve_drawable_uniform",
+			"sourceIndexes" : 
+			[
+				413
+			]
+		},
+		{
+			"name" : "vcl\\shape\\curve\\curve_dynamic_drawable",
+			"sourceIndexes" : 
+			[
+				414,
+				415
+			]
+		},
+		{
+			"name" : "vcl\\shape\\curve\\curve_gpu",
+			"sourceIndexes" : 
+			[
+				416,
+				417
+			]
+		},
+		{
+			"name" : "vcl\\shape\\curve\\curve_primitive",
+			"sourceIndexes" : 
+			[
+				418,
+				419
+			]
+		},
+		{
+			"name" : "vcl\\shape\\hierarchy_mesh",
+			"sourceIndexes" : 
+			[
+				420
+			]
+		},
+		{
+			"name" : "vcl\\shape\\hierarchy_mesh\\hierarchy_mesh_drawable",
+			"sourceIndexes" : 
+			[
+				421,
+				422
+			]
+		},
+		{
+			"name" : "vcl\\shape\\hierarchy_mesh\\hierarchy_mesh_drawable\\hierarchy_mesh_drawable_display_skeleton",
+			"sourceIndexes" : 
+			[
+				423,
+				424
+			]
+		},
+		{
+			"name" : "vcl\\shape\\hierarchy_mesh\\hierarchy_mesh_drawable\\hierarchy_mesh_drawable_node",
+			"sourceIndexes" : 
+			[
+				425,
+				426
+			]
+		},
+		{
+			"name" : "vcl\\shape\\mesh",
+			"sourceIndexes" : 
+			[
+				427
+			]
+		},
+		{
+			"name" : "vcl\\shape\\mesh\\mesh_drawable",
+			"sourceIndexes" : 
+			[
+				428,
+				429
+			]
+		},
+		{
+			"name" : "vcl\\shape\\mesh\\mesh_drawable\\mesh_drawable_gpu_data",
+			"sourceIndexes" : 
+			[
+				430,
+				431
+			]
+		},
+		{
+			"name" : "vcl\\shape\\mesh\\mesh_drawable\\mesh_drawable_uniform",
+			"sourceIndexes" : 
+			[
+				432,
+				433
+			]
+		},
+		{
+			"name" : "vcl\\shape\\mesh\\mesh_loader",
+			"sourceIndexes" : 
+			[
+				434
+			]
+		},
+		{
+			"name" : "vcl\\shape\\mesh\\mesh_loader\\obj",
+			"sourceIndexes" : 
+			[
+				435,
+				436
+			]
+		},
+		{
+			"name" : "vcl\\shape\\mesh\\mesh_primitive",
+			"sourceIndexes" : 
+			[
+				437,
+				438
+			]
+		},
+		{
+			"name" : "vcl\\shape\\mesh\\mesh_structure",
+			"sourceIndexes" : 
+			[
+				439,
+				440
+			]
+		},
+		{
+			"name" : "vcl\\shape\\segment",
+			"sourceIndexes" : 
+			[
+				441
+			]
+		},
+		{
+			"name" : "vcl\\shape\\segment\\segment_drawable_immediate_mode",
+			"sourceIndexes" : 
+			[
+				442,
+				443
+			]
+		},
+		{
+			"name" : "vcl\\shape\\segment\\segments_drawable",
+			"sourceIndexes" : 
+			[
+				444,
+				445
+			]
+		},
+		{
+			"name" : "vcl\\shape\\segment\\segments_drawable\\segments_drawable_uniform",
+			"sourceIndexes" : 
+			[
+				446,
+				447
+			]
+		},
+		{
+			"name" : "vcl\\shape\\segment\\segments_gpu",
+			"sourceIndexes" : 
+			[
+				448,
+				449
+			]
+		},
+		{
+			"name" : "vcl\\shape",
+			"sourceIndexes" : 
+			[
+				450
+			]
+		},
+		{
+			"name" : "vcl",
+			"sourceIndexes" : 
+			[
+				451
+			]
+		},
+		{
+			"name" : "vcl\\wrapper\\glad",
+			"sourceIndexes" : 
+			[
+				452
+			]
+		},
+		{
+			"name" : "vcl\\wrapper\\glfw\\events",
+			"sourceIndexes" : 
+			[
+				453,
+				454
+			]
+		},
+		{
+			"name" : "vcl\\wrapper\\glfw\\fps_counter",
+			"sourceIndexes" : 
+			[
+				455,
+				456
+			]
+		},
+		{
+			"name" : "vcl\\wrapper\\glfw",
+			"sourceIndexes" : 
+			[
+				457
+			]
+		},
+		{
+			"name" : "vcl\\wrapper\\glfw\\window",
+			"sourceIndexes" : 
+			[
+				458,
+				459
+			]
+		},
+		{
+			"name" : "vcl\\wrapper\\imgui",
+			"sourceIndexes" : 
+			[
+				460,
+				461
+			]
+		},
+		{
+			"name" : "vcl\\wrapper\\lodepng",
+			"sourceIndexes" : 
+			[
+				462,
+				463
+			]
+		},
+		{
+			"name" : "vcl\\wrapper\\perlin",
+			"sourceIndexes" : 
+			[
+				464,
+				465
+			]
+		},
+		{
+			"name" : "vcl\\wrapper",
+			"sourceIndexes" : 
+			[
+				466
+			]
+		}
+	],
+	"sources" : 
+	[
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "main/helper_scene/helper_scene.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "main/helper_scene/helper_scene.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "main/main.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "main/scene_base/base.cpp",
+			"sourceGroupIndex" : 2
+		},
+		{
+			"backtrace" : 1,
+			"path" : "main/scene_base/base.hpp",
+			"sourceGroupIndex" : 2
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "scenes/3D_graphics/00_default/default.cpp",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "scenes/3D_graphics/00_default/default.hpp",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "scenes/3D_graphics/01_modeling/modeling.cpp",
+			"sourceGroupIndex" : 4
+		},
+		{
+			"backtrace" : 1,
+			"path" : "scenes/3D_graphics/01_modeling/modeling.hpp",
+			"sourceGroupIndex" : 4
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "scenes/3D_graphics/02_texture/example_billboard.cpp",
+			"sourceGroupIndex" : 5
+		},
+		{
+			"backtrace" : 1,
+			"path" : "scenes/3D_graphics/02_texture/example_billboard.hpp",
+			"sourceGroupIndex" : 5
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "scenes/3D_graphics/02_texture/example_perlin.cpp",
+			"sourceGroupIndex" : 5
+		},
+		{
+			"backtrace" : 1,
+			"path" : "scenes/3D_graphics/02_texture/example_perlin.hpp",
+			"sourceGroupIndex" : 5
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "scenes/3D_graphics/02_texture/example_texture.cpp",
+			"sourceGroupIndex" : 5
+		},
+		{
+			"backtrace" : 1,
+			"path" : "scenes/3D_graphics/02_texture/example_texture.hpp",
+			"sourceGroupIndex" : 5
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "scenes/3D_graphics/03_animation/articulated_hierarchy.cpp",
+			"sourceGroupIndex" : 6
+		},
+		{
+			"backtrace" : 1,
+			"path" : "scenes/3D_graphics/03_animation/articulated_hierarchy.hpp",
+			"sourceGroupIndex" : 6
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "scenes/3D_graphics/03_animation/interpolation_position.cpp",
+			"sourceGroupIndex" : 6
+		},
+		{
+			"backtrace" : 1,
+			"path" : "scenes/3D_graphics/03_animation/interpolation_position.hpp",
+			"sourceGroupIndex" : 6
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "scenes/3D_graphics/04_simulation/example_mass_spring.cpp",
+			"sourceGroupIndex" : 7
+		},
+		{
+			"backtrace" : 1,
+			"path" : "scenes/3D_graphics/04_simulation/example_mass_spring.hpp",
+			"sourceGroupIndex" : 7
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "scenes/3D_graphics/04_simulation/example_sphere_gravity.cpp",
+			"sourceGroupIndex" : 7
+		},
+		{
+			"backtrace" : 1,
+			"path" : "scenes/3D_graphics/04_simulation/example_sphere_gravity.hpp",
+			"sourceGroupIndex" : 7
+		},
+		{
+			"backtrace" : 1,
+			"path" : "scenes/current_scene.hpp",
+			"sourceGroupIndex" : 8
+		},
+		{
+			"backtrace" : 1,
+			"path" : "scenes/scenes.hpp",
+			"sourceGroupIndex" : 8
+		},
+		{
+			"backtrace" : 1,
+			"path" : "scenes/shared_assets/shaders/curve/shader.frag.glsl",
+			"sourceGroupIndex" : 9
+		},
+		{
+			"backtrace" : 1,
+			"path" : "scenes/shared_assets/shaders/curve/shader.vert.glsl",
+			"sourceGroupIndex" : 9
+		},
+		{
+			"backtrace" : 1,
+			"path" : "scenes/shared_assets/shaders/mesh/shader.frag.glsl",
+			"sourceGroupIndex" : 10
+		},
+		{
+			"backtrace" : 1,
+			"path" : "scenes/shared_assets/shaders/mesh/shader.vert.glsl",
+			"sourceGroupIndex" : 10
+		},
+		{
+			"backtrace" : 1,
+			"path" : "scenes/shared_assets/shaders/mesh_back_illumination/mesh.frag.glsl",
+			"sourceGroupIndex" : 11
+		},
+		{
+			"backtrace" : 1,
+			"path" : "scenes/shared_assets/shaders/mesh_back_illumination/mesh.vert.glsl",
+			"sourceGroupIndex" : 11
+		},
+		{
+			"backtrace" : 1,
+			"path" : "scenes/shared_assets/shaders/normals/shader.frag.glsl",
+			"sourceGroupIndex" : 12
+		},
+		{
+			"backtrace" : 1,
+			"path" : "scenes/shared_assets/shaders/normals/shader.geom.glsl",
+			"sourceGroupIndex" : 12
+		},
+		{
+			"backtrace" : 1,
+			"path" : "scenes/shared_assets/shaders/normals/shader.vert.glsl",
+			"sourceGroupIndex" : 12
+		},
+		{
+			"backtrace" : 1,
+			"path" : "scenes/shared_assets/shaders/segment_immediate_mode/shader.frag.glsl",
+			"sourceGroupIndex" : 13
+		},
+		{
+			"backtrace" : 1,
+			"path" : "scenes/shared_assets/shaders/segment_immediate_mode/shader.vert.glsl",
+			"sourceGroupIndex" : 13
+		},
+		{
+			"backtrace" : 1,
+			"path" : "scenes/shared_assets/shaders/wireframe/shader.frag.glsl",
+			"sourceGroupIndex" : 14
+		},
+		{
+			"backtrace" : 1,
+			"path" : "scenes/shared_assets/shaders/wireframe/shader.geom.glsl",
+			"sourceGroupIndex" : 14
+		},
+		{
+			"backtrace" : 1,
+			"path" : "scenes/shared_assets/shaders/wireframe/shader.vert.glsl",
+			"sourceGroupIndex" : 14
+		},
+		{
+			"backtrace" : 1,
+			"path" : "scenes/shared_assets/shaders/wireframe_quads/shader.frag.glsl",
+			"sourceGroupIndex" : 15
+		},
+		{
+			"backtrace" : 1,
+			"path" : "scenes/shared_assets/shaders/wireframe_quads/shader.geom.glsl",
+			"sourceGroupIndex" : 15
+		},
+		{
+			"backtrace" : 1,
+			"path" : "scenes/shared_assets/shaders/wireframe_quads/shader.vert.glsl",
+			"sourceGroupIndex" : 15
+		},
+		{
+			"backtrace" : 1,
+			"path" : "third_party/eigen/Eigen/src/Cholesky/LDLT.h",
+			"sourceGroupIndex" : 16
+		},
+		{
+			"backtrace" : 1,
+			"path" : "third_party/eigen/Eigen/src/Cholesky/LLT.h",
+			"sourceGroupIndex" : 16
+		},
+		{
+			"backtrace" : 1,
+			"path" : "third_party/eigen/Eigen/src/Cholesky/LLT_LAPACKE.h",
+			"sourceGroupIndex" : 16
+		},
+		{
+			"backtrace" : 1,
+			"path" : "third_party/eigen/Eigen/src/CholmodSupport/CholmodSupport.h",
+			"sourceGroupIndex" : 17
+		},
+		{
+			"backtrace" : 1,
+			"path" : "third_party/eigen/Eigen/src/Core/Array.h",
+			"sourceGroupIndex" : 18
+		},
+		{
+			"backtrace" : 1,
+			"path" : "third_party/eigen/Eigen/src/Core/ArrayBase.h",
+			"sourceGroupIndex" : 18
+		},
+		{
+			"backtrace" : 1,
+			"path" : "third_party/eigen/Eigen/src/Core/ArrayWrapper.h",
+			"sourceGroupIndex" : 18
+		},
+		{
+			"backtrace" : 1,
+			"path" : "third_party/eigen/Eigen/src/Core/Assign.h",
+			"sourceGroupIndex" : 18
+		},
+		{
+			"backtrace" : 1,
+			"path" : "third_party/eigen/Eigen/src/Core/AssignEvaluator.h",
+			"sourceGroupIndex" : 18
+		},
+		{
+			"backtrace" : 1,
+			"path" : "third_party/eigen/Eigen/src/Core/Assign_MKL.h",
+			"sourceGroupIndex" : 18
+		},
+		{
+			"backtrace" : 1,
+			"path" : "third_party/eigen/Eigen/src/Core/BandMatrix.h",
+			"sourceGroupIndex" : 18
+		},
+		{
+			"backtrace" : 1,
+			"path" : "third_party/eigen/Eigen/src/Core/Block.h",
+			"sourceGroupIndex" : 18
+		},
+		{
+			"backtrace" : 1,
+			"path" : "third_party/eigen/Eigen/src/Core/BooleanRedux.h",
+			"sourceGroupIndex" : 18
+		},
+		{
+			"backtrace" : 1,
+			"path" : "third_party/eigen/Eigen/src/Core/CommaInitializer.h",
+			"sourceGroupIndex" : 18
+		},
+		{
+			"backtrace" : 1,
+			"path" : "third_party/eigen/Eigen/src/Core/ConditionEstimator.h",
+			"sourceGroupIndex" : 18
+		},
+		{
+			"backtrace" : 1,
+			"path" : "third_party/eigen/Eigen/src/Core/CoreEvaluators.h",
+			"sourceGroupIndex" : 18
+		},
+		{
+			"backtrace" : 1,
+			"path" : "third_party/eigen/Eigen/src/Core/CoreIterators.h",
+			"sourceGroupIndex" : 18
+		},
+		{
+			"backtrace" : 1,
+			"path" : "third_party/eigen/Eigen/src/Core/CwiseBinaryOp.h",
+			"sourceGroupIndex" : 18
+		},
+		{
+			"backtrace" : 1,
+			"path" : "third_party/eigen/Eigen/src/Core/CwiseNullaryOp.h",
+			"sourceGroupIndex" : 18
+		},
+		{
+			"backtrace" : 1,
+			"path" : "third_party/eigen/Eigen/src/Core/CwiseTernaryOp.h",
+			"sourceGroupIndex" : 18
+		},
+		{
+			"backtrace" : 1,
+			"path" : "third_party/eigen/Eigen/src/Core/CwiseUnaryOp.h",
+			"sourceGroupIndex" : 18
+		},
+		{
+			"backtrace" : 1,
+			"path" : "third_party/eigen/Eigen/src/Core/CwiseUnaryView.h",
+			"sourceGroupIndex" : 18
+		},
+		{
+			"backtrace" : 1,
+			"path" : "third_party/eigen/Eigen/src/Core/DenseBase.h",
+			"sourceGroupIndex" : 18
+		},
+		{
+			"backtrace" : 1,
+			"path" : "third_party/eigen/Eigen/src/Core/DenseCoeffsBase.h",
+			"sourceGroupIndex" : 18
+		},
+		{
+			"backtrace" : 1,
+			"path" : "third_party/eigen/Eigen/src/Core/DenseStorage.h",
+			"sourceGroupIndex" : 18
+		},
+		{
+			"backtrace" : 1,
+			"path" : "third_party/eigen/Eigen/src/Core/Diagonal.h",
+			"sourceGroupIndex" : 18
+		},
+		{
+			"backtrace" : 1,
+			"path" : "third_party/eigen/Eigen/src/Core/DiagonalMatrix.h",
+			"sourceGroupIndex" : 18
+		},
+		{
+			"backtrace" : 1,
+			"path" : "third_party/eigen/Eigen/src/Core/DiagonalProduct.h",
+			"sourceGroupIndex" : 18
+		},
+		{
+			"backtrace" : 1,
+			"path" : "third_party/eigen/Eigen/src/Core/Dot.h",
+			"sourceGroupIndex" : 18
+		},
+		{
+			"backtrace" : 1,
+			"path" : "third_party/eigen/Eigen/src/Core/EigenBase.h",
+			"sourceGroupIndex" : 18
+		},
+		{
+			"backtrace" : 1,
+			"path" : "third_party/eigen/Eigen/src/Core/ForceAlignedAccess.h",
+			"sourceGroupIndex" : 18
+		},
+		{
+			"backtrace" : 1,
+			"path" : "third_party/eigen/Eigen/src/Core/Fuzzy.h",
+			"sourceGroupIndex" : 18
+		},
+		{
+			"backtrace" : 1,
+			"path" : "third_party/eigen/Eigen/src/Core/GeneralProduct.h",
+			"sourceGroupIndex" : 18
+		},
+		{
+			"backtrace" : 1,
+			"path" : "third_party/eigen/Eigen/src/Core/GenericPacketMath.h",
+			"sourceGroupIndex" : 18
+		},
+		{
+			"backtrace" : 1,
+			"path" : "third_party/eigen/Eigen/src/Core/GlobalFunctions.h",
+			"sourceGroupIndex" : 18
+		},
+		{
+			"backtrace" : 1,
+			"path" : "third_party/eigen/Eigen/src/Core/IO.h",
+			"sourceGroupIndex" : 18
+		},
+		{
+			"backtrace" : 1,
+			"path" : "third_party/eigen/Eigen/src/Core/Inverse.h",
+			"sourceGroupIndex" : 18
+		},
+		{
+			"backtrace" : 1,
+			"path" : "third_party/eigen/Eigen/src/Core/Map.h",
+			"sourceGroupIndex" : 18
+		},
+		{
+			"backtrace" : 1,
+			"path" : "third_party/eigen/Eigen/src/Core/MapBase.h",
+			"sourceGroupIndex" : 18
+		},
+		{
+			"backtrace" : 1,
+			"path" : "third_party/eigen/Eigen/src/Core/MathFunctions.h",
+			"sourceGroupIndex" : 18
+		},
+		{
+			"backtrace" : 1,
+			"path" : "third_party/eigen/Eigen/src/Core/MathFunctionsImpl.h",
+			"sourceGroupIndex" : 18
+		},
+		{
+			"backtrace" : 1,
+			"path" : "third_party/eigen/Eigen/src/Core/Matrix.h",
+			"sourceGroupIndex" : 18
+		},
+		{
+			"backtrace" : 1,
+			"path" : "third_party/eigen/Eigen/src/Core/MatrixBase.h",
+			"sourceGroupIndex" : 18
+		},
+		{
+			"backtrace" : 1,
+			"path" : "third_party/eigen/Eigen/src/Core/NestByValue.h",
+			"sourceGroupIndex" : 18
+		},
+		{
+			"backtrace" : 1,
+			"path" : "third_party/eigen/Eigen/src/Core/NoAlias.h",
+			"sourceGroupIndex" : 18
+		},
+		{
+			"backtrace" : 1,
+			"path" : "third_party/eigen/Eigen/src/Core/NumTraits.h",
+			"sourceGroupIndex" : 18
+		},
+		{
+			"backtrace" : 1,
+			"path" : "third_party/eigen/Eigen/src/Core/PermutationMatrix.h",
+			"sourceGroupIndex" : 18
+		},
+		{
+			"backtrace" : 1,
+			"path" : "third_party/eigen/Eigen/src/Core/PlainObjectBase.h",
+			"sourceGroupIndex" : 18
+		},
+		{
+			"backtrace" : 1,
+			"path" : "third_party/eigen/Eigen/src/Core/Product.h",
+			"sourceGroupIndex" : 18
+		},
+		{
+			"backtrace" : 1,
+			"path" : "third_party/eigen/Eigen/src/Core/ProductEvaluators.h",
+			"sourceGroupIndex" : 18
+		},
+		{
+			"backtrace" : 1,
+			"path" : "third_party/eigen/Eigen/src/Core/Random.h",
+			"sourceGroupIndex" : 18
+		},
+		{
+			"backtrace" : 1,
+			"path" : "third_party/eigen/Eigen/src/Core/Redux.h",
+			"sourceGroupIndex" : 18
+		},
+		{
+			"backtrace" : 1,
+			"path" : "third_party/eigen/Eigen/src/Core/Ref.h",
+			"sourceGroupIndex" : 18
+		},
+		{
+			"backtrace" : 1,
+			"path" : "third_party/eigen/Eigen/src/Core/Replicate.h",
+			"sourceGroupIndex" : 18
+		},
+		{
+			"backtrace" : 1,
+			"path" : "third_party/eigen/Eigen/src/Core/ReturnByValue.h",
+			"sourceGroupIndex" : 18
+		},
+		{
+			"backtrace" : 1,
+			"path" : "third_party/eigen/Eigen/src/Core/Reverse.h",
+			"sourceGroupIndex" : 18
+		},
+		{
+			"backtrace" : 1,
+			"path" : "third_party/eigen/Eigen/src/Core/Select.h",
+			"sourceGroupIndex" : 18
+		},
+		{
+			"backtrace" : 1,
+			"path" : "third_party/eigen/Eigen/src/Core/SelfAdjointView.h",
+			"sourceGroupIndex" : 18
+		},
+		{
+			"backtrace" : 1,
+			"path" : "third_party/eigen/Eigen/src/Core/SelfCwiseBinaryOp.h",
+			"sourceGroupIndex" : 18
+		},
+		{
+			"backtrace" : 1,
+			"path" : "third_party/eigen/Eigen/src/Core/Solve.h",
+			"sourceGroupIndex" : 18
+		},
+		{
+			"backtrace" : 1,
+			"path" : "third_party/eigen/Eigen/src/Core/SolveTriangular.h",
+			"sourceGroupIndex" : 18
+		},
+		{
+			"backtrace" : 1,
+			"path" : "third_party/eigen/Eigen/src/Core/SolverBase.h",
+			"sourceGroupIndex" : 18
+		},
+		{
+			"backtrace" : 1,
+			"path" : "third_party/eigen/Eigen/src/Core/StableNorm.h",
+			"sourceGroupIndex" : 18
+		},
+		{
+			"backtrace" : 1,
+			"path" : "third_party/eigen/Eigen/src/Core/Stride.h",
+			"sourceGroupIndex" : 18
+		},
+		{
+			"backtrace" : 1,
+			"path" : "third_party/eigen/Eigen/src/Core/Swap.h",
+			"sourceGroupIndex" : 18
+		},
+		{
+			"backtrace" : 1,
+			"path" : "third_party/eigen/Eigen/src/Core/Transpose.h",
+			"sourceGroupIndex" : 18
+		},
+		{
+			"backtrace" : 1,
+			"path" : "third_party/eigen/Eigen/src/Core/Transpositions.h",
+			"sourceGroupIndex" : 18
+		},
+		{
+			"backtrace" : 1,
+			"path" : "third_party/eigen/Eigen/src/Core/TriangularMatrix.h",
+			"sourceGroupIndex" : 18
+		},
+		{
+			"backtrace" : 1,
+			"path" : "third_party/eigen/Eigen/src/Core/VectorBlock.h",
+			"sourceGroupIndex" : 18
+		},
+		{
+			"backtrace" : 1,
+			"path" : "third_party/eigen/Eigen/src/Core/VectorwiseOp.h",
+			"sourceGroupIndex" : 18
+		},
+		{
+			"backtrace" : 1,
+			"path" : "third_party/eigen/Eigen/src/Core/Visitor.h",
+			"sourceGroupIndex" : 18
+		},
+		{
+			"backtrace" : 1,
+			"path" : "third_party/eigen/Eigen/src/Core/arch/AVX/Complex.h",
+			"sourceGroupIndex" : 19
+		},
+		{
+			"backtrace" : 1,
+			"path" : "third_party/eigen/Eigen/src/Core/arch/AVX/MathFunctions.h",
+			"sourceGroupIndex" : 19
+		},
+		{
+			"backtrace" : 1,
+			"path" : "third_party/eigen/Eigen/src/Core/arch/AVX/PacketMath.h",
+			"sourceGroupIndex" : 19
+		},
+		{
+			"backtrace" : 1,
+			"path" : "third_party/eigen/Eigen/src/Core/arch/AVX/TypeCasting.h",
+			"sourceGroupIndex" : 19
+		},
+		{
+			"backtrace" : 1,
+			"path" : "third_party/eigen/Eigen/src/Core/arch/AVX512/MathFunctions.h",
+			"sourceGroupIndex" : 20
+		},
+		{
+			"backtrace" : 1,
+			"path" : "third_party/eigen/Eigen/src/Core/arch/AVX512/PacketMath.h",
+			"sourceGroupIndex" : 20
+		},
+		{
+			"backtrace" : 1,
+			"path" : "third_party/eigen/Eigen/src/Core/arch/AltiVec/Complex.h",
+			"sourceGroupIndex" : 21
+		},
+		{
+			"backtrace" : 1,
+			"path" : "third_party/eigen/Eigen/src/Core/arch/AltiVec/MathFunctions.h",
+			"sourceGroupIndex" : 21
+		},
+		{
+			"backtrace" : 1,
+			"path" : "third_party/eigen/Eigen/src/Core/arch/AltiVec/PacketMath.h",
+			"sourceGroupIndex" : 21
+		},
+		{
+			"backtrace" : 1,
+			"path" : "third_party/eigen/Eigen/src/Core/arch/CUDA/Complex.h",
+			"sourceGroupIndex" : 22
+		},
+		{
+			"backtrace" : 1,
+			"path" : "third_party/eigen/Eigen/src/Core/arch/CUDA/Half.h",
+			"sourceGroupIndex" : 22
+		},
+		{
+			"backtrace" : 1,
+			"path" : "third_party/eigen/Eigen/src/Core/arch/CUDA/MathFunctions.h",
+			"sourceGroupIndex" : 22
+		},
+		{
+			"backtrace" : 1,
+			"path" : "third_party/eigen/Eigen/src/Core/arch/CUDA/PacketMath.h",
+			"sourceGroupIndex" : 22
+		},
+		{
+			"backtrace" : 1,
+			"path" : "third_party/eigen/Eigen/src/Core/arch/CUDA/PacketMathHalf.h",
+			"sourceGroupIndex" : 22
+		},
+		{
+			"backtrace" : 1,
+			"path" : "third_party/eigen/Eigen/src/Core/arch/CUDA/TypeCasting.h",
+			"sourceGroupIndex" : 22
+		},
+		{
+			"backtrace" : 1,
+			"path" : "third_party/eigen/Eigen/src/Core/arch/Default/ConjHelper.h",
+			"sourceGroupIndex" : 23
+		},
+		{
+			"backtrace" : 1,
+			"path" : "third_party/eigen/Eigen/src/Core/arch/Default/Settings.h",
+			"sourceGroupIndex" : 23
+		},
+		{
+			"backtrace" : 1,
+			"path" : "third_party/eigen/Eigen/src/Core/arch/NEON/Complex.h",
+			"sourceGroupIndex" : 24
+		},
+		{
+			"backtrace" : 1,
+			"path" : "third_party/eigen/Eigen/src/Core/arch/NEON/MathFunctions.h",
+			"sourceGroupIndex" : 24
+		},
+		{
+			"backtrace" : 1,
+			"path" : "third_party/eigen/Eigen/src/Core/arch/NEON/PacketMath.h",
+			"sourceGroupIndex" : 24
+		},
+		{
+			"backtrace" : 1,
+			"path" : "third_party/eigen/Eigen/src/Core/arch/SSE/Complex.h",
+			"sourceGroupIndex" : 25
+		},
+		{
+			"backtrace" : 1,
+			"path" : "third_party/eigen/Eigen/src/Core/arch/SSE/MathFunctions.h",
+			"sourceGroupIndex" : 25
+		},
+		{
+			"backtrace" : 1,
+			"path" : "third_party/eigen/Eigen/src/Core/arch/SSE/PacketMath.h",
+			"sourceGroupIndex" : 25
+		},
+		{
+			"backtrace" : 1,
+			"path" : "third_party/eigen/Eigen/src/Core/arch/SSE/TypeCasting.h",
+			"sourceGroupIndex" : 25
+		},
+		{
+			"backtrace" : 1,
+			"path" : "third_party/eigen/Eigen/src/Core/arch/ZVector/Complex.h",
+			"sourceGroupIndex" : 26
+		},
+		{
+			"backtrace" : 1,
+			"path" : "third_party/eigen/Eigen/src/Core/arch/ZVector/MathFunctions.h",
+			"sourceGroupIndex" : 26
+		},
+		{
+			"backtrace" : 1,
+			"path" : "third_party/eigen/Eigen/src/Core/arch/ZVector/PacketMath.h",
+			"sourceGroupIndex" : 26
+		},
+		{
+			"backtrace" : 1,
+			"path" : "third_party/eigen/Eigen/src/Core/functors/AssignmentFunctors.h",
+			"sourceGroupIndex" : 27
+		},
+		{
+			"backtrace" : 1,
+			"path" : "third_party/eigen/Eigen/src/Core/functors/BinaryFunctors.h",
+			"sourceGroupIndex" : 27
+		},
+		{
+			"backtrace" : 1,
+			"path" : "third_party/eigen/Eigen/src/Core/functors/NullaryFunctors.h",
+			"sourceGroupIndex" : 27
+		},
+		{
+			"backtrace" : 1,
+			"path" : "third_party/eigen/Eigen/src/Core/functors/StlFunctors.h",
+			"sourceGroupIndex" : 27
+		},
+		{
+			"backtrace" : 1,
+			"path" : "third_party/eigen/Eigen/src/Core/functors/TernaryFunctors.h",
+			"sourceGroupIndex" : 27
+		},
+		{
+			"backtrace" : 1,
+			"path" : "third_party/eigen/Eigen/src/Core/functors/UnaryFunctors.h",
+			"sourceGroupIndex" : 27
+		},
+		{
+			"backtrace" : 1,
+			"path" : "third_party/eigen/Eigen/src/Core/products/GeneralBlockPanelKernel.h",
+			"sourceGroupIndex" : 28
+		},
+		{
+			"backtrace" : 1,
+			"path" : "third_party/eigen/Eigen/src/Core/products/GeneralMatrixMatrix.h",
+			"sourceGroupIndex" : 28
+		},
+		{
+			"backtrace" : 1,
+			"path" : "third_party/eigen/Eigen/src/Core/products/GeneralMatrixMatrixTriangular.h",
+			"sourceGroupIndex" : 28
+		},
+		{
+			"backtrace" : 1,
+			"path" : "third_party/eigen/Eigen/src/Core/products/GeneralMatrixMatrixTriangular_BLAS.h",
+			"sourceGroupIndex" : 28
+		},
+		{
+			"backtrace" : 1,
+			"path" : "third_party/eigen/Eigen/src/Core/products/GeneralMatrixMatrix_BLAS.h",
+			"sourceGroupIndex" : 28
+		},
+		{
+			"backtrace" : 1,
+			"path" : "third_party/eigen/Eigen/src/Core/products/GeneralMatrixVector.h",
+			"sourceGroupIndex" : 28
+		},
+		{
+			"backtrace" : 1,
+			"path" : "third_party/eigen/Eigen/src/Core/products/GeneralMatrixVector_BLAS.h",
+			"sourceGroupIndex" : 28
+		},
+		{
+			"backtrace" : 1,
+			"path" : "third_party/eigen/Eigen/src/Core/products/Parallelizer.h",
+			"sourceGroupIndex" : 28
+		},
+		{
+			"backtrace" : 1,
+			"path" : "third_party/eigen/Eigen/src/Core/products/SelfadjointMatrixMatrix.h",
+			"sourceGroupIndex" : 28
+		},
+		{
+			"backtrace" : 1,
+			"path" : "third_party/eigen/Eigen/src/Core/products/SelfadjointMatrixMatrix_BLAS.h",
+			"sourceGroupIndex" : 28
+		},
+		{
+			"backtrace" : 1,
+			"path" : "third_party/eigen/Eigen/src/Core/products/SelfadjointMatrixVector.h",
+			"sourceGroupIndex" : 28
+		},
+		{
+			"backtrace" : 1,
+			"path" : "third_party/eigen/Eigen/src/Core/products/SelfadjointMatrixVector_BLAS.h",
+			"sourceGroupIndex" : 28
+		},
+		{
+			"backtrace" : 1,
+			"path" : "third_party/eigen/Eigen/src/Core/products/SelfadjointProduct.h",
+			"sourceGroupIndex" : 28
+		},
+		{
+			"backtrace" : 1,
+			"path" : "third_party/eigen/Eigen/src/Core/products/SelfadjointRank2Update.h",
+			"sourceGroupIndex" : 28
+		},
+		{
+			"backtrace" : 1,
+			"path" : "third_party/eigen/Eigen/src/Core/products/TriangularMatrixMatrix.h",
+			"sourceGroupIndex" : 28
+		},
+		{
+			"backtrace" : 1,
+			"path" : "third_party/eigen/Eigen/src/Core/products/TriangularMatrixMatrix_BLAS.h",
+			"sourceGroupIndex" : 28
+		},
+		{
+			"backtrace" : 1,
+			"path" : "third_party/eigen/Eigen/src/Core/products/TriangularMatrixVector.h",
+			"sourceGroupIndex" : 28
+		},
+		{
+			"backtrace" : 1,
+			"path" : "third_party/eigen/Eigen/src/Core/products/TriangularMatrixVector_BLAS.h",
+			"sourceGroupIndex" : 28
+		},
+		{
+			"backtrace" : 1,
+			"path" : "third_party/eigen/Eigen/src/Core/products/TriangularSolverMatrix.h",
+			"sourceGroupIndex" : 28
+		},
+		{
+			"backtrace" : 1,
+			"path" : "third_party/eigen/Eigen/src/Core/products/TriangularSolverMatrix_BLAS.h",
+			"sourceGroupIndex" : 28
+		},
+		{
+			"backtrace" : 1,
+			"path" : "third_party/eigen/Eigen/src/Core/products/TriangularSolverVector.h",
+			"sourceGroupIndex" : 28
+		},
+		{
+			"backtrace" : 1,
+			"path" : "third_party/eigen/Eigen/src/Core/util/BlasUtil.h",
+			"sourceGroupIndex" : 29
+		},
+		{
+			"backtrace" : 1,
+			"path" : "third_party/eigen/Eigen/src/Core/util/Constants.h",
+			"sourceGroupIndex" : 29
+		},
+		{
+			"backtrace" : 1,
+			"path" : "third_party/eigen/Eigen/src/Core/util/DisableStupidWarnings.h",
+			"sourceGroupIndex" : 29
+		},
+		{
+			"backtrace" : 1,
+			"path" : "third_party/eigen/Eigen/src/Core/util/ForwardDeclarations.h",
+			"sourceGroupIndex" : 29
+		},
+		{
+			"backtrace" : 1,
+			"path" : "third_party/eigen/Eigen/src/Core/util/MKL_support.h",
+			"sourceGroupIndex" : 29
+		},
+		{
+			"backtrace" : 1,
+			"path" : "third_party/eigen/Eigen/src/Core/util/Macros.h",
+			"sourceGroupIndex" : 29
+		},
+		{
+			"backtrace" : 1,
+			"path" : "third_party/eigen/Eigen/src/Core/util/Memory.h",
+			"sourceGroupIndex" : 29
+		},
+		{
+			"backtrace" : 1,
+			"path" : "third_party/eigen/Eigen/src/Core/util/Meta.h",
+			"sourceGroupIndex" : 29
+		},
+		{
+			"backtrace" : 1,
+			"path" : "third_party/eigen/Eigen/src/Core/util/NonMPL2.h",
+			"sourceGroupIndex" : 29
+		},
+		{
+			"backtrace" : 1,
+			"path" : "third_party/eigen/Eigen/src/Core/util/ReenableStupidWarnings.h",
+			"sourceGroupIndex" : 29
+		},
+		{
+			"backtrace" : 1,
+			"path" : "third_party/eigen/Eigen/src/Core/util/StaticAssert.h",
+			"sourceGroupIndex" : 29
+		},
+		{
+			"backtrace" : 1,
+			"path" : "third_party/eigen/Eigen/src/Core/util/XprHelper.h",
+			"sourceGroupIndex" : 29
+		},
+		{
+			"backtrace" : 1,
+			"path" : "third_party/eigen/Eigen/src/Eigenvalues/ComplexEigenSolver.h",
+			"sourceGroupIndex" : 30
+		},
+		{
+			"backtrace" : 1,
+			"path" : "third_party/eigen/Eigen/src/Eigenvalues/ComplexSchur.h",
+			"sourceGroupIndex" : 30
+		},
+		{
+			"backtrace" : 1,
+			"path" : "third_party/eigen/Eigen/src/Eigenvalues/ComplexSchur_LAPACKE.h",
+			"sourceGroupIndex" : 30
+		},
+		{
+			"backtrace" : 1,
+			"path" : "third_party/eigen/Eigen/src/Eigenvalues/EigenSolver.h",
+			"sourceGroupIndex" : 30
+		},
+		{
+			"backtrace" : 1,
+			"path" : "third_party/eigen/Eigen/src/Eigenvalues/GeneralizedEigenSolver.h",
+			"sourceGroupIndex" : 30
+		},
+		{
+			"backtrace" : 1,
+			"path" : "third_party/eigen/Eigen/src/Eigenvalues/GeneralizedSelfAdjointEigenSolver.h",
+			"sourceGroupIndex" : 30
+		},
+		{
+			"backtrace" : 1,
+			"path" : "third_party/eigen/Eigen/src/Eigenvalues/HessenbergDecomposition.h",
+			"sourceGroupIndex" : 30
+		},
+		{
+			"backtrace" : 1,
+			"path" : "third_party/eigen/Eigen/src/Eigenvalues/MatrixBaseEigenvalues.h",
+			"sourceGroupIndex" : 30
+		},
+		{
+			"backtrace" : 1,
+			"path" : "third_party/eigen/Eigen/src/Eigenvalues/RealQZ.h",
+			"sourceGroupIndex" : 30
+		},
+		{
+			"backtrace" : 1,
+			"path" : "third_party/eigen/Eigen/src/Eigenvalues/RealSchur.h",
+			"sourceGroupIndex" : 30
+		},
+		{
+			"backtrace" : 1,
+			"path" : "third_party/eigen/Eigen/src/Eigenvalues/RealSchur_LAPACKE.h",
+			"sourceGroupIndex" : 30
+		},
+		{
+			"backtrace" : 1,
+			"path" : "third_party/eigen/Eigen/src/Eigenvalues/SelfAdjointEigenSolver.h",
+			"sourceGroupIndex" : 30
+		},
+		{
+			"backtrace" : 1,
+			"path" : "third_party/eigen/Eigen/src/Eigenvalues/SelfAdjointEigenSolver_LAPACKE.h",
+			"sourceGroupIndex" : 30
+		},
+		{
+			"backtrace" : 1,
+			"path" : "third_party/eigen/Eigen/src/Eigenvalues/Tridiagonalization.h",
+			"sourceGroupIndex" : 30
+		},
+		{
+			"backtrace" : 1,
+			"path" : "third_party/eigen/Eigen/src/Geometry/AlignedBox.h",
+			"sourceGroupIndex" : 31
+		},
+		{
+			"backtrace" : 1,
+			"path" : "third_party/eigen/Eigen/src/Geometry/AngleAxis.h",
+			"sourceGroupIndex" : 31
+		},
+		{
+			"backtrace" : 1,
+			"path" : "third_party/eigen/Eigen/src/Geometry/EulerAngles.h",
+			"sourceGroupIndex" : 31
+		},
+		{
+			"backtrace" : 1,
+			"path" : "third_party/eigen/Eigen/src/Geometry/Homogeneous.h",
+			"sourceGroupIndex" : 31
+		},
+		{
+			"backtrace" : 1,
+			"path" : "third_party/eigen/Eigen/src/Geometry/Hyperplane.h",
+			"sourceGroupIndex" : 31
+		},
+		{
+			"backtrace" : 1,
+			"path" : "third_party/eigen/Eigen/src/Geometry/OrthoMethods.h",
+			"sourceGroupIndex" : 31
+		},
+		{
+			"backtrace" : 1,
+			"path" : "third_party/eigen/Eigen/src/Geometry/ParametrizedLine.h",
+			"sourceGroupIndex" : 31
+		},
+		{
+			"backtrace" : 1,
+			"path" : "third_party/eigen/Eigen/src/Geometry/Quaternion.h",
+			"sourceGroupIndex" : 31
+		},
+		{
+			"backtrace" : 1,
+			"path" : "third_party/eigen/Eigen/src/Geometry/Rotation2D.h",
+			"sourceGroupIndex" : 31
+		},
+		{
+			"backtrace" : 1,
+			"path" : "third_party/eigen/Eigen/src/Geometry/RotationBase.h",
+			"sourceGroupIndex" : 31
+		},
+		{
+			"backtrace" : 1,
+			"path" : "third_party/eigen/Eigen/src/Geometry/Scaling.h",
+			"sourceGroupIndex" : 31
+		},
+		{
+			"backtrace" : 1,
+			"path" : "third_party/eigen/Eigen/src/Geometry/Transform.h",
+			"sourceGroupIndex" : 31
+		},
+		{
+			"backtrace" : 1,
+			"path" : "third_party/eigen/Eigen/src/Geometry/Translation.h",
+			"sourceGroupIndex" : 31
+		},
+		{
+			"backtrace" : 1,
+			"path" : "third_party/eigen/Eigen/src/Geometry/Umeyama.h",
+			"sourceGroupIndex" : 31
+		},
+		{
+			"backtrace" : 1,
+			"path" : "third_party/eigen/Eigen/src/Geometry/arch/Geometry_SSE.h",
+			"sourceGroupIndex" : 32
+		},
+		{
+			"backtrace" : 1,
+			"path" : "third_party/eigen/Eigen/src/Householder/BlockHouseholder.h",
+			"sourceGroupIndex" : 33
+		},
+		{
+			"backtrace" : 1,
+			"path" : "third_party/eigen/Eigen/src/Householder/Householder.h",
+			"sourceGroupIndex" : 33
+		},
+		{
+			"backtrace" : 1,
+			"path" : "third_party/eigen/Eigen/src/Householder/HouseholderSequence.h",
+			"sourceGroupIndex" : 33
+		},
+		{
+			"backtrace" : 1,
+			"path" : "third_party/eigen/Eigen/src/IterativeLinearSolvers/BasicPreconditioners.h",
+			"sourceGroupIndex" : 34
+		},
+		{
+			"backtrace" : 1,
+			"path" : "third_party/eigen/Eigen/src/IterativeLinearSolvers/BiCGSTAB.h",
+			"sourceGroupIndex" : 34
+		},
+		{
+			"backtrace" : 1,
+			"path" : "third_party/eigen/Eigen/src/IterativeLinearSolvers/ConjugateGradient.h",
+			"sourceGroupIndex" : 34
+		},
+		{
+			"backtrace" : 1,
+			"path" : "third_party/eigen/Eigen/src/IterativeLinearSolvers/IncompleteCholesky.h",
+			"sourceGroupIndex" : 34
+		},
+		{
+			"backtrace" : 1,
+			"path" : "third_party/eigen/Eigen/src/IterativeLinearSolvers/IncompleteLUT.h",
+			"sourceGroupIndex" : 34
+		},
+		{
+			"backtrace" : 1,
+			"path" : "third_party/eigen/Eigen/src/IterativeLinearSolvers/IterativeSolverBase.h",
+			"sourceGroupIndex" : 34
+		},
+		{
+			"backtrace" : 1,
+			"path" : "third_party/eigen/Eigen/src/IterativeLinearSolvers/LeastSquareConjugateGradient.h",
+			"sourceGroupIndex" : 34
+		},
+		{
+			"backtrace" : 1,
+			"path" : "third_party/eigen/Eigen/src/IterativeLinearSolvers/SolveWithGuess.h",
+			"sourceGroupIndex" : 34
+		},
+		{
+			"backtrace" : 1,
+			"path" : "third_party/eigen/Eigen/src/Jacobi/Jacobi.h",
+			"sourceGroupIndex" : 35
+		},
+		{
+			"backtrace" : 1,
+			"path" : "third_party/eigen/Eigen/src/LU/Determinant.h",
+			"sourceGroupIndex" : 36
+		},
+		{
+			"backtrace" : 1,
+			"path" : "third_party/eigen/Eigen/src/LU/FullPivLU.h",
+			"sourceGroupIndex" : 36
+		},
+		{
+			"backtrace" : 1,
+			"path" : "third_party/eigen/Eigen/src/LU/InverseImpl.h",
+			"sourceGroupIndex" : 36
+		},
+		{
+			"backtrace" : 1,
+			"path" : "third_party/eigen/Eigen/src/LU/PartialPivLU.h",
+			"sourceGroupIndex" : 36
+		},
+		{
+			"backtrace" : 1,
+			"path" : "third_party/eigen/Eigen/src/LU/PartialPivLU_LAPACKE.h",
+			"sourceGroupIndex" : 36
+		},
+		{
+			"backtrace" : 1,
+			"path" : "third_party/eigen/Eigen/src/LU/arch/Inverse_SSE.h",
+			"sourceGroupIndex" : 37
+		},
+		{
+			"backtrace" : 1,
+			"path" : "third_party/eigen/Eigen/src/MetisSupport/MetisSupport.h",
+			"sourceGroupIndex" : 38
+		},
+		{
+			"backtrace" : 1,
+			"path" : "third_party/eigen/Eigen/src/OrderingMethods/Amd.h",
+			"sourceGroupIndex" : 39
+		},
+		{
+			"backtrace" : 1,
+			"path" : "third_party/eigen/Eigen/src/OrderingMethods/Eigen_Colamd.h",
+			"sourceGroupIndex" : 39
+		},
+		{
+			"backtrace" : 1,
+			"path" : "third_party/eigen/Eigen/src/OrderingMethods/Ordering.h",
+			"sourceGroupIndex" : 39
+		},
+		{
+			"backtrace" : 1,
+			"path" : "third_party/eigen/Eigen/src/PaStiXSupport/PaStiXSupport.h",
+			"sourceGroupIndex" : 40
+		},
+		{
+			"backtrace" : 1,
+			"path" : "third_party/eigen/Eigen/src/PardisoSupport/PardisoSupport.h",
+			"sourceGroupIndex" : 41
+		},
+		{
+			"backtrace" : 1,
+			"path" : "third_party/eigen/Eigen/src/QR/ColPivHouseholderQR.h",
+			"sourceGroupIndex" : 42
+		},
+		{
+			"backtrace" : 1,
+			"path" : "third_party/eigen/Eigen/src/QR/ColPivHouseholderQR_LAPACKE.h",
+			"sourceGroupIndex" : 42
+		},
+		{
+			"backtrace" : 1,
+			"path" : "third_party/eigen/Eigen/src/QR/CompleteOrthogonalDecomposition.h",
+			"sourceGroupIndex" : 42
+		},
+		{
+			"backtrace" : 1,
+			"path" : "third_party/eigen/Eigen/src/QR/FullPivHouseholderQR.h",
+			"sourceGroupIndex" : 42
+		},
+		{
+			"backtrace" : 1,
+			"path" : "third_party/eigen/Eigen/src/QR/HouseholderQR.h",
+			"sourceGroupIndex" : 42
+		},
+		{
+			"backtrace" : 1,
+			"path" : "third_party/eigen/Eigen/src/QR/HouseholderQR_LAPACKE.h",
+			"sourceGroupIndex" : 42
+		},
+		{
+			"backtrace" : 1,
+			"path" : "third_party/eigen/Eigen/src/SPQRSupport/SuiteSparseQRSupport.h",
+			"sourceGroupIndex" : 43
+		},
+		{
+			"backtrace" : 1,
+			"path" : "third_party/eigen/Eigen/src/SVD/BDCSVD.h",
+			"sourceGroupIndex" : 44
+		},
+		{
+			"backtrace" : 1,
+			"path" : "third_party/eigen/Eigen/src/SVD/JacobiSVD.h",
+			"sourceGroupIndex" : 44
+		},
+		{
+			"backtrace" : 1,
+			"path" : "third_party/eigen/Eigen/src/SVD/JacobiSVD_LAPACKE.h",
+			"sourceGroupIndex" : 44
+		},
+		{
+			"backtrace" : 1,
+			"path" : "third_party/eigen/Eigen/src/SVD/SVDBase.h",
+			"sourceGroupIndex" : 44
+		},
+		{
+			"backtrace" : 1,
+			"path" : "third_party/eigen/Eigen/src/SVD/UpperBidiagonalization.h",
+			"sourceGroupIndex" : 44
+		},
+		{
+			"backtrace" : 1,
+			"path" : "third_party/eigen/Eigen/src/SparseCholesky/SimplicialCholesky.h",
+			"sourceGroupIndex" : 45
+		},
+		{
+			"backtrace" : 1,
+			"path" : "third_party/eigen/Eigen/src/SparseCholesky/SimplicialCholesky_impl.h",
+			"sourceGroupIndex" : 45
+		},
+		{
+			"backtrace" : 1,
+			"path" : "third_party/eigen/Eigen/src/SparseCore/AmbiVector.h",
+			"sourceGroupIndex" : 46
+		},
+		{
+			"backtrace" : 1,
+			"path" : "third_party/eigen/Eigen/src/SparseCore/CompressedStorage.h",
+			"sourceGroupIndex" : 46
+		},
+		{
+			"backtrace" : 1,
+			"path" : "third_party/eigen/Eigen/src/SparseCore/ConservativeSparseSparseProduct.h",
+			"sourceGroupIndex" : 46
+		},
+		{
+			"backtrace" : 1,
+			"path" : "third_party/eigen/Eigen/src/SparseCore/MappedSparseMatrix.h",
+			"sourceGroupIndex" : 46
+		},
+		{
+			"backtrace" : 1,
+			"path" : "third_party/eigen/Eigen/src/SparseCore/SparseAssign.h",
+			"sourceGroupIndex" : 46
+		},
+		{
+			"backtrace" : 1,
+			"path" : "third_party/eigen/Eigen/src/SparseCore/SparseBlock.h",
+			"sourceGroupIndex" : 46
+		},
+		{
+			"backtrace" : 1,
+			"path" : "third_party/eigen/Eigen/src/SparseCore/SparseColEtree.h",
+			"sourceGroupIndex" : 46
+		},
+		{
+			"backtrace" : 1,
+			"path" : "third_party/eigen/Eigen/src/SparseCore/SparseCompressedBase.h",
+			"sourceGroupIndex" : 46
+		},
+		{
+			"backtrace" : 1,
+			"path" : "third_party/eigen/Eigen/src/SparseCore/SparseCwiseBinaryOp.h",
+			"sourceGroupIndex" : 46
+		},
+		{
+			"backtrace" : 1,
+			"path" : "third_party/eigen/Eigen/src/SparseCore/SparseCwiseUnaryOp.h",
+			"sourceGroupIndex" : 46
+		},
+		{
+			"backtrace" : 1,
+			"path" : "third_party/eigen/Eigen/src/SparseCore/SparseDenseProduct.h",
+			"sourceGroupIndex" : 46
+		},
+		{
+			"backtrace" : 1,
+			"path" : "third_party/eigen/Eigen/src/SparseCore/SparseDiagonalProduct.h",
+			"sourceGroupIndex" : 46
+		},
+		{
+			"backtrace" : 1,
+			"path" : "third_party/eigen/Eigen/src/SparseCore/SparseDot.h",
+			"sourceGroupIndex" : 46
+		},
+		{
+			"backtrace" : 1,
+			"path" : "third_party/eigen/Eigen/src/SparseCore/SparseFuzzy.h",
+			"sourceGroupIndex" : 46
+		},
+		{
+			"backtrace" : 1,
+			"path" : "third_party/eigen/Eigen/src/SparseCore/SparseMap.h",
+			"sourceGroupIndex" : 46
+		},
+		{
+			"backtrace" : 1,
+			"path" : "third_party/eigen/Eigen/src/SparseCore/SparseMatrix.h",
+			"sourceGroupIndex" : 46
+		},
+		{
+			"backtrace" : 1,
+			"path" : "third_party/eigen/Eigen/src/SparseCore/SparseMatrixBase.h",
+			"sourceGroupIndex" : 46
+		},
+		{
+			"backtrace" : 1,
+			"path" : "third_party/eigen/Eigen/src/SparseCore/SparsePermutation.h",
+			"sourceGroupIndex" : 46
+		},
+		{
+			"backtrace" : 1,
+			"path" : "third_party/eigen/Eigen/src/SparseCore/SparseProduct.h",
+			"sourceGroupIndex" : 46
+		},
+		{
+			"backtrace" : 1,
+			"path" : "third_party/eigen/Eigen/src/SparseCore/SparseRedux.h",
+			"sourceGroupIndex" : 46
+		},
+		{
+			"backtrace" : 1,
+			"path" : "third_party/eigen/Eigen/src/SparseCore/SparseRef.h",
+			"sourceGroupIndex" : 46
+		},
+		{
+			"backtrace" : 1,
+			"path" : "third_party/eigen/Eigen/src/SparseCore/SparseSelfAdjointView.h",
+			"sourceGroupIndex" : 46
+		},
+		{
+			"backtrace" : 1,
+			"path" : "third_party/eigen/Eigen/src/SparseCore/SparseSolverBase.h",
+			"sourceGroupIndex" : 46
+		},
+		{
+			"backtrace" : 1,
+			"path" : "third_party/eigen/Eigen/src/SparseCore/SparseSparseProductWithPruning.h",
+			"sourceGroupIndex" : 46
+		},
+		{
+			"backtrace" : 1,
+			"path" : "third_party/eigen/Eigen/src/SparseCore/SparseTranspose.h",
+			"sourceGroupIndex" : 46
+		},
+		{
+			"backtrace" : 1,
+			"path" : "third_party/eigen/Eigen/src/SparseCore/SparseTriangularView.h",
+			"sourceGroupIndex" : 46
+		},
+		{
+			"backtrace" : 1,
+			"path" : "third_party/eigen/Eigen/src/SparseCore/SparseUtil.h",
+			"sourceGroupIndex" : 46
+		},
+		{
+			"backtrace" : 1,
+			"path" : "third_party/eigen/Eigen/src/SparseCore/SparseVector.h",
+			"sourceGroupIndex" : 46
+		},
+		{
+			"backtrace" : 1,
+			"path" : "third_party/eigen/Eigen/src/SparseCore/SparseView.h",
+			"sourceGroupIndex" : 46
+		},
+		{
+			"backtrace" : 1,
+			"path" : "third_party/eigen/Eigen/src/SparseCore/TriangularSolver.h",
+			"sourceGroupIndex" : 46
+		},
+		{
+			"backtrace" : 1,
+			"path" : "third_party/eigen/Eigen/src/SparseLU/SparseLU.h",
+			"sourceGroupIndex" : 47
+		},
+		{
+			"backtrace" : 1,
+			"path" : "third_party/eigen/Eigen/src/SparseLU/SparseLUImpl.h",
+			"sourceGroupIndex" : 47
+		},
+		{
+			"backtrace" : 1,
+			"path" : "third_party/eigen/Eigen/src/SparseLU/SparseLU_Memory.h",
+			"sourceGroupIndex" : 47
+		},
+		{
+			"backtrace" : 1,
+			"path" : "third_party/eigen/Eigen/src/SparseLU/SparseLU_Structs.h",
+			"sourceGroupIndex" : 47
+		},
+		{
+			"backtrace" : 1,
+			"path" : "third_party/eigen/Eigen/src/SparseLU/SparseLU_SupernodalMatrix.h",
+			"sourceGroupIndex" : 47
+		},
+		{
+			"backtrace" : 1,
+			"path" : "third_party/eigen/Eigen/src/SparseLU/SparseLU_Utils.h",
+			"sourceGroupIndex" : 47
+		},
+		{
+			"backtrace" : 1,
+			"path" : "third_party/eigen/Eigen/src/SparseLU/SparseLU_column_bmod.h",
+			"sourceGroupIndex" : 47
+		},
+		{
+			"backtrace" : 1,
+			"path" : "third_party/eigen/Eigen/src/SparseLU/SparseLU_column_dfs.h",
+			"sourceGroupIndex" : 47
+		},
+		{
+			"backtrace" : 1,
+			"path" : "third_party/eigen/Eigen/src/SparseLU/SparseLU_copy_to_ucol.h",
+			"sourceGroupIndex" : 47
+		},
+		{
+			"backtrace" : 1,
+			"path" : "third_party/eigen/Eigen/src/SparseLU/SparseLU_gemm_kernel.h",
+			"sourceGroupIndex" : 47
+		},
+		{
+			"backtrace" : 1,
+			"path" : "third_party/eigen/Eigen/src/SparseLU/SparseLU_heap_relax_snode.h",
+			"sourceGroupIndex" : 47
+		},
+		{
+			"backtrace" : 1,
+			"path" : "third_party/eigen/Eigen/src/SparseLU/SparseLU_kernel_bmod.h",
+			"sourceGroupIndex" : 47
+		},
+		{
+			"backtrace" : 1,
+			"path" : "third_party/eigen/Eigen/src/SparseLU/SparseLU_panel_bmod.h",
+			"sourceGroupIndex" : 47
+		},
+		{
+			"backtrace" : 1,
+			"path" : "third_party/eigen/Eigen/src/SparseLU/SparseLU_panel_dfs.h",
+			"sourceGroupIndex" : 47
+		},
+		{
+			"backtrace" : 1,
+			"path" : "third_party/eigen/Eigen/src/SparseLU/SparseLU_pivotL.h",
+			"sourceGroupIndex" : 47
+		},
+		{
+			"backtrace" : 1,
+			"path" : "third_party/eigen/Eigen/src/SparseLU/SparseLU_pruneL.h",
+			"sourceGroupIndex" : 47
+		},
+		{
+			"backtrace" : 1,
+			"path" : "third_party/eigen/Eigen/src/SparseLU/SparseLU_relax_snode.h",
+			"sourceGroupIndex" : 47
+		},
+		{
+			"backtrace" : 1,
+			"path" : "third_party/eigen/Eigen/src/SparseQR/SparseQR.h",
+			"sourceGroupIndex" : 48
+		},
+		{
+			"backtrace" : 1,
+			"path" : "third_party/eigen/Eigen/src/StlSupport/StdDeque.h",
+			"sourceGroupIndex" : 49
+		},
+		{
+			"backtrace" : 1,
+			"path" : "third_party/eigen/Eigen/src/StlSupport/StdList.h",
+			"sourceGroupIndex" : 49
+		},
+		{
+			"backtrace" : 1,
+			"path" : "third_party/eigen/Eigen/src/StlSupport/StdVector.h",
+			"sourceGroupIndex" : 49
+		},
+		{
+			"backtrace" : 1,
+			"path" : "third_party/eigen/Eigen/src/StlSupport/details.h",
+			"sourceGroupIndex" : 49
+		},
+		{
+			"backtrace" : 1,
+			"path" : "third_party/eigen/Eigen/src/SuperLUSupport/SuperLUSupport.h",
+			"sourceGroupIndex" : 50
+		},
+		{
+			"backtrace" : 1,
+			"path" : "third_party/eigen/Eigen/src/UmfPackSupport/UmfPackSupport.h",
+			"sourceGroupIndex" : 51
+		},
+		{
+			"backtrace" : 1,
+			"path" : "third_party/eigen/Eigen/src/misc/Image.h",
+			"sourceGroupIndex" : 52
+		},
+		{
+			"backtrace" : 1,
+			"path" : "third_party/eigen/Eigen/src/misc/Kernel.h",
+			"sourceGroupIndex" : 52
+		},
+		{
+			"backtrace" : 1,
+			"path" : "third_party/eigen/Eigen/src/misc/RealSvd2x2.h",
+			"sourceGroupIndex" : 52
+		},
+		{
+			"backtrace" : 1,
+			"path" : "third_party/eigen/Eigen/src/misc/blas.h",
+			"sourceGroupIndex" : 52
+		},
+		{
+			"backtrace" : 1,
+			"path" : "third_party/eigen/Eigen/src/misc/lapack.h",
+			"sourceGroupIndex" : 52
+		},
+		{
+			"backtrace" : 1,
+			"path" : "third_party/eigen/Eigen/src/misc/lapacke.h",
+			"sourceGroupIndex" : 52
+		},
+		{
+			"backtrace" : 1,
+			"path" : "third_party/eigen/Eigen/src/misc/lapacke_mangling.h",
+			"sourceGroupIndex" : 52
+		},
+		{
+			"backtrace" : 1,
+			"path" : "third_party/eigen/Eigen/src/plugins/ArrayCwiseBinaryOps.h",
+			"sourceGroupIndex" : 53
+		},
+		{
+			"backtrace" : 1,
+			"path" : "third_party/eigen/Eigen/src/plugins/ArrayCwiseUnaryOps.h",
+			"sourceGroupIndex" : 53
+		},
+		{
+			"backtrace" : 1,
+			"path" : "third_party/eigen/Eigen/src/plugins/BlockMethods.h",
+			"sourceGroupIndex" : 53
+		},
+		{
+			"backtrace" : 1,
+			"path" : "third_party/eigen/Eigen/src/plugins/CommonCwiseBinaryOps.h",
+			"sourceGroupIndex" : 53
+		},
+		{
+			"backtrace" : 1,
+			"path" : "third_party/eigen/Eigen/src/plugins/CommonCwiseUnaryOps.h",
+			"sourceGroupIndex" : 53
+		},
+		{
+			"backtrace" : 1,
+			"path" : "third_party/eigen/Eigen/src/plugins/MatrixCwiseBinaryOps.h",
+			"sourceGroupIndex" : 53
+		},
+		{
+			"backtrace" : 1,
+			"path" : "third_party/eigen/Eigen/src/plugins/MatrixCwiseUnaryOps.h",
+			"sourceGroupIndex" : 53
+		},
+		{
+			"backtrace" : 1,
+			"path" : "third_party/glad/include/glad/glad.hpp",
+			"sourceGroupIndex" : 54
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "third_party/glad/src/glad.cpp",
+			"sourceGroupIndex" : 55
+		},
+		{
+			"backtrace" : 1,
+			"path" : "third_party/imgui/imconfig.h",
+			"sourceGroupIndex" : 56
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "third_party/imgui/imgui.cpp",
+			"sourceGroupIndex" : 56
+		},
+		{
+			"backtrace" : 1,
+			"path" : "third_party/imgui/imgui.h",
+			"sourceGroupIndex" : 56
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "third_party/imgui/imgui_demo.cpp",
+			"sourceGroupIndex" : 56
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "third_party/imgui/imgui_draw.cpp",
+			"sourceGroupIndex" : 56
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "third_party/imgui/imgui_impl_glfw.cpp",
+			"sourceGroupIndex" : 56
+		},
+		{
+			"backtrace" : 1,
+			"path" : "third_party/imgui/imgui_impl_glfw.h",
+			"sourceGroupIndex" : 56
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "third_party/imgui/imgui_impl_opengl3.cpp",
+			"sourceGroupIndex" : 56
+		},
+		{
+			"backtrace" : 1,
+			"path" : "third_party/imgui/imgui_impl_opengl3.h",
+			"sourceGroupIndex" : 56
+		},
+		{
+			"backtrace" : 1,
+			"path" : "third_party/imgui/imgui_internal.h",
+			"sourceGroupIndex" : 56
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "third_party/imgui/imgui_widgets.cpp",
+			"sourceGroupIndex" : 56
+		},
+		{
+			"backtrace" : 1,
+			"path" : "third_party/imgui/imstb_rectpack.h",
+			"sourceGroupIndex" : 56
+		},
+		{
+			"backtrace" : 1,
+			"path" : "third_party/imgui/imstb_textedit.h",
+			"sourceGroupIndex" : 56
+		},
+		{
+			"backtrace" : 1,
+			"path" : "third_party/imgui/imstb_truetype.h",
+			"sourceGroupIndex" : 56
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "third_party/lodepng/lodepng.cpp",
+			"sourceGroupIndex" : 57
+		},
+		{
+			"backtrace" : 1,
+			"path" : "third_party/lodepng/lodepng.h",
+			"sourceGroupIndex" : 57
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "third_party/simplexnoise/simplexnoise1234.cpp",
+			"sourceGroupIndex" : 58
+		},
+		{
+			"backtrace" : 1,
+			"path" : "third_party/simplexnoise/simplexnoise1234.hpp",
+			"sourceGroupIndex" : 58
+		},
+		{
+			"backtrace" : 1,
+			"path" : "vcl/base/base.hpp",
+			"sourceGroupIndex" : 59
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "vcl/base/basic_types/basic_types.cpp",
+			"sourceGroupIndex" : 60
+		},
+		{
+			"backtrace" : 1,
+			"path" : "vcl/base/basic_types/basic_types.hpp",
+			"sourceGroupIndex" : 60
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "vcl/base/error/error.cpp",
+			"sourceGroupIndex" : 61
+		},
+		{
+			"backtrace" : 1,
+			"path" : "vcl/base/error/error.hpp",
+			"sourceGroupIndex" : 61
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "vcl/base/file/file.cpp",
+			"sourceGroupIndex" : 62
+		},
+		{
+			"backtrace" : 1,
+			"path" : "vcl/base/file/file.hpp",
+			"sourceGroupIndex" : 62
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "vcl/base/rand/rand.cpp",
+			"sourceGroupIndex" : 63
+		},
+		{
+			"backtrace" : 1,
+			"path" : "vcl/base/rand/rand.hpp",
+			"sourceGroupIndex" : 63
+		},
+		{
+			"backtrace" : 1,
+			"path" : "vcl/base/stl/stl.hpp",
+			"sourceGroupIndex" : 64
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "vcl/base/string/string.cpp",
+			"sourceGroupIndex" : 65
+		},
+		{
+			"backtrace" : 1,
+			"path" : "vcl/base/string/string.hpp",
+			"sourceGroupIndex" : 65
+		},
+		{
+			"backtrace" : 1,
+			"path" : "vcl/base/types/types.hpp",
+			"sourceGroupIndex" : 66
+		},
+		{
+			"backtrace" : 1,
+			"path" : "vcl/containers/buffer/buffer.hpp",
+			"sourceGroupIndex" : 67
+		},
+		{
+			"backtrace" : 1,
+			"path" : "vcl/containers/buffer/buffer/buffer.hpp",
+			"sourceGroupIndex" : 68
+		},
+		{
+			"backtrace" : 1,
+			"path" : "vcl/containers/buffer/buffer2D/buffer2D.hpp",
+			"sourceGroupIndex" : 69
+		},
+		{
+			"backtrace" : 1,
+			"path" : "vcl/containers/buffer/buffer3D/buffer3D.hpp",
+			"sourceGroupIndex" : 70
+		},
+		{
+			"backtrace" : 1,
+			"path" : "vcl/containers/buffer_stack/buffer_stack.hpp",
+			"sourceGroupIndex" : 71
+		},
+		{
+			"backtrace" : 1,
+			"path" : "vcl/containers/containers.hpp",
+			"sourceGroupIndex" : 72
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "vcl/interaction/camera/camera.cpp",
+			"sourceGroupIndex" : 73
+		},
+		{
+			"backtrace" : 1,
+			"path" : "vcl/interaction/camera/camera.hpp",
+			"sourceGroupIndex" : 73
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "vcl/interaction/camera_control_glfw/camera_control_glfw.cpp",
+			"sourceGroupIndex" : 74
+		},
+		{
+			"backtrace" : 1,
+			"path" : "vcl/interaction/camera_control_glfw/camera_control_glfw.hpp",
+			"sourceGroupIndex" : 74
+		},
+		{
+			"backtrace" : 1,
+			"path" : "vcl/interaction/interaction.hpp",
+			"sourceGroupIndex" : 75
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "vcl/interaction/picking/info/picking_info.cpp",
+			"sourceGroupIndex" : 76
+		},
+		{
+			"backtrace" : 1,
+			"path" : "vcl/interaction/picking/info/picking_info.hpp",
+			"sourceGroupIndex" : 76
+		},
+		{
+			"backtrace" : 1,
+			"path" : "vcl/interaction/picking/picking.hpp",
+			"sourceGroupIndex" : 77
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "vcl/interaction/picking/primitives/picking_primitives.cpp",
+			"sourceGroupIndex" : 78
+		},
+		{
+			"backtrace" : 1,
+			"path" : "vcl/interaction/picking/primitives/picking_primitives.hpp",
+			"sourceGroupIndex" : 78
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "vcl/interaction/picking/ray/picking_ray.cpp",
+			"sourceGroupIndex" : 79
+		},
+		{
+			"backtrace" : 1,
+			"path" : "vcl/interaction/picking/ray/picking_ray.hpp",
+			"sourceGroupIndex" : 79
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "vcl/interaction/screen_motion/screen_motion.cpp",
+			"sourceGroupIndex" : 80
+		},
+		{
+			"backtrace" : 1,
+			"path" : "vcl/interaction/screen_motion/screen_motion.hpp",
+			"sourceGroupIndex" : 80
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "vcl/interaction/time_period/time_period.cpp",
+			"sourceGroupIndex" : 81
+		},
+		{
+			"backtrace" : 1,
+			"path" : "vcl/interaction/time_period/time_period.hpp",
+			"sourceGroupIndex" : 81
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "vcl/interaction/time_slider/time_slider.cpp",
+			"sourceGroupIndex" : 82
+		},
+		{
+			"backtrace" : 1,
+			"path" : "vcl/interaction/time_slider/time_slider.hpp",
+			"sourceGroupIndex" : 82
+		},
+		{
+			"backtrace" : 1,
+			"path" : "vcl/math/helper_functions/helper_functions.hpp",
+			"sourceGroupIndex" : 83
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "vcl/math/helper_functions/linspace/linspace.cpp",
+			"sourceGroupIndex" : 84
+		},
+		{
+			"backtrace" : 1,
+			"path" : "vcl/math/helper_functions/linspace/linspace.hpp",
+			"sourceGroupIndex" : 84
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "vcl/math/helper_functions/norm/norm.cpp",
+			"sourceGroupIndex" : 85
+		},
+		{
+			"backtrace" : 1,
+			"path" : "vcl/math/helper_functions/norm/norm.hpp",
+			"sourceGroupIndex" : 85
+		},
+		{
+			"backtrace" : 1,
+			"path" : "vcl/math/mat/mat.hpp",
+			"sourceGroupIndex" : 86
+		},
+		{
+			"backtrace" : 1,
+			"path" : "vcl/math/mat/mat/mat.hpp",
+			"sourceGroupIndex" : 87
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "vcl/math/mat/mat2/mat2.cpp",
+			"sourceGroupIndex" : 88
+		},
+		{
+			"backtrace" : 1,
+			"path" : "vcl/math/mat/mat2/mat2.hpp",
+			"sourceGroupIndex" : 88
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "vcl/math/mat/mat3/mat3.cpp",
+			"sourceGroupIndex" : 89
+		},
+		{
+			"backtrace" : 1,
+			"path" : "vcl/math/mat/mat3/mat3.hpp",
+			"sourceGroupIndex" : 89
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "vcl/math/mat/mat4/mat4.cpp",
+			"sourceGroupIndex" : 90
+		},
+		{
+			"backtrace" : 1,
+			"path" : "vcl/math/mat/mat4/mat4.hpp",
+			"sourceGroupIndex" : 90
+		},
+		{
+			"backtrace" : 1,
+			"path" : "vcl/math/math.hpp",
+			"sourceGroupIndex" : 91
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "vcl/math/transformation/affine_transform/affine_transform.cpp",
+			"sourceGroupIndex" : 92
+		},
+		{
+			"backtrace" : 1,
+			"path" : "vcl/math/transformation/affine_transform/affine_transform.hpp",
+			"sourceGroupIndex" : 92
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "vcl/math/transformation/special_transform/special_transform.cpp",
+			"sourceGroupIndex" : 93
+		},
+		{
+			"backtrace" : 1,
+			"path" : "vcl/math/transformation/special_transform/special_transform.hpp",
+			"sourceGroupIndex" : 93
+		},
+		{
+			"backtrace" : 1,
+			"path" : "vcl/math/transformation/transformation.hpp",
+			"sourceGroupIndex" : 94
+		},
+		{
+			"backtrace" : 1,
+			"path" : "vcl/math/vec/vec.hpp",
+			"sourceGroupIndex" : 95
+		},
+		{
+			"backtrace" : 1,
+			"path" : "vcl/math/vec/vec/vec.hpp",
+			"sourceGroupIndex" : 96
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "vcl/math/vec/vec2/vec2.cpp",
+			"sourceGroupIndex" : 97
+		},
+		{
+			"backtrace" : 1,
+			"path" : "vcl/math/vec/vec2/vec2.hpp",
+			"sourceGroupIndex" : 97
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "vcl/math/vec/vec3/vec3.cpp",
+			"sourceGroupIndex" : 98
+		},
+		{
+			"backtrace" : 1,
+			"path" : "vcl/math/vec/vec3/vec3.hpp",
+			"sourceGroupIndex" : 98
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "vcl/math/vec/vec4/vec4.cpp",
+			"sourceGroupIndex" : 99
+		},
+		{
+			"backtrace" : 1,
+			"path" : "vcl/math/vec/vec4/vec4.hpp",
+			"sourceGroupIndex" : 99
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "vcl/opengl/debug/opengl_debug.cpp",
+			"sourceGroupIndex" : 100
+		},
+		{
+			"backtrace" : 1,
+			"path" : "vcl/opengl/debug/opengl_debug.hpp",
+			"sourceGroupIndex" : 100
+		},
+		{
+			"backtrace" : 1,
+			"path" : "vcl/opengl/opengl.hpp",
+			"sourceGroupIndex" : 101
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "vcl/opengl/shader/shader.cpp",
+			"sourceGroupIndex" : 102
+		},
+		{
+			"backtrace" : 1,
+			"path" : "vcl/opengl/shader/shader.hpp",
+			"sourceGroupIndex" : 102
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "vcl/opengl/texture/image/image.cpp",
+			"sourceGroupIndex" : 103
+		},
+		{
+			"backtrace" : 1,
+			"path" : "vcl/opengl/texture/image/image.hpp",
+			"sourceGroupIndex" : 103
+		},
+		{
+			"backtrace" : 1,
+			"path" : "vcl/opengl/texture/texture.hpp",
+			"sourceGroupIndex" : 104
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "vcl/opengl/texture/texture_gpu/texture_gpu.cpp",
+			"sourceGroupIndex" : 105
+		},
+		{
+			"backtrace" : 1,
+			"path" : "vcl/opengl/texture/texture_gpu/texture_gpu.hpp",
+			"sourceGroupIndex" : 105
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "vcl/opengl/uniform/uniform.cpp",
+			"sourceGroupIndex" : 106
+		},
+		{
+			"backtrace" : 1,
+			"path" : "vcl/opengl/uniform/uniform.hpp",
+			"sourceGroupIndex" : 106
+		},
+		{
+			"backtrace" : 1,
+			"path" : "vcl/shape/curve/curve.hpp",
+			"sourceGroupIndex" : 107
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "vcl/shape/curve/curve_drawable/curve_drawable.cpp",
+			"sourceGroupIndex" : 108
+		},
+		{
+			"backtrace" : 1,
+			"path" : "vcl/shape/curve/curve_drawable/curve_drawable.hpp",
+			"sourceGroupIndex" : 108
+		},
+		{
+			"backtrace" : 1,
+			"path" : "vcl/shape/curve/curve_drawable/curve_drawable_uniform/curve_drawable_uniform.hpp",
+			"sourceGroupIndex" : 109
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "vcl/shape/curve/curve_dynamic_drawable/curve_dynamic_drawable.cpp",
+			"sourceGroupIndex" : 110
+		},
+		{
+			"backtrace" : 1,
+			"path" : "vcl/shape/curve/curve_dynamic_drawable/curve_dynamic_drawable.hpp",
+			"sourceGroupIndex" : 110
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "vcl/shape/curve/curve_gpu/curve_gpu.cpp",
+			"sourceGroupIndex" : 111
+		},
+		{
+			"backtrace" : 1,
+			"path" : "vcl/shape/curve/curve_gpu/curve_gpu.hpp",
+			"sourceGroupIndex" : 111
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "vcl/shape/curve/curve_primitive/curve_primitive.cpp",
+			"sourceGroupIndex" : 112
+		},
+		{
+			"backtrace" : 1,
+			"path" : "vcl/shape/curve/curve_primitive/curve_primitive.hpp",
+			"sourceGroupIndex" : 112
+		},
+		{
+			"backtrace" : 1,
+			"path" : "vcl/shape/hierarchy_mesh/hierarchy_mesh.hpp",
+			"sourceGroupIndex" : 113
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "vcl/shape/hierarchy_mesh/hierarchy_mesh_drawable/hierarchy_mesh_drawable.cpp",
+			"sourceGroupIndex" : 114
+		},
+		{
+			"backtrace" : 1,
+			"path" : "vcl/shape/hierarchy_mesh/hierarchy_mesh_drawable/hierarchy_mesh_drawable.hpp",
+			"sourceGroupIndex" : 114
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "vcl/shape/hierarchy_mesh/hierarchy_mesh_drawable/hierarchy_mesh_drawable_display_skeleton/hierarchy_mesh_drawable_display_skeleton.cpp",
+			"sourceGroupIndex" : 115
+		},
+		{
+			"backtrace" : 1,
+			"path" : "vcl/shape/hierarchy_mesh/hierarchy_mesh_drawable/hierarchy_mesh_drawable_display_skeleton/hierarchy_mesh_drawable_display_skeleton.hpp",
+			"sourceGroupIndex" : 115
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "vcl/shape/hierarchy_mesh/hierarchy_mesh_drawable/hierarchy_mesh_drawable_node/hierarchy_mesh_drawable_node.cpp",
+			"sourceGroupIndex" : 116
+		},
+		{
+			"backtrace" : 1,
+			"path" : "vcl/shape/hierarchy_mesh/hierarchy_mesh_drawable/hierarchy_mesh_drawable_node/hierarchy_mesh_drawable_node.hpp",
+			"sourceGroupIndex" : 116
+		},
+		{
+			"backtrace" : 1,
+			"path" : "vcl/shape/mesh/mesh.hpp",
+			"sourceGroupIndex" : 117
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "vcl/shape/mesh/mesh_drawable/mesh_drawable.cpp",
+			"sourceGroupIndex" : 118
+		},
+		{
+			"backtrace" : 1,
+			"path" : "vcl/shape/mesh/mesh_drawable/mesh_drawable.hpp",
+			"sourceGroupIndex" : 118
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "vcl/shape/mesh/mesh_drawable/mesh_drawable_gpu_data/mesh_drawable_gpu_data.cpp",
+			"sourceGroupIndex" : 119
+		},
+		{
+			"backtrace" : 1,
+			"path" : "vcl/shape/mesh/mesh_drawable/mesh_drawable_gpu_data/mesh_drawable_gpu_data.hpp",
+			"sourceGroupIndex" : 119
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "vcl/shape/mesh/mesh_drawable/mesh_drawable_uniform/mesh_drawable_uniform.cpp",
+			"sourceGroupIndex" : 120
+		},
+		{
+			"backtrace" : 1,
+			"path" : "vcl/shape/mesh/mesh_drawable/mesh_drawable_uniform/mesh_drawable_uniform.hpp",
+			"sourceGroupIndex" : 120
+		},
+		{
+			"backtrace" : 1,
+			"path" : "vcl/shape/mesh/mesh_loader/mesh_loader.hpp",
+			"sourceGroupIndex" : 121
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "vcl/shape/mesh/mesh_loader/obj/obj.cpp",
+			"sourceGroupIndex" : 122
+		},
+		{
+			"backtrace" : 1,
+			"path" : "vcl/shape/mesh/mesh_loader/obj/obj.hpp",
+			"sourceGroupIndex" : 122
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "vcl/shape/mesh/mesh_primitive/mesh_primitive.cpp",
+			"sourceGroupIndex" : 123
+		},
+		{
+			"backtrace" : 1,
+			"path" : "vcl/shape/mesh/mesh_primitive/mesh_primitive.hpp",
+			"sourceGroupIndex" : 123
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "vcl/shape/mesh/mesh_structure/mesh.cpp",
+			"sourceGroupIndex" : 124
+		},
+		{
+			"backtrace" : 1,
+			"path" : "vcl/shape/mesh/mesh_structure/mesh.hpp",
+			"sourceGroupIndex" : 124
+		},
+		{
+			"backtrace" : 1,
+			"path" : "vcl/shape/segment/segment.hpp",
+			"sourceGroupIndex" : 125
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "vcl/shape/segment/segment_drawable_immediate_mode/segment_drawable_immediate_mode.cpp",
+			"sourceGroupIndex" : 126
+		},
+		{
+			"backtrace" : 1,
+			"path" : "vcl/shape/segment/segment_drawable_immediate_mode/segment_drawable_immediate_mode.hpp",
+			"sourceGroupIndex" : 126
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "vcl/shape/segment/segments_drawable/segments_drawable.cpp",
+			"sourceGroupIndex" : 127
+		},
+		{
+			"backtrace" : 1,
+			"path" : "vcl/shape/segment/segments_drawable/segments_drawable.hpp",
+			"sourceGroupIndex" : 127
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "vcl/shape/segment/segments_drawable/segments_drawable_uniform/segments_drawable_uniform.cpp",
+			"sourceGroupIndex" : 128
+		},
+		{
+			"backtrace" : 1,
+			"path" : "vcl/shape/segment/segments_drawable/segments_drawable_uniform/segments_drawable_uniform.hpp",
+			"sourceGroupIndex" : 128
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "vcl/shape/segment/segments_gpu/segments_gpu.cpp",
+			"sourceGroupIndex" : 129
+		},
+		{
+			"backtrace" : 1,
+			"path" : "vcl/shape/segment/segments_gpu/segments_gpu.hpp",
+			"sourceGroupIndex" : 129
+		},
+		{
+			"backtrace" : 1,
+			"path" : "vcl/shape/shape.hpp",
+			"sourceGroupIndex" : 130
+		},
+		{
+			"backtrace" : 1,
+			"path" : "vcl/vcl.hpp",
+			"sourceGroupIndex" : 131
+		},
+		{
+			"backtrace" : 1,
+			"path" : "vcl/wrapper/glad/glad.hpp",
+			"sourceGroupIndex" : 132
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "vcl/wrapper/glfw/events/events.cpp",
+			"sourceGroupIndex" : 133
+		},
+		{
+			"backtrace" : 1,
+			"path" : "vcl/wrapper/glfw/events/events.hpp",
+			"sourceGroupIndex" : 133
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "vcl/wrapper/glfw/fps_counter/fps_counter.cpp",
+			"sourceGroupIndex" : 134
+		},
+		{
+			"backtrace" : 1,
+			"path" : "vcl/wrapper/glfw/fps_counter/fps_counter.hpp",
+			"sourceGroupIndex" : 134
+		},
+		{
+			"backtrace" : 1,
+			"path" : "vcl/wrapper/glfw/glfw.hpp",
+			"sourceGroupIndex" : 135
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "vcl/wrapper/glfw/window/window.cpp",
+			"sourceGroupIndex" : 136
+		},
+		{
+			"backtrace" : 1,
+			"path" : "vcl/wrapper/glfw/window/window.hpp",
+			"sourceGroupIndex" : 136
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "vcl/wrapper/imgui/imgui.cpp",
+			"sourceGroupIndex" : 137
+		},
+		{
+			"backtrace" : 1,
+			"path" : "vcl/wrapper/imgui/imgui.hpp",
+			"sourceGroupIndex" : 137
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "vcl/wrapper/lodepng/lodepng.cpp",
+			"sourceGroupIndex" : 138
+		},
+		{
+			"backtrace" : 1,
+			"path" : "vcl/wrapper/lodepng/lodepng.hpp",
+			"sourceGroupIndex" : 138
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "vcl/wrapper/perlin/perlin.cpp",
+			"sourceGroupIndex" : 139
+		},
+		{
+			"backtrace" : 1,
+			"path" : "vcl/wrapper/perlin/perlin.hpp",
+			"sourceGroupIndex" : 139
+		},
+		{
+			"backtrace" : 1,
+			"path" : "vcl/wrapper/wrapper.hpp",
+			"sourceGroupIndex" : 140
+		}
+	],
+	"type" : "EXECUTABLE"
+}

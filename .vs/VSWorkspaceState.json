@@ -1,0 +1,12 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\scenes",
+    "\\scenes\\3D_graphics",
+    "\\scenes\\3D_graphics\\01_modeling",
+    "\\scenes\\3D_graphics\\01_modeling\\assets",
+    "\\scenes\\3D_graphics\\02_texture"
+  ],
+  "SelectedNode": "\\scenes\\3D_graphics\\02_texture\\example_texture.hpp",
+  "PreviewInSolutionExplorer": false
+}
