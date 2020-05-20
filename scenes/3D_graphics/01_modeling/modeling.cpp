@@ -29,6 +29,12 @@ void scene_model::setup_data(std::map<std::string,GLuint>& , scene_structure& sc
     scene.camera.scale = 10.0f;
     scene.camera.apply_rotation(0,0,0,1.2f);
 
+    // oasis small lake :
+    water = mesh_drawable(mesh_primitive_quad({ -1.f, -1.f, 0 }, { -1.f, 1.f, 0 }, { 1.f, 1.f, 0 }, { 1.f, -1.f, 0 }));
+    water.uniform.color = { 0.6f, 0.6f, 0.9f };
+    water.uniform.color_alpha = 0.5f; // transparency
+    water.uniform.shading.specular = 0.8f;
+
 }
 
 
@@ -50,6 +56,16 @@ void scene_model::frame_draw(std::map<std::string,GLuint>& shaders, scene_struct
         glPolygonOffset( 1.0, 1.0 );
         draw(terrain, scene.camera, shaders["wireframe"]);
     }
+
+    // Display oasis small lake
+    water.uniform.transform.translation = { 0, 0, -0.1f };
+    glEnable(GL_BLEND);
+    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+    glDepthMask(false);
+    draw(water, scene.camera, shaders["mesh"]);
+    glDepthMask(true);
+
+
 }
 
 
@@ -58,12 +74,12 @@ void scene_model::frame_draw(std::map<std::string,GLuint>& shaders, scene_struct
 float evaluate_terrain_z(float u, float v)
 {
     const vec2 u0 = {0.5f, 0.5f};
-    const float h0 = 2.0f;
-    const float sigma0 = 0.15f;
+    const float h0 = 0.25f;
+    const float sigma0 = 0.05f;
 
     const float d = norm(vec2(u,v)-u0)/sigma0;
 
-    const float z = h0*std::exp(-d*d);
+    const float z = -h0*std::exp(-d*d);
 
     return z;
 }

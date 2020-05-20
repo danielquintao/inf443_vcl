@@ -31,6 +31,8 @@ struct scene_model : scene_base
 
     // visual representation of a surface
     vcl::mesh_drawable terrain;
+    
+    vcl::mesh_drawable water;
 
     gui_scene_structure gui_scene;
 };
