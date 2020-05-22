@@ -89,6 +89,49 @@ void scene_model::frame_draw(std::map<std::string,GLuint>& shaders, scene_struct
 // Evaluate height of the terrain for any (u,v) \in [0,1]
 float evaluate_terrain_z(float u, float v)
 {
+    // medium dunes:
+    int n_dunes = 4;
+    vec2 center[4] = { {0.1f, 0.1f} , { 0.4f, 0.2f } , {0.2f, 0.6f}, {0.4f, 0.8f} };
+    float M[4] = { 0.4f , 0.7f, 0.5f, 0.5f};
+    float L = 0.2f;
+    float z = 0;
+    for (int i = 0; i < n_dunes; i++) {
+        if (abs(u - center[i][0]) <= L/2 && abs(v - center[i][1]) <= L/2)
+        {
+            u = u - center[i][0] + L/2;
+            v = v - center[i][1] + L/2;
+            float v_curve = 2/L * (u - L/2) * (u - L/2) + L/2;
+            float z_curve = M[i] - ( 4 / (L * L) ) * M[i] * (v_curve - L/2) * (v_curve - L/2);
+            if (v - v_curve > 0) {
+                z += z_curve * (v - L) * (v - L) / ((L - v_curve) * (L - v_curve));
+            }
+            else {
+                z += -z_curve * v * (v - 2 * v_curve) / (v_curve * v_curve);
+            }
+        }
+    }
+    // small dunes:
+    int n_dunes2 = 6;
+    vec2 center2[6] = { {0.2f, 0.3f} , { 0.1f, 0.4f } , {0.4f, 0.5f}, {0.1f, 0.8f}, {0.15f, 0.95f}, {0.25f, 0.9f} };
+    float M2[6] = { 0.2f , 0.5f, 0.3f, 0.1f, 0.4f, 0.4f };
+    float L2 = 0.1f;
+    for (int i = 0; i < n_dunes2; i++) {
+        if (abs(u - center2[i][0]) <= L2 / 2 && abs(v - center2[i][1]) <= L2 / 2)
+        {
+            u = u - center2[i][0] + L2 / 2;
+            v = v - center2[i][1] + L2 / 2;
+            float v_curve = 2 / L2 * (u - L2 / 2) * (u - L2 / 2) + L2 / 2;
+            float z_curve = M2[i] - (4 / (L2 * L2)) * M2[i] * (v_curve - L2 / 2) * (v_curve - L2 / 2);
+            if (v - v_curve > 0) {
+                z += z_curve * (v - L2) * (v - L2) / ((L2 - v_curve) * (L2 - v_curve));
+            }
+            else {
+                z += -z_curve * v * (v - 2 * v_curve) / (v_curve * v_curve);
+            }
+        }
+    }
+    // ONE SINGLE BIG DUNE:
+    /*
     const vec2 u0 = { 0.5f, 0.5f };
     const float h0 = 2.0f;
     const float M = 3;
@@ -103,7 +146,8 @@ float evaluate_terrain_z(float u, float v)
     else {
         z_curve = M - 4 * M * (v_curve - 0.5) * (v_curve - 0.5);
         z = -z_curve * v * (v - 2 * v_curve) / (v_curve * v_curve);
-    }
+    }*/
+
     return z;
 }
 
@@ -121,7 +165,7 @@ vec3 evaluate_terrain(float u, float v)
 mesh create_terrain()
 {
     // Number of samples of the terrain is N x N
-    const size_t N = 100;
+    const size_t N = 1000;
 
     mesh terrain; // temporary terrain storage (CPU only)
     terrain.position.resize(N * N);
