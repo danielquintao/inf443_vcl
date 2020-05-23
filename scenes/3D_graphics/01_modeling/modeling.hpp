@@ -35,6 +35,8 @@ struct scene_model : scene_base
     
     vcl::mesh_drawable water;
 
+    vcl::mesh_drawable pyramid;
+
     gui_scene_structure gui_scene;
 };
 

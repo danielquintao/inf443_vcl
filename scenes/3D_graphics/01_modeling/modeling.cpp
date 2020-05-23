@@ -13,6 +13,7 @@ using namespace vcl;
 float evaluate_terrain_z(float u, float v);
 vec3 evaluate_terrain(float u, float v);
 mesh create_terrain();
+mesh create_pyramid(float radius, float height, float z_offset, float rot);
 
 
 /** This function is called before the beginning of the animation loop
@@ -39,6 +40,12 @@ void scene_model::setup_data(std::map<std::string,GLuint>& , scene_structure& sc
     water.uniform.color_alpha = 0.5f; // transparency
     water.uniform.shading.specular = 0.8f;
 
+    // Pyramid :
+    pyramid = mesh_drawable(create_pyramid(6.0f, 4.0f, 0.0f, 0.25f));
+    pyramid.uniform.color = { 241 / 255.0f,175 / 255.0f,0.0f };
+    pyramid.uniform.shading.specular = 0.0f;
+    pyramid.uniform.transform.translation = { 5,5,0 };
+
 }
 
 
@@ -63,6 +70,9 @@ void scene_model::frame_draw(std::map<std::string,GLuint>& shaders, scene_struct
     glPolygonOffset( 1.0, 1.0 );
     draw(terrain, scene.camera, shaders["mesh"]);
     //------------------------------------
+    //Display Elements of the scene:
+    draw(pyramid, scene.camera, shaders["mesh"]);
+    //------------------------------------
     // After the surface is displayed it is safe to set the texture id to a white image
     //  Avoids to use the previous texture for another object
     glBindTexture(GL_TEXTURE_2D, scene.texture_white);
@@ -70,6 +80,7 @@ void scene_model::frame_draw(std::map<std::string,GLuint>& shaders, scene_struct
     if (gui_scene.wireframe) { // wireframe if asked from the GUI
         glPolygonOffset(1.0, 1.0);
         draw(terrain, scene.camera, shaders["wireframe"]);
+        draw(pyramid, scene.camera, shaders["wireframe"]);
     }
     
 
@@ -208,6 +219,51 @@ mesh create_terrain()
     }
 
     return terrain;
+}
+
+mesh create_pyramid(float side, float height, float z_offset, float rot)
+{
+    mesh m;
+
+    // Pyramidal structure
+    // *************************** //
+
+    const size_t N = 4;
+
+    // geometry
+    for (size_t k = 0; k < N; ++k)
+    {
+        const float u = k / float(N);
+        const vec3 p = { (side/(float)sqrt(2)) * std::cos(2 * 3.14f * (u-rot)), (side / (float)sqrt(2)) * std::sin(2 * 3.14f * (u-rot)), 0.0f };
+        m.position.push_back(p + vec3{ 0,0,z_offset });
+    }
+    // apex
+    m.position.push_back({ 0,0,height + z_offset });
+
+    // connectivity
+    const unsigned int Ns = N;
+    for (unsigned int k = 0; k < Ns; ++k) {
+        m.connectivity.push_back({ k , (k + 1) % Ns, Ns });
+    }
+
+    // close the bottom of the cone
+    // *************************** //
+
+    // Geometry
+    for (size_t k = 0; k < N; ++k)
+    {
+        const float u = k / float(N);
+        const vec3 p = { (side / (float)sqrt(2)) * std::cos(2 * 3.14f * (u-rot)), (side / (float)sqrt(2)) * std::sin(2 * 3.14f * (u-rot)), 0.0f };
+        m.position.push_back(p + vec3{ 0,0,z_offset });
+    }
+    // central position
+    m.position.push_back({ 0,0,z_offset });
+
+    // connectivity
+    for (unsigned int k = 0; k < Ns; ++k)
+        m.connectivity.push_back({ k + Ns + 1, (k + 1) % Ns + Ns + 1, 2 * Ns + 1 });
+
+    return m;
 }
 
 void scene_model::set_gui()
