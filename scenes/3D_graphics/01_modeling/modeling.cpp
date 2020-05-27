@@ -19,7 +19,7 @@ mesh create_foliage(float radius, float height, float z_offset);
 
 /** This function is called before the beginning of the animation loop
     It is used to initialize all part-specific data */
-void scene_model::setup_data(std::map<std::string,GLuint>& , scene_structure& scene, gui_structure& )
+void scene_model::setup_data(std::map<std::string,GLuint>& shaders , scene_structure& scene, gui_structure& )
 {
     // Create visual terrain surface
     terrain = create_terrain();
@@ -45,13 +45,31 @@ void scene_model::setup_data(std::map<std::string,GLuint>& , scene_structure& sc
     pyramid = mesh_drawable(create_pyramid(6.0f, 4.0f, 0.0f, 0.25f));
     pyramid.uniform.color = { 241 / 255.0f,175 / 255.0f,0.0f };
     pyramid.uniform.shading.specular = 0.0f;
+    pyramid.uniform.shading.ambiant = 0.5f; // MUDEI ISSO PQ TAVA MT ESCURO MAS PODEMOS DEIXAR OUTRO VALOR SE PREFERIR
     pyramid.uniform.transform.translation = { 5,5,0 };
 
-    //Tronc cocotiers:
-    tronc = mesh_drawable(create_tronc(0.1, 2.0));
-    //Folliage cocotiers;
-    //folliage = mesh_drawable(create_foliage(0.5,2.0,0.1));
 
+    // ****** tree ******************
+    //Tronc cocotiers:
+    float tree_r_param = 0.1f;
+    float tree_height = 2.0f;
+    tronc = mesh_drawable(create_tronc(tree_r_param, tree_height));
+    //Folliage cocotiers;
+    folliage = mesh_drawable(create_foliage(1.0, tree_height, 0.1));
+    //----------------
+    vcl::mat3 R1 = vcl::rotation_from_axis_angle_mat3({ 0,0,1 }, 2 * 3.14f / 3);
+    vcl::mat3 R2 = vcl::rotation_from_axis_angle_mat3({ 0,0,1 }, 2 * 3.14f / 6);
+    vcl::mat3 Ry = vcl::rotation_from_axis_angle_mat3({ 0,1,0 }, 2 * 3.14f / 24);
+    //----------------
+    tree.add(tronc, "tronc");
+    tree.add(folliage, "feuille_1", "tronc", { 3 * tree_r_param,0,0 });
+    tree.add(folliage, "feuille_2", "tronc", { { 3 * tree_r_param,0,0 } , R1 });
+    tree.add(folliage, "feuille_3", "tronc", { { 3 * tree_r_param,0,0 } , R1 * R1 });
+    tree.add(folliage, "feuille_4", "tronc", { { 3 * tree_r_param,0,0 } , R2 * Ry });
+    tree.add(folliage, "feuille_5", "tronc", { { 3 * tree_r_param,0,0 } , R1 * R2 * Ry });
+    tree.add(folliage, "feuille_6", "tronc", { { 3 * tree_r_param,0,0 } , R1 * R1 * R2 * Ry });
+    //----------------
+    tree.set_shader_for_all_elements(shaders["mesh"]);
 
 }
 
@@ -79,7 +97,10 @@ void scene_model::frame_draw(std::map<std::string,GLuint>& shaders, scene_struct
     //------------------------------------
     //Display Elements of the scene:
     draw(pyramid, scene.camera, shaders["mesh"]);
-    draw(tronc, scene.camera, shaders["mesh"]);
+    //draw(tronc, scene.camera, shaders["mesh"]);
+    //draw(folliage, scene.camera, shaders["mesh"]);
+    tree.update_local_to_global_coordinates();
+    draw(tree, scene.camera);
     //------------------------------------
     // After the surface is displayed it is safe to set the texture id to a white image
     //  Avoids to use the previous texture for another object
@@ -368,15 +389,15 @@ mesh create_foliage(float radius, float height, float z_offset)
     // Cocotiers folliage
     // *************************** //
 
-    const size_t N = 4; // Feuilles in each side
+    const size_t N = 15; // Feuilles in each side
 
     // geometry
     const float d_2 = radius / float(2*N);
     for (size_t k = 0; k < N; ++k)
     {
         const vec3 p1 = { 2*k*d_2, 0.0f, -z_offset *k*k/float(N*N)};
-        const vec3 p2 = { (2*k+1)*d_2, 3*(z_offset-z_offset * k * k / float(N * N)), -z_offset };
-        const vec3 p3 = { (2 * k + 1) * d_2, -3 * (z_offset - z_offset * k * k / float(N * N)), -z_offset };
+        const vec3 p2 = { (2 * k + 1) * d_2, 5 * z_offset * ((k+0.5f) / float(N) - (k+0.5f) * (k+0.5f) / float(N * N)), -z_offset };
+        const vec3 p3 = { (2 * k + 1) * d_2, -5 * z_offset * ((k + 0.5f) / float(N) - (k + 0.5f) * (k + 0.5f) / float(N * N)), -z_offset };
         m.position.push_back(p1 + vec3{ 0,0,height });
         m.position.push_back(p2 + vec3{ 0,0,height });
         m.position.push_back(p3 + vec3{ 0,0,height });
@@ -387,7 +408,7 @@ mesh create_foliage(float radius, float height, float z_offset)
     // connectivity
     const unsigned int Ns = N;
     for (unsigned int k = 0; k < Ns; ++k) {
-        m.connectivity.push_back({ 3*k , 3 * k + 1, 3*k+3 });
+        m.connectivity.push_back({ 3 * k , 3 * k + 1, 3 * k + 3 });
         m.connectivity.push_back({ 3 * k , 3 * k + 2, 3 * k + 3 });
     }
 
