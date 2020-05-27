@@ -14,7 +14,8 @@ float evaluate_terrain_z(float u, float v);
 vec3 evaluate_terrain(float u, float v);
 mesh create_terrain();
 mesh create_pyramid(float radius, float height, float z_offset, float rot);
-
+mesh create_tronc(float radius, float height);
+mesh create_foliage(float radius, float height, float z_offset);
 
 /** This function is called before the beginning of the animation loop
     It is used to initialize all part-specific data */
@@ -46,6 +47,12 @@ void scene_model::setup_data(std::map<std::string,GLuint>& , scene_structure& sc
     pyramid.uniform.shading.specular = 0.0f;
     pyramid.uniform.transform.translation = { 5,5,0 };
 
+    //Tronc cocotiers:
+    tronc = mesh_drawable(create_tronc(0.1, 2.0));
+    //Folliage cocotiers;
+    //folliage = mesh_drawable(create_foliage(0.5,2.0,0.1));
+
+
 }
 
 
@@ -63,8 +70,8 @@ void scene_model::frame_draw(std::map<std::string,GLuint>& shaders, scene_struct
     // Before displaying a textured surface: bind the associated texture id
     glBindTexture(GL_TEXTURE_2D, terrain.texture_id);
     //---------------------------------
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_MIRRORED_REPEAT);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_MIRRORED_REPEAT);
     //----------------------------------
     // Display terrain
     glPolygonOffset( 1.0, 1.0 );
@@ -72,6 +79,7 @@ void scene_model::frame_draw(std::map<std::string,GLuint>& shaders, scene_struct
     //------------------------------------
     //Display Elements of the scene:
     draw(pyramid, scene.camera, shaders["mesh"]);
+    draw(tronc, scene.camera, shaders["mesh"]);
     //------------------------------------
     // After the surface is displayed it is safe to set the texture id to a white image
     //  Avoids to use the previous texture for another object
@@ -81,6 +89,7 @@ void scene_model::frame_draw(std::map<std::string,GLuint>& shaders, scene_struct
         glPolygonOffset(1.0, 1.0);
         draw(terrain, scene.camera, shaders["wireframe"]);
         draw(pyramid, scene.camera, shaders["wireframe"]);
+        draw(tronc, scene.camera, shaders["wireframe"]);
     }
     
 
@@ -221,7 +230,7 @@ mesh create_terrain()
     return terrain;
 }
 
-mesh create_pyramid(float side, float height, float z_offset, float rot)
+/* mesh create_pyramid(float side, float height, float z_offset, float rot)
 {
     mesh m;
 
@@ -262,6 +271,125 @@ mesh create_pyramid(float side, float height, float z_offset, float rot)
     // connectivity
     for (unsigned int k = 0; k < Ns; ++k)
         m.connectivity.push_back({ k + Ns + 1, (k + 1) % Ns + Ns + 1, 2 * Ns + 1 });
+
+    return m;
+}*/
+
+mesh create_pyramid(float side, float height, float z_offset, float rot) {
+    const vec3 p0 = { (side / (float)sqrt(2)) * std::cos(2 * 3.14f * (0.0f/4 - rot)), (side / (float)sqrt(2)) * std::sin(2 * 3.14f * (0.0f/4 - rot)), z_offset };
+    const vec3 p1 = { (side / (float)sqrt(2)) * std::cos(2 * 3.14f * (1.0f/4 - rot)), (side / (float)sqrt(2)) * std::sin(2 * 3.14f * (1.0f/4 - rot)), z_offset };
+    const vec3 p2 = { (side / (float)sqrt(2)) * std::cos(2 * 3.14f * (2.0f/4 - rot)), (side / (float)sqrt(2)) * std::sin(2 * 3.14f * (2.0f/4 - rot)), z_offset };
+    const vec3 p3 = { (side / (float)sqrt(2)) * std::cos(2 * 3.14f * (3.0f / 4 - rot)), (side / (float)sqrt(2)) * std::sin(2 * 3.14f * (3.0f / 4 - rot)), z_offset };
+    const vec3 p4 = { 0,0,height + z_offset };
+
+    mesh shape;
+    shape.position = { p0, p1, p2, p3,
+                       p0, p1, p4,
+                       p1, p2, p4,
+                       p2, p3, p4,
+                       p3, p0, p4
+                     };
+
+
+    const vec3 n1 = normalize((p1-p0)*(p3-p0));
+    const vec3 n2 = normalize((p1 - p0) * (p4 - p0));
+    const vec3 n3 = normalize((p2 - p1) * (p4 - p1));
+    const vec3 n4 = normalize((p3-p2)*(p4-p2));
+    const vec3 n5 = normalize((p0-p3)*(p4-p3));
+
+    shape.normal = { -n1, -n1, -n1, -n1,
+                     -n2, -n2, -n2,
+                     n3, n3, n3,
+                     n4, n4, n4,
+                     n5, n5, n5
+                     };
+
+    shape.connectivity = { {0,1,2}, {0,2,3},
+                          {4,5,6},
+                          {7,8,9},
+                          {10,11,12},
+                          {13,14,15}
+                         };
+
+    return shape;
+}
+
+
+mesh create_tronc(float radius, float height)
+{
+    mesh m;
+
+    // Number of samples
+    const size_t N = 20;
+
+    // Number of divisions
+    const size_t M = 7;
+
+    // Geometry
+    for (size_t k = 0; k < N; ++k)
+    {
+        const float u = k / float(N);
+        const vec3 p = { radius * std::cos(2 * 3.14f * u), radius * std::sin(2 * 3.14f * u), 0.0f };
+        m.position.push_back(p);
+        //m.position.push_back(p + vec3(0, 0, height));
+        for (size_t w = 1; w < M; ++w)
+        {
+            const vec3 p = { radius* (1-((float)0.5*w / (M - 1))) * std::cos(2 * 3.14f * u), radius * (1- ((float)0.5*w/(M-1))) * std::sin(2 * 3.14f * u), 0.0f };
+            //std::cout << p.x << " " << p.y << std::endl;
+            m.position.push_back(p +vec3(3*radius*std::sqrt((float)w/(M-1)), 0, w * height / (M - 1)));
+        }
+    }
+
+    // Connectivity
+    for (size_t k = 0; k < N; ++k)
+    {
+        for (size_t w = 0; w < M-1; ++w) 
+        {
+            const unsigned int u00 = M * k + w;
+            const unsigned int u01 = (M * k + w + 1) % (M * N);
+            const unsigned int u10 = (M * (k + 1)+w) % (M * N);
+            const unsigned int u11 = (M * (k + 1) + w + 1) % (M * N);
+
+            const uint3 t1 = { u00, u10, u11 };
+            const uint3 t2 = { u00, u11, u01 };
+            m.connectivity.push_back(t1);
+            m.connectivity.push_back(t2);
+        }
+        
+    }
+
+    return m;
+}
+
+mesh create_foliage(float radius, float height, float z_offset)
+{
+    mesh m;
+
+    // Cocotiers folliage
+    // *************************** //
+
+    const size_t N = 4; // Feuilles in each side
+
+    // geometry
+    const float d_2 = radius / float(2*N);
+    for (size_t k = 0; k < N; ++k)
+    {
+        const vec3 p1 = { 2*k*d_2, 0.0f, -z_offset *k*k/float(N*N)};
+        const vec3 p2 = { (2*k+1)*d_2, 3*(z_offset-z_offset * k * k / float(N * N)), -z_offset };
+        const vec3 p3 = { (2 * k + 1) * d_2, -3 * (z_offset - z_offset * k * k / float(N * N)), -z_offset };
+        m.position.push_back(p1 + vec3{ 0,0,height });
+        m.position.push_back(p2 + vec3{ 0,0,height });
+        m.position.push_back(p3 + vec3{ 0,0,height });
+    }
+    // apex
+    m.position.push_back({ radius,0,height - z_offset });
+
+    // connectivity
+    const unsigned int Ns = N;
+    for (unsigned int k = 0; k < Ns; ++k) {
+        m.connectivity.push_back({ 3*k , 3 * k + 1, 3*k+3 });
+        m.connectivity.push_back({ 3 * k , 3 * k + 2, 3 * k + 3 });
+    }
 
     return m;
 }
