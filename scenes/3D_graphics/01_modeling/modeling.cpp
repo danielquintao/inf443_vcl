@@ -54,21 +54,36 @@ void scene_model::setup_data(std::map<std::string,GLuint>& shaders , scene_struc
     float tree_r_param = 0.1f;
     float tree_height = 2.0f;
     tronc = mesh_drawable(create_tronc(tree_r_param, tree_height));
-    //Folliage cocotiers;
+    tronc.uniform.color = { 0.5f, 0.25f, 0 };
+    //Folliage cocotiers:
     folliage = mesh_drawable(create_foliage(1.0, 0, 0.1));
+    folliage.uniform.color = { 0, 0.25f, 0 };
+    // détail : haut du tronc:
+    mesh_drawable haut = mesh_drawable(mesh_primitive_sphere(tree_r_param / 2, { 0,0,0 }, 20, 20));
+    haut.uniform.color = { 0.5f, 0.25f, 0 };
+    haut.uniform.shading.specular = tronc.uniform.shading.specular;
+    haut.uniform.shading.diffuse = tronc.uniform.shading.diffuse;
     //----------------
     vcl::mat3 R1 = vcl::rotation_from_axis_angle_mat3({ 0,0,1 }, 2 * 3.14f / 3);
     vcl::mat3 R2 = vcl::rotation_from_axis_angle_mat3({ 0,0,1 }, 2 * 3.14f / 6);
-    vcl::mat3 R2 = vcl::rotation_from_axis_angle_mat3({ 0,0,1 }, 2 * 3.14f / 12);
+    vcl::mat3 R3 = vcl::rotation_from_axis_angle_mat3({ 0,0,1 }, 2 * 3.14f / 12);
     vcl::mat3 Ry = vcl::rotation_from_axis_angle_mat3({ 0,1,0 }, 2 * 3.14f / 24);
+    vcl::mat3 Ry2 = vcl::rotation_from_axis_angle_mat3({ 0,1,0 }, -2 * 3.14f / 24);
     //----------------
     tree.add(tronc, "tronc");
+    tree.add(haut, "haut", "tronc", { 3 * tree_r_param,0,tree_height });
     tree.add(folliage, "feuille_1", "tronc", { 3 * tree_r_param,0,tree_height });
     tree.add(folliage, "feuille_2", "tronc", { { 3 * tree_r_param,0,tree_height } , R1 });
     tree.add(folliage, "feuille_3", "tronc", { { 3 * tree_r_param,0,tree_height } , R1 * R1 });
     tree.add(folliage, "feuille_4", "tronc", { { 3 * tree_r_param,0,tree_height } , R2 * Ry });
     tree.add(folliage, "feuille_5", "tronc", { { 3 * tree_r_param,0,tree_height } , R1 * R2 * Ry });
     tree.add(folliage, "feuille_6", "tronc", { { 3 * tree_r_param,0,tree_height } , R1 * R1 * R2 * Ry });
+    tree.add(folliage, "feuille_7", "tronc", { { 3 * tree_r_param,0,tree_height } , R3 * Ry * Ry});
+    tree.add(folliage, "feuille_8", "tronc", { { 3 * tree_r_param,0,tree_height } , R3 * R3 * R3 * Ry2 });
+    tree.add(folliage, "feuille_9", "tronc", { { 3 * tree_r_param,0,tree_height } , R1 * R3 * Ry * Ry });
+    tree.add(folliage, "feuille_10", "tronc", { { 3 * tree_r_param,0,tree_height } , R1 * R3 * R3 * R3 * Ry2 });
+    tree.add(folliage, "feuille_11", "tronc", { { 3 * tree_r_param,0,tree_height } , R1 * R1 * R3 * Ry * Ry });
+    tree.add(folliage, "feuille_12", "tronc", { { 3 * tree_r_param,0,tree_height } , R1 * R1 * R3 * R3 * R3 * Ry2 });
     //----------------
     tree.set_shader_for_all_elements(shaders["mesh"]);
 
