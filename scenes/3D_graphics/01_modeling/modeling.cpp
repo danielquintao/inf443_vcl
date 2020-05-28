@@ -17,6 +17,7 @@ mesh create_pyramid(float radius, float height, float z_offset, float rot);
 mesh create_tronc(float radius, float height);
 mesh create_foliage(float radius, float height, float z_offset);
 
+
 /** This function is called before the beginning of the animation loop
     It is used to initialize all part-specific data */
 void scene_model::setup_data(std::map<std::string,GLuint>& shaders , scene_structure& scene, gui_structure& )
@@ -42,11 +43,20 @@ void scene_model::setup_data(std::map<std::string,GLuint>& shaders , scene_struc
     water.uniform.shading.specular = 0.8f;
 
     // Pyramid :
-    pyramid = mesh_drawable(create_pyramid(6.0f, 4.0f, 0.0f, 0.25f));
+    // GEOMETRIC PYRAMID:
+    //pyramid = mesh_drawable(create_pyramid(6.0f, 4.0f, 0.0f, 0.25f));
+    //pyramid.uniform.transform.translation = { 5,5,0 };
+    // IMPORTED PYRAMID:
+    pyramid = mesh_drawable(mesh_load_file_obj("scenes/3D_graphics/01_modeling/assets/super_pyramid.obj"));
+    vcl::mat3 R_pyramid = vcl::rotation_from_axis_angle_mat3({ 1,0,0 }, 3.14f / 2); // only in case of imported object
+    pyramid.uniform.transform.rotation = R_pyramid; // only in case of imported object
+    pyramid.uniform.transform.scaling = 1.5; // only in case of imported object
+    pyramid.uniform.transform.translation = { 5,5,1.4f }; // only in case of imported object
+    // GENERAL PYRAMID SETTINGS:
     pyramid.uniform.color = { 241 / 255.0f,175 / 255.0f,0.0f };
     pyramid.uniform.shading.specular = 0.0f;
     pyramid.uniform.shading.ambiant = 0.5f; // MUDEI ISSO PQ TAVA MT ESCURO MAS PODEMOS DEIXAR OUTRO VALOR SE PREFERIR
-    pyramid.uniform.transform.translation = { 5,5,0 };
+    
 
     // Camel
     camel = mesh_drawable(mesh_load_file_obj("scenes/3D_graphics/01_modeling/assets/camelo_v1_scaled.obj"));
@@ -54,6 +64,7 @@ void scene_model::setup_data(std::map<std::string,GLuint>& shaders , scene_struc
     camel.uniform.shading.specular = 0.01f;
     vcl::mat3 R_camel = vcl::rotation_from_axis_angle_mat3({ 1,0,0 }, 3.14f / 2);
     camel.uniform.transform.rotation = R_camel;
+    camel.uniform.transform.translation = { 4.0f, -2.5f, 0.15f };
 
     // ****** tree ******************
     //Tronc cocotiers:
@@ -210,6 +221,12 @@ float evaluate_terrain_z(float u, float v)
         z_curve = M - 4 * M * (v_curve - 0.5) * (v_curve - 0.5);
         z = -z_curve * v * (v - 2 * v_curve) / (v_curve * v_curve);
     }*/
+
+    // smooth irregularitues under the dunes :
+    float d1 = norm(vec2(u, v) - vec2(0.15, 0.3)) / 0.2f;
+    float d2 = norm(vec2(u, v) - vec2(0.1, 0.8)) / 0.1f;
+    float d3 = norm(vec2(u, v) - vec2(0.3, 0.5)) / 0.2f;
+    z += 0.5 * exp(-d1 * d1) + 0.3 * exp(-d2 * d2) + 0.6 * exp(-d3 * d3);
 
     // oasis - hole for the lake
     float d = norm(vec2(u, v) - vec2(0.8, 0.3))/0.08f;
