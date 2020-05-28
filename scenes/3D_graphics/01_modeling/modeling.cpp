@@ -36,7 +36,7 @@ void scene_model::setup_data(std::map<std::string,GLuint>& shaders , scene_struc
     scene.camera.apply_rotation(0,0,0,1.2f);
 
     // oasis small lake :
-    water = mesh_drawable(mesh_primitive_quad({ -1.f, -1.f, 0 }, { -1.f, 1.f, 0 }, { 1.f, 1.f, 0 }, { 1.f, -1.f, 0 }));
+    water = mesh_drawable(mesh_primitive_quad({ -3.f, -3.f, 0 }, { -3.f, 3.f, 0 }, { 3.f, 3.f, 0 }, { 3.f, -3.f, 0 }));
     water.uniform.color = { 0.6f, 0.6f, 0.9f };
     water.uniform.color_alpha = 0.5f; // transparency
     water.uniform.shading.specular = 0.8f;
@@ -48,6 +48,12 @@ void scene_model::setup_data(std::map<std::string,GLuint>& shaders , scene_struc
     pyramid.uniform.shading.ambiant = 0.5f; // MUDEI ISSO PQ TAVA MT ESCURO MAS PODEMOS DEIXAR OUTRO VALOR SE PREFERIR
     pyramid.uniform.transform.translation = { 5,5,0 };
 
+    // Camel
+    camel = mesh_drawable(mesh_load_file_obj("scenes/3D_graphics/01_modeling/assets/camelo_v1_scaled.obj"));
+    camel.uniform.color = { 1.0f, 0.75f, 0.2f };
+    camel.uniform.shading.specular = 0.01f;
+    vcl::mat3 R_camel = vcl::rotation_from_axis_angle_mat3({ 1,0,0 }, 3.14f / 2);
+    camel.uniform.transform.rotation = R_camel;
 
     // ****** tree ******************
     //Tronc cocotiers:
@@ -113,8 +119,8 @@ void scene_model::frame_draw(std::map<std::string,GLuint>& shaders, scene_struct
     //------------------------------------
     //Display Elements of the scene:
     draw(pyramid, scene.camera, shaders["mesh"]);
-    //draw(tronc, scene.camera, shaders["mesh"]);
-    //draw(folliage, scene.camera, shaders["mesh"]);
+    draw(camel, scene.camera, shaders["mesh"]);
+    tree["tronc"].transform.translation = { 4.6f, -2.6f, -0.2f };
     tree.update_local_to_global_coordinates();
     draw(tree, scene.camera);
     //------------------------------------
@@ -131,7 +137,7 @@ void scene_model::frame_draw(std::map<std::string,GLuint>& shaders, scene_struct
     
 
     // Display oasis small lake
-    water.uniform.transform.translation = { 0, 0, -0.1f };
+    water.uniform.transform.translation = { 6.f, -4.f, -0.1f };
     glEnable(GL_BLEND);
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
     glDepthMask(false);
@@ -141,52 +147,52 @@ void scene_model::frame_draw(std::map<std::string,GLuint>& shaders, scene_struct
 
 }
 
-
+void build_dune(vec2 center, float M, float L, float u, float v, float& z)
+{
+    if (abs(u - center[0]) <= L / 2 && abs(v - center[1]) <= L / 2)
+    {
+        u = u - center[0] + L / 2;
+        v = v - center[1] + L / 2;
+        float v_curve = 2 / L * (u - L / 2) * (u - L / 2) + L / 2;
+        float z_curve = M - (4 / (L * L)) * M * (v_curve - L / 2) * (v_curve - L / 2);
+        if (v - v_curve > 0) {
+            z += z_curve * (v - L) * (v - L) / ((L - v_curve) * (L - v_curve));
+        }
+        else {
+            z += -z_curve * v * (v - 2 * v_curve) / (v_curve * v_curve);
+        }
+    }
+}
 
 // Evaluate height of the terrain for any (u,v) \in [0,1]
 float evaluate_terrain_z(float u, float v)
 {
-    // medium dunes:
-    int n_dunes = 4;
-    vec2 center[4] = { {0.1f, 0.1f} , { 0.4f, 0.2f } , {0.2f, 0.6f}, {0.4f, 0.8f} };
-    float M[4] = { 0.4f , 0.7f, 0.5f, 0.5f};
-    float L = 0.2f;
     float z = 0;
-    for (int i = 0; i < n_dunes; i++) {
-        if (abs(u - center[i][0]) <= L/2 && abs(v - center[i][1]) <= L/2)
-        {
-            u = u - center[i][0] + L/2;
-            v = v - center[i][1] + L/2;
-            float v_curve = 2/L * (u - L/2) * (u - L/2) + L/2;
-            float z_curve = M[i] - ( 4 / (L * L) ) * M[i] * (v_curve - L/2) * (v_curve - L/2);
-            if (v - v_curve > 0) {
-                z += z_curve * (v - L) * (v - L) / ((L - v_curve) * (L - v_curve));
-            }
-            else {
-                z += -z_curve * v * (v - 2 * v_curve) / (v_curve * v_curve);
-            }
-        }
-    }
-    // small dunes:
-    int n_dunes2 = 6;
-    vec2 center2[6] = { {0.2f, 0.3f} , { 0.1f, 0.4f } , {0.4f, 0.5f}, {0.1f, 0.8f}, {0.15f, 0.95f}, {0.25f, 0.9f} };
-    float M2[6] = { 0.2f , 0.5f, 0.3f, 0.1f, 0.4f, 0.4f };
-    float L2 = 0.1f;
-    for (int i = 0; i < n_dunes2; i++) {
-        if (abs(u - center2[i][0]) <= L2 / 2 && abs(v - center2[i][1]) <= L2 / 2)
-        {
-            u = u - center2[i][0] + L2 / 2;
-            v = v - center2[i][1] + L2 / 2;
-            float v_curve = 2 / L2 * (u - L2 / 2) * (u - L2 / 2) + L2 / 2;
-            float z_curve = M2[i] - (4 / (L2 * L2)) * M2[i] * (v_curve - L2 / 2) * (v_curve - L2 / 2);
-            if (v - v_curve > 0) {
-                z += z_curve * (v - L2) * (v - L2) / ((L2 - v_curve) * (L2 - v_curve));
-            }
-            else {
-                z += -z_curve * v * (v - 2 * v_curve) / (v_curve * v_curve);
-            }
-        }
-    }
+
+    build_dune({ 0.05f, 0.95f }, 0.20f, 0.07, u, v, z);
+    build_dune({ 0.15f, 0.95f }, 0.22f, 0.08, u, v, z);
+    build_dune({ 0.25f, 0.90f }, 0.24f, 0.07, u, v, z);
+    build_dune({ 0.10f, 0.80f }, 0.25f, 0.10, u, v, z);
+    build_dune({ 0.40f, 0.80f }, 0.22f, 0.10, u, v, z);
+    build_dune({ 0.25f, 0.75f }, 0.26f, 0.10, u, v, z);
+    build_dune({ 0.08f, 0.65f }, 0.22f, 0.08, u, v, z);
+    build_dune({ 0.45f, 0.65f }, 0.25f, 0.07, u, v, z);
+    build_dune({ 0.20f, 0.60f }, 0.25f, 0.10, u, v, z);
+    build_dune({ 0.35f, 0.60f }, 0.27f, 0.08, u, v, z);
+    build_dune({ 0.08f, 0.55f }, 0.22f, 0.07, u, v, z);
+    build_dune({ 0.15f, 0.50f }, 0.25f, 0.08, u, v, z);
+    build_dune({ 0.40f, 0.50f }, 0.25f, 0.10, u, v, z);
+    build_dune({ 0.25f, 0.45f }, 0.29f, 0.07, u, v, z);
+    build_dune({ 0.10f, 0.40f }, 0.25f, 0.10, u, v, z);
+    build_dune({ 0.30f, 0.40f }, 0.23f, 0.07, u, v, z);
+    build_dune({ 0.45f, 0.35f }, 0.27f, 0.08, u, v, z);
+    build_dune({ 0.20f, 0.30f }, 0.22f, 0.07, u, v, z);
+    build_dune({ 0.30f, 0.30f }, 0.23f, 0.07, u, v, z);
+    build_dune({ 0.40f, 0.20f }, 0.28f, 0.10, u, v, z);
+    build_dune({ 0.25f, 0.15f }, 0.24f, 0.07, u, v, z);
+    build_dune({ 0.10f, 0.10f }, 0.23f, 0.10, u, v, z);
+    build_dune({ 0.30f, 0.05f }, 0.27f, 0.08, u, v, z);
+    
     // ONE SINGLE BIG DUNE:
     /*
     const vec2 u0 = { 0.5f, 0.5f };
@@ -204,6 +210,10 @@ float evaluate_terrain_z(float u, float v)
         z_curve = M - 4 * M * (v_curve - 0.5) * (v_curve - 0.5);
         z = -z_curve * v * (v - 2 * v_curve) / (v_curve * v_curve);
     }*/
+
+    // oasis - hole for the lake
+    float d = norm(vec2(u, v) - vec2(0.8, 0.3))/0.08f;
+    z -= 0.5 * exp(-d * d);
 
     return z;
 }
