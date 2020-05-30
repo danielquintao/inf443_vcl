@@ -114,7 +114,6 @@ void scene_model::setup_data(std::map<std::string,GLuint>& shaders , scene_struc
     camel.set_shader_for_all_elements(shaders["mesh"]);
     // camel settings   
 
-
     // ****** tree ******************
     //Tronc cocotiers:
     float tree_r_param = 0.1f;
@@ -129,6 +128,11 @@ void scene_model::setup_data(std::map<std::string,GLuint>& shaders , scene_struc
     haut.uniform.color = { 0.5f, 0.25f, 0 };
     haut.uniform.shading.specular = tronc.uniform.shading.specular;
     haut.uniform.shading.diffuse = tronc.uniform.shading.diffuse;
+    // cocos
+    mesh_drawable coco = mesh_drawable(mesh_primitive_sphere(3.0f*tree_r_param/4, { 0,0,0 }, 20, 20));
+    coco.uniform.color = { 111.0f/255,138.0f/255,37.0f/255 };
+    coco.uniform.shading.specular = 0.1f;
+    coco.uniform.shading.diffuse = tronc.uniform.shading.diffuse;
     //----------------
     vcl::mat3 R1 = vcl::rotation_from_axis_angle_mat3({ 0,0,1 }, 2 * 3.14f / 3);
     vcl::mat3 R2 = vcl::rotation_from_axis_angle_mat3({ 0,0,1 }, 2 * 3.14f / 6);
@@ -138,6 +142,12 @@ void scene_model::setup_data(std::map<std::string,GLuint>& shaders , scene_struc
     //----------------
     tree.add(tronc, "tronc");
     tree.add(haut, "haut", "tronc", { 3 * tree_r_param,0,tree_height });
+    tree.add(coco, "coco1", "tronc", { 1.5f * tree_r_param,0,9 * tree_height / 10 });
+    tree.add(coco, "coco2", "tronc", { 4.5f * tree_r_param,0,9 * tree_height / 10 });
+    tree.add(coco, "coco3", "tronc", { 3.0f * tree_r_param,1.5f*tree_r_param,9 * tree_height / 10 });
+    tree.add(coco, "coco4", "tronc", { 3.0f * tree_r_param,-1.5f * tree_r_param,9 * tree_height / 10 });
+    tree.add(coco, "coco5", "tronc", { 4.5f * tree_r_param,0,0 });
+    tree.add(coco, "coco6", "tronc", { tree_r_param,-1.5f*tree_r_param,tree_r_param });
     tree.add(folliage, "feuille_1", "tronc", { 3 * tree_r_param,0,tree_height });
     tree.add(folliage, "feuille_2", "tronc", { { 3 * tree_r_param,0,tree_height } , R1 });
     tree.add(folliage, "feuille_3", "tronc", { { 3 * tree_r_param,0,tree_height } , R1 * R1 });
