@@ -46,6 +46,8 @@ struct scene_model : scene_base
     vcl::hierarchy_mesh_drawable tree;
 
     gui_scene_structure gui_scene;
+
+    vcl::timer_interval timer;
 };
 
 #endif
