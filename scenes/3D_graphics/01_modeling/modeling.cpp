@@ -59,12 +59,61 @@ void scene_model::setup_data(std::map<std::string,GLuint>& shaders , scene_struc
     
 
     // Camel
-    camel = mesh_drawable(mesh_load_file_obj("scenes/3D_graphics/01_modeling/assets/camelo_v1_scaled.obj"));
-    camel.uniform.color = { 1.0f, 0.75f, 0.2f };
-    camel.uniform.shading.specular = 0.01f;
+    // main part of camel:
+    mesh_drawable camel_trunk = mesh_drawable(mesh_load_file_obj("scenes/3D_graphics/01_modeling/assets/camelo_trunk.obj"));
+    mesh_drawable camel_head = mesh_drawable(mesh_load_file_obj("scenes/3D_graphics/01_modeling/assets/camelo_head.obj")); ////
+    camel_trunk.uniform.color = { 1.0f, 0.75f, 0.2f };
+    camel_trunk.uniform.shading.specular = 0.01f;
+    camel_head.uniform.color = { 1.0f, 0.75f, 0.2f }; ////
+    camel_head.uniform.shading.specular = 0.01f; ////
     vcl::mat3 R_camel = vcl::rotation_from_axis_angle_mat3({ 1,0,0 }, 3.14f / 2);
-    camel.uniform.transform.rotation = R_camel;
-    camel.uniform.transform.translation = { 4.0f, -2.5f, 0.15f };
+    camel_trunk.uniform.transform.rotation = R_camel;
+    camel_head.uniform.transform.rotation = R_camel; ////
+    camel_head.uniform.transform.translation = { 0, 0.17f, 0 }; ////
+    // leg:
+    mesh_drawable articulation_point = mesh_primitive_sphere(0.02f, { 0,0,0 }, 10, 10);
+    mesh_drawable thigh = mesh_primitive_cylinder(0.025f, { 0,0,-0.2f }, { 0,0,0 }, 10, 10);
+    mesh_drawable shank = mesh_primitive_cylinder(0.015f, { 0,0,-0.2f }, { 0,0,0 }, 10, 10);
+    mesh_drawable knee = mesh_primitive_sphere(0.03f, { 0,0,0 }, 10, 10);
+    mesh_drawable foot = mesh_drawable(mesh_load_file_obj("scenes/3D_graphics/01_modeling/assets/camel_foot.obj"));
+    articulation_point.uniform.color = { 1.0f, 0.75f, 0.2f };
+    articulation_point.uniform.shading.specular = 0.01f;
+    thigh.uniform.color = { 1.0f, 0.75f, 0.2f };
+    thigh.uniform.shading.specular = 0.01f;
+    shank.uniform.color = { 1.0f, 0.75f, 0.2f };
+    shank.uniform.shading.specular = 0.01f;
+    knee.uniform.color = { 1.0f, 0.75f, 0.2f };
+    knee.uniform.shading.specular = 0.01f;
+    foot.uniform.color = { 1.0f, 0.75f, 0.2f };
+    foot.uniform.shading.specular = 0.01f;
+    foot.uniform.transform.rotation = vcl::rotation_from_axis_angle_mat3({ 0,0,1 }, 3.14f) * R_camel;
+    foot.uniform.transform.scaling = 2.0f;
+    // assembling camel parts:
+    camel.add(camel_trunk, "trunk");
+    camel.add(camel_head, "head", "trunk", { 0, -0.17f, 0 }); ////
+    camel.add(articulation_point, "articulation_point_back_right", "trunk", { -0.08f, 0.1f, -0.1f });
+    camel.add(articulation_point, "articulation_point_back_left", "trunk", { 0.08f, 0.1f, -0.1f });
+    camel.add(articulation_point, "articulation_point_front_right", "trunk", { -0.08f, -0.1f, -0.1f });
+    camel.add(articulation_point, "articulation_point_front_left", "trunk", { 0.08f, -0.1f, -0.1f });
+    camel.add(thigh, "thigh_back_right", "articulation_point_back_right", { 0,0,0 });
+    camel.add(thigh, "thigh_back_left", "articulation_point_back_left", { 0,0,0 });
+    camel.add(thigh, "thigh_front_right", "articulation_point_front_right", { 0,0,0 });
+    camel.add(thigh, "thigh_front_left", "articulation_point_front_left", { 0,0,0 });
+    camel.add(knee, "knee_back_right", "thigh_back_right", { 0,0,-0.2f });
+    camel.add(knee, "knee_back_left", "thigh_back_left", { 0,0,-0.2f });
+    camel.add(knee, "knee_front_right", "thigh_front_right", { 0,0,-0.2f });
+    camel.add(knee, "knee_front_left", "thigh_front_left", { 0,0,-0.2f });
+    camel.add(shank, "shank_back_right", "knee_back_right", { 0,0,0 });
+    camel.add(shank, "shank_back_left", "knee_back_left", { 0,0,0 });
+    camel.add(shank, "shank_front_right", "knee_front_right", { 0,0,0 });
+    camel.add(shank, "shank_front_left", "knee_front_left", { 0,0,0 });
+    camel.add(foot, "foot_back_right", "shank_back_right", { 0,0,-0.19f });
+    camel.add(foot, "foot_back_left", "shank_back_left", { 0,0,-0.19f });
+    camel.add(foot, "foot_front_right", "shank_front_right", { 0,0,-0.19f });
+    camel.add(foot, "foot_front_left", "shank_front_left", { 0,0,-0.19f });
+    camel.set_shader_for_all_elements(shaders["mesh"]);
+    // camel settings   
+
 
     // ****** tree ******************
     //Tronc cocotiers:
@@ -130,10 +179,13 @@ void scene_model::frame_draw(std::map<std::string,GLuint>& shaders, scene_struct
     //------------------------------------
     //Display Elements of the scene:
     draw(pyramid, scene.camera, shaders["mesh"]);
-    draw(camel, scene.camera, shaders["mesh"]);
+    camel["trunk"].transform.translation = { 4.0f, -2.5f, 0.48f };
+    camel["head"].transform.rotation = vcl::rotation_from_axis_angle_mat3({ 1,0,0 }, 3.14f / 3); ////
+    camel.update_local_to_global_coordinates();
+    draw(camel, scene.camera);
     tree["tronc"].transform.translation = { 4.6f, -2.6f, -0.2f };
     tree.update_local_to_global_coordinates();
-    draw(tree, scene.camera);
+    draw(tree, scene.camera);   
     //------------------------------------
     // After the surface is displayed it is safe to set the texture id to a white image
     //  Avoids to use the previous texture for another object
