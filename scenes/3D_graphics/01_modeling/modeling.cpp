@@ -16,13 +16,11 @@ mesh create_terrain();
 mesh create_pyramid(float radius, float height, float z_offset, float rot);
 mesh create_tronc(float radius, float height);
 mesh create_foliage(float radius, float height, float z_offset);
-<<<<<<< HEAD
 mesh mesh_skybox();
-=======
 float neck_position(float t, float& t_max);
 float leg_position(float t, float& t_max);
 float camel_position(float t, float& t_max);
->>>>>>> cce8a154567edaedd369f6e98853b79cccf93d7e
+
 
 
 /** This function is called before the beginning of the animation loop
@@ -168,8 +166,9 @@ void scene_model::setup_data(std::map<std::string,GLuint>& shaders , scene_struc
     tree.add(folliage, "feuille_12", "tronc", { { 3 * tree_r_param,0,tree_height } , R1 * R1 * R3 * R3 * R3 * Ry * Ry });
     //----------------
     // Display Skybox
-    mesh_drawable skybox = mesh_drawable(mesh_skybox());
-    skybox.texture_id = create_texture_gpu(image_load_png("scenes/3D_graphics/01_modeling/sunset/sunset2.png"));
+    skybox = mesh_drawable(mesh_skybox());
+    skybox.uniform.shading.specular = 0;
+    skybox.texture_id = create_texture_gpu(image_load_png("scenes/3D_graphics/01_modeling/sunset/sunset_hipshot.png"));
     //----------------
     tree.set_shader_for_all_elements(shaders["mesh"]);
 
@@ -191,7 +190,16 @@ void scene_model::frame_draw(std::map<std::string,GLuint>& shaders, scene_struct
     const float t = timer.t;
 
     glEnable( GL_POLYGON_OFFSET_FILL ); // avoids z-fighting when displaying wireframe
-    //---------------------------------
+    
+    // DISPLAYING SKYBOX -- must be rendered first in order to work
+    glBindTexture(GL_TEXTURE_2D, skybox.texture_id);
+    glDepthMask(GL_FALSE);// https://learnopengl.com/Advanced-OpenGL/Cubemaps
+    skybox.uniform.transform.translation = scene.camera.camera_position() + vcl::vec3(-0.5f, -0.5f, -0.5f);
+    draw(skybox, scene.camera, shaders["mesh"]);
+    glBindTexture(GL_TEXTURE_2D, scene.texture_white);
+    glDepthMask(GL_TRUE);
+                                        
+    // DISPLAYING THE TERRAIN
     // Before displaying a textured surface: bind the associated texture id
     glBindTexture(GL_TEXTURE_2D, terrain.texture_id);
     //---------------------------------
@@ -202,11 +210,14 @@ void scene_model::frame_draw(std::map<std::string,GLuint>& shaders, scene_struct
     glPolygonOffset( 1.0, 1.0 );
     draw(terrain, scene.camera, shaders["mesh"]);
     //------------------------------------
-    // Display Skybox
-    draw(skybox, scene.camera, shaders["mesh"]);
-    //------------------------------------
-    //Display Elements of the scene:
+    // After the surface is displayed it is safe to set the texture id to a white image
+    //  Avoids to use the previous texture for another object
+    glBindTexture(GL_TEXTURE_2D, scene.texture_white);
+    
+    //DISPLAYING OTHER ELEMENTS OF THE SCENE:
+    // Pyramid:
     draw(pyramid, scene.camera, shaders["mesh"]);
+    // Camel:
     vcl::mat3 small_inclination_matrix = vcl::rotation_from_axis_angle_mat3({ 1,0,0 }, 3.14f / 24);
     camel["trunk"].transform.rotation = small_inclination_matrix; // border of oasis
     camel["trunk"].transform.translation = { 4.4f, -2.5f, 0.48f - 0.4f * camel_position(t, timer.t_max)};
@@ -221,13 +232,11 @@ void scene_model::frame_draw(std::map<std::string,GLuint>& shaders, scene_struct
     camel["thigh_front_left"].transform.rotation = vcl::rotation_from_axis_angle_mat3({ 1,0,0 }, -3.14f / 2 * leg_position(t, timer.t_max));
     camel.update_local_to_global_coordinates();
     draw(camel, scene.camera);
+    // Tree:
     tree["tronc"].transform.translation = { 4.6f, -2.6f, -0.2f };
     tree.update_local_to_global_coordinates();
     draw(tree, scene.camera);   
-    //------------------------------------
-    // After the surface is displayed it is safe to set the texture id to a white image
-    //  Avoids to use the previous texture for another object
-    glBindTexture(GL_TEXTURE_2D, scene.texture_white);
+    
     //------------------------------------
     if (gui_scene.wireframe) { // wireframe if asked from the GUI
         glPolygonOffset(1.0, 1.0);
@@ -235,9 +244,9 @@ void scene_model::frame_draw(std::map<std::string,GLuint>& shaders, scene_struct
         draw(pyramid, scene.camera, shaders["wireframe"]);
         draw(tronc, scene.camera, shaders["wireframe"]);
     }
-    
 
-    // Display oasis small lake
+    // (Transparent element at the end)
+    // DISPLAYING OASIS:
     water.uniform.transform.translation = { 6.f, -4.f, -0.1f };
     glEnable(GL_BLEND);
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
@@ -266,18 +275,18 @@ mesh mesh_skybox()
         skybox.position.push_back(p[4*ku + 1]);
         skybox.position.push_back(p[4*ku + 2]);
         skybox.position.push_back(p[4*ku + 3]);
-        skybox.normal.push_back(-n[ku]);
-        skybox.normal.push_back(-n[ku]);
-        skybox.normal.push_back(-n[ku]);
-        skybox.normal.push_back(-n[ku]);
+        skybox.normal.push_back(n[ku]);
+        skybox.normal.push_back(n[ku]);
+        skybox.normal.push_back(n[ku]);
+        skybox.normal.push_back(n[ku]);
     }
 
-    skybox.texture_uv = { {1/4.0f,1/3.0f}, {1/2.0f,1/3.0f}, {1/2.0f,0}, {1/4.0f,0}, //bottom
-                          {1/4.0f,1}, {1/2.0f,1}, {1/2.0f,2/3.0f}, {1/4.0f,2/3.0f}, //top
-                          {0,2/3.0f}, {1 / 4.0f,2 / 3.0f}, {1 / 4.0f,1 / 3.0f}, {0,1/3.0f}, //left
-                          {1/4.0f,2/3.0f}, {1/2.0f,2/3.0f}, {1/2.0f,1/3.0f}, {1/4.0f,1/3.0f}, //front
-                          {1/2.0f,2/3.0f}, {3/4.0f,2/3.0f}, {3/4.0f,1/3.0f}, {1/2.0f,1/3.0f}, //right
-                          {3/4.0f,2/3.0f}, {1,2/3.0f}, {1,1/3.0f}, {3/4.0f,1/3.0f} }; //back
+    skybox.texture_uv = { {1/4.0f,2/3.0f}, {1/2.0f,2/3.0f}, {1/2.0f,1}, {1/4.0f,1}, //bottom
+                          {1/4.0f,0}, {1/2.0f,0}, {1/2.0f,1/3.0f}, {1/4.0f,1/3.0f}, //top
+                          {0,1/3.0f}, {1 / 4.0f,1 / 3.0f}, {1 / 4.0f,2 / 3.0f}, {0,2/3.0f}, //left
+                          {1/4.0f,1/3.0f}, {1/2.0f,1/3.0f}, {1/2.0f,2/3.0f}, {1/4.0f,2/3.0f}, //front
+                          {1/2.0f,1/3.0f}, {3/4.0f,1/3.0f}, {3/4.0f,2/3.0f}, {1/2.0f,2/3.0f}, //right
+                          {3/4.0f,1/3.0f}, {1,1/3.0f}, {1,2/3.0f}, {3/4.0f,2/3.0f} }; //back
 
     for(size_t ku = 0; ku<6;++ku) {
         const uint3 triangle_1 = { 4 * ku,4 * ku + 1,4 * ku + 2 };
