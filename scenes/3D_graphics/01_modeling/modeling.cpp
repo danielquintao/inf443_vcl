@@ -1,6 +1,6 @@
 
 #include "modeling.hpp"
-
+#include <iostream>
 
 #ifdef SCENE_3D_GRAPHICS
 
@@ -16,6 +16,7 @@ mesh create_terrain();
 mesh create_pyramid(float radius, float height, float z_offset, float rot);
 mesh create_tronc(float radius, float height);
 mesh create_foliage(float radius, float height, float z_offset);
+mesh mesh_skybox();
 
 
 /** This function is called before the beginning of the animation loop
@@ -161,6 +162,10 @@ void scene_model::setup_data(std::map<std::string,GLuint>& shaders , scene_struc
     tree.add(folliage, "feuille_11", "tronc", { { 3 * tree_r_param,0,tree_height } , R1 * R1 * R3 * Ry * Ry });
     tree.add(folliage, "feuille_12", "tronc", { { 3 * tree_r_param,0,tree_height } , R1 * R1 * R3 * R3 * R3 * Ry2 });
     //----------------
+    // Display Skybox
+    mesh_drawable skybox = mesh_drawable(mesh_skybox());
+    skybox.texture_id = create_texture_gpu(image_load_png("scenes/3D_graphics/01_modeling/sunset/sunset2.png"));
+    //----------------
     tree.set_shader_for_all_elements(shaders["mesh"]);
 
 }
@@ -186,6 +191,9 @@ void scene_model::frame_draw(std::map<std::string,GLuint>& shaders, scene_struct
     // Display terrain
     glPolygonOffset( 1.0, 1.0 );
     draw(terrain, scene.camera, shaders["mesh"]);
+    //------------------------------------
+    // Display Skybox
+    draw(skybox, scene.camera, shaders["mesh"]);
     //------------------------------------
     //Display Elements of the scene:
     draw(pyramid, scene.camera, shaders["mesh"]);
@@ -218,6 +226,47 @@ void scene_model::frame_draw(std::map<std::string,GLuint>& shaders, scene_struct
     glDepthMask(true);
 
 
+}
+
+mesh mesh_skybox()
+{
+    mesh skybox;
+    // Compute normal of the quadrangle (orthogonal to the two basis vectors p00->p01 and p00->p10)
+    vec3 p[] = { {0,0,0}, {1,0,0}, {1,1,0}, {0,1,0}, //bottom
+                 {0,1,1}, {1,1,1}, {1,0,1}, {0,0,1}, //top
+                 {0,1,1}, {0,0,1}, {0,0,0}, {0,1,0}, //left
+                 {0,0,1}, {1,0,1}, {1,0,0}, {0,0,0}, //front
+                 {1,0,1}, {1,1,1}, {1,1,0}, {1,0,0}, //right
+                 {1,1,1}, {0,1,1}, {0,1,0}, {1,1,0} }; //back
+    
+    vec3 n[6];
+    for (size_t ku = 0; ku < 6; ++ku) {
+        n[ku] = normalize(cross(normalize(p[4*ku+1] - p[4*ku]), normalize(p[4*ku+3] - p[4*ku])));
+        skybox.position.push_back(p[4*ku]);
+        skybox.position.push_back(p[4*ku + 1]);
+        skybox.position.push_back(p[4*ku + 2]);
+        skybox.position.push_back(p[4*ku + 3]);
+        skybox.normal.push_back(-n[ku]);
+        skybox.normal.push_back(-n[ku]);
+        skybox.normal.push_back(-n[ku]);
+        skybox.normal.push_back(-n[ku]);
+    }
+
+    skybox.texture_uv = { {1/4.0f,1/3.0f}, {1/2.0f,1/3.0f}, {1/2.0f,0}, {1/4.0f,0}, //bottom
+                          {1/4.0f,1}, {1/2.0f,1}, {1/2.0f,2/3.0f}, {1/4.0f,2/3.0f}, //top
+                          {0,2/3.0f}, {1 / 4.0f,2 / 3.0f}, {1 / 4.0f,1 / 3.0f}, {0,1/3.0f}, //left
+                          {1/4.0f,2/3.0f}, {1/2.0f,2/3.0f}, {1/2.0f,1/3.0f}, {1/4.0f,1/3.0f}, //front
+                          {1/2.0f,2/3.0f}, {3/4.0f,2/3.0f}, {3/4.0f,1/3.0f}, {1/2.0f,1/3.0f}, //right
+                          {3/4.0f,2/3.0f}, {1,2/3.0f}, {1,1/3.0f}, {3/4.0f,1/3.0f} }; //back
+
+    for(size_t ku = 0; ku<6;++ku) {
+        const uint3 triangle_1 = { 4 * ku,4 * ku + 1,4 * ku + 2 };
+        const uint3 triangle_2 = { 4 * ku,4 * ku + 2,4 * ku + 3 };
+        skybox.connectivity.push_back(triangle_1);
+        skybox.connectivity.push_back(triangle_2);           // Quadrangle made up of two triangles
+    }
+
+    return skybox;
 }
 
 void build_dune(vec2 center, float M, float L, float u, float v, float& z)

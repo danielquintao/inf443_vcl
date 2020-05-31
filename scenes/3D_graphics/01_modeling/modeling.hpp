@@ -45,6 +45,8 @@ struct scene_model : scene_base
 
     vcl::hierarchy_mesh_drawable tree;
 
+    vcl::mesh_drawable skybox;
+
     gui_scene_structure gui_scene;
 };
 
