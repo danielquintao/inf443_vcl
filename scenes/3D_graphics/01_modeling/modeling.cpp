@@ -56,23 +56,23 @@ void scene_model::setup_data(std::map<std::string,GLuint>& shaders , scene_struc
     pyramid.uniform.transform.scaling = 1.5; // only in case of imported object
     pyramid.uniform.transform.translation = { 5,5,1.4f }; // only in case of imported object
     // GENERAL PYRAMID SETTINGS:
-    pyramid.uniform.color = { 241 / 255.0f,175 / 255.0f,0.0f };
+    pyramid.uniform.color = {0.86f, 0.65f, 0.30f};
     pyramid.uniform.shading.specular = 0.0f;
-    pyramid.uniform.shading.ambiant = 0.5f; // MUDEI ISSO PQ TAVA MT ESCURO MAS PODEMOS DEIXAR OUTRO VALOR SE PREFERIR
+    pyramid.uniform.shading.ambiant = 0.5f;
     
 
     // Camel
     // main part of camel:
     mesh_drawable camel_trunk = mesh_drawable(mesh_load_file_obj("scenes/3D_graphics/01_modeling/assets/camelo_trunk.obj"));
-    mesh_drawable camel_head = mesh_drawable(mesh_load_file_obj("scenes/3D_graphics/01_modeling/assets/camelo_head.obj")); ////
+    mesh_drawable camel_head = mesh_drawable(mesh_load_file_obj("scenes/3D_graphics/01_modeling/assets/camelo_head.obj"));
     camel_trunk.uniform.color = { 1.0f, 0.75f, 0.2f };
     camel_trunk.uniform.shading.specular = 0.01f;
-    camel_head.uniform.color = { 1.0f, 0.75f, 0.2f }; ////
-    camel_head.uniform.shading.specular = 0.01f; ////
+    camel_head.uniform.color = { 1.0f, 0.75f, 0.2f };
+    camel_head.uniform.shading.specular = 0.01f;
     vcl::mat3 R_camel = vcl::rotation_from_axis_angle_mat3({ 1,0,0 }, 3.14f / 2);
     camel_trunk.uniform.transform.rotation = R_camel;
-    camel_head.uniform.transform.rotation = R_camel; ////
-    camel_head.uniform.transform.translation = { 0, 0.17f, 0 }; ////
+    camel_head.uniform.transform.rotation = R_camel;
+    camel_head.uniform.transform.translation = { 0, 0.17f, 0 };
     // leg:
     mesh_drawable articulation_point = mesh_primitive_sphere(0.02f, { 0,0,0 }, 10, 10);
     mesh_drawable thigh = mesh_primitive_cylinder(0.025f, { 0,0,-0.2f }, { 0,0,0 }, 10, 10);
@@ -93,7 +93,7 @@ void scene_model::setup_data(std::map<std::string,GLuint>& shaders , scene_struc
     foot.uniform.transform.scaling = 2.0f;
     // assembling camel parts:
     camel.add(camel_trunk, "trunk");
-    camel.add(camel_head, "head", "trunk", { 0, -0.17f, 0 }); ////
+    camel.add(camel_head, "head", "trunk", { 0, -0.17f, 0 });
     camel.add(articulation_point, "articulation_point_back_right", "trunk", { -0.08f, 0.1f, -0.1f });
     camel.add(articulation_point, "articulation_point_back_left", "trunk", { 0.08f, 0.1f, -0.1f });
     camel.add(articulation_point, "articulation_point_front_right", "trunk", { -0.08f, -0.1f, -0.1f });
@@ -141,7 +141,6 @@ void scene_model::setup_data(std::map<std::string,GLuint>& shaders , scene_struc
     vcl::mat3 R2 = vcl::rotation_from_axis_angle_mat3({ 0,0,1 }, 2 * 3.14f / 6);
     vcl::mat3 R3 = vcl::rotation_from_axis_angle_mat3({ 0,0,1 }, 2 * 3.14f / 12);
     vcl::mat3 Ry = vcl::rotation_from_axis_angle_mat3({ 0,1,0 }, 2 * 3.14f / 24);
-    vcl::mat3 Ry2 = vcl::rotation_from_axis_angle_mat3({ 0,1,0 }, -2 * 3.14f / 24);
     //----------------
     tree.add(tronc, "tronc");
     tree.add(haut, "haut", "tronc", { 3 * tree_r_param,0,tree_height });
@@ -158,11 +157,11 @@ void scene_model::setup_data(std::map<std::string,GLuint>& shaders , scene_struc
     tree.add(folliage, "feuille_5", "tronc", { { 3 * tree_r_param,0,tree_height } , R1 * R2 * Ry });
     tree.add(folliage, "feuille_6", "tronc", { { 3 * tree_r_param,0,tree_height } , R1 * R1 * R2 * Ry });
     tree.add(folliage, "feuille_7", "tronc", { { 3 * tree_r_param,0,tree_height } , R3 * Ry * Ry});
-    tree.add(folliage, "feuille_8", "tronc", { { 3 * tree_r_param,0,tree_height } , R3 * R3 * R3 * Ry2 });
+    tree.add(folliage, "feuille_8", "tronc", { { 3 * tree_r_param,0,tree_height } , R3 * R3 * R3 * Ry * Ry });
     tree.add(folliage, "feuille_9", "tronc", { { 3 * tree_r_param,0,tree_height } , R1 * R3 * Ry * Ry });
-    tree.add(folliage, "feuille_10", "tronc", { { 3 * tree_r_param,0,tree_height } , R1 * R3 * R3 * R3 * Ry2 });
+    tree.add(folliage, "feuille_10", "tronc", { { 3 * tree_r_param,0,tree_height } , R1 * R3 * R3 * R3 * Ry * Ry });
     tree.add(folliage, "feuille_11", "tronc", { { 3 * tree_r_param,0,tree_height } , R1 * R1 * R3 * Ry * Ry });
-    tree.add(folliage, "feuille_12", "tronc", { { 3 * tree_r_param,0,tree_height } , R1 * R1 * R3 * R3 * R3 * Ry2 });
+    tree.add(folliage, "feuille_12", "tronc", { { 3 * tree_r_param,0,tree_height } , R1 * R1 * R3 * R3 * R3 * Ry * Ry });
     //----------------
     tree.set_shader_for_all_elements(shaders["mesh"]);
 
@@ -197,6 +196,8 @@ void scene_model::frame_draw(std::map<std::string,GLuint>& shaders, scene_struct
     //------------------------------------
     //Display Elements of the scene:
     draw(pyramid, scene.camera, shaders["mesh"]);
+    vcl::mat3 small_inclination_matrix = vcl::rotation_from_axis_angle_mat3({ 1,0,0 }, 3.14f / 24);
+    camel["trunk"].transform.rotation = small_inclination_matrix; // border of oasis
     camel["trunk"].transform.translation = { 4.4f, -2.5f, 0.48f - 0.4f * camel_position(t, timer.t_max)};
     camel["head"].transform.rotation = vcl::rotation_from_axis_angle_mat3({ 1,0,0 }, 5 * 3.14f / 12 * neck_position(t, timer.t_max));
     camel["shank_back_right"].transform.rotation = vcl::rotation_from_axis_angle_mat3({ 1,0,0 }, 3.14f * leg_position(t, timer.t_max));
