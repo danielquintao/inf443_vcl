@@ -16,13 +16,11 @@ mesh create_terrain();
 mesh create_pyramid(float radius, float height, float z_offset, float rot);
 mesh create_tronc(float radius, float height);
 mesh create_foliage(float radius, float height, float z_offset);
-<<<<<<< HEAD
 mesh mesh_skybox();
-=======
+
 float neck_position(float t, float& t_max);
 float leg_position(float t, float& t_max);
 float camel_position(float t, float& t_max);
->>>>>>> cce8a154567edaedd369f6e98853b79cccf93d7e
 
 
 /** This function is called before the beginning of the animation loop
