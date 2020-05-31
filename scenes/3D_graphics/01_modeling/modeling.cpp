@@ -308,7 +308,7 @@ void build_dune(vec2 center, float M, float L, float u, float v, float& z)
 float evaluate_terrain_z(float u, float v)
 {
     float z = 0;
-
+    /*
     build_dune({ 0.05f, 0.95f }, 0.20f, 0.07, u, v, z);
     build_dune({ 0.15f, 0.95f }, 0.22f, 0.08, u, v, z);
     build_dune({ 0.25f, 0.90f }, 0.24f, 0.07, u, v, z);
@@ -332,7 +332,13 @@ float evaluate_terrain_z(float u, float v)
     build_dune({ 0.25f, 0.15f }, 0.24f, 0.07, u, v, z);
     build_dune({ 0.10f, 0.10f }, 0.23f, 0.10, u, v, z);
     build_dune({ 0.30f, 0.05f }, 0.27f, 0.08, u, v, z);
-    
+    */
+
+    // Changed direction // I have used a rotation of 90 degrees 
+    build_dune({ 0.25f, 0.25f }, 2.0f, 0.5, v, u, z);
+    build_dune({ 0.5f, 0.25f }, 1.0f, 0.5, v, u, z);
+    build_dune({ 0.4f, 0.4f }, 0.5f, 0.8, v, u, z);
+    build_dune({ 0.75f, 0.25f }, 0.8f, 0.5, v, u, z);
     // ONE SINGLE BIG DUNE:
     /*
     const vec2 u0 = { 0.5f, 0.5f };
@@ -352,10 +358,11 @@ float evaluate_terrain_z(float u, float v)
     }*/
 
     // smooth irregularitues under the dunes :
-    float d1 = norm(vec2(u, v) - vec2(0.15, 0.3)) / 0.2f;
+    /*float d1 = norm(vec2(u, v) - vec2(0.15, 0.3)) / 0.2f;
     float d2 = norm(vec2(u, v) - vec2(0.1, 0.8)) / 0.1f;
     float d3 = norm(vec2(u, v) - vec2(0.3, 0.5)) / 0.2f;
     z += 0.5 * exp(-d1 * d1) + 0.3 * exp(-d2 * d2) + 0.6 * exp(-d3 * d3);
+    */
 
     // oasis - hole for the lake
     float d = norm(vec2(u, v) - vec2(0.8, 0.3))/0.08f;
@@ -382,6 +389,7 @@ mesh create_terrain()
 
     mesh terrain; // temporary terrain storage (CPU only)
     terrain.position.resize(N * N);
+    terrain.color.resize(N * N);
     terrain.texture_uv.resize(N * N);
 
     // Fill terrain geometry
@@ -393,8 +401,30 @@ mesh create_terrain()
             const float u = ku / (N - 1.0f);
             const float v = kv / (N - 1.0f);
 
+            // get gui parameters
+            const float scaling = 1.2f;
+            const int octave = 4;
+            const float persistency = 0.5f;
+            
+            // Evaluate Perlin noise
+            //0.8, 0.3
+            float noise;
+            if ((u-0.8)* (u - 0.8)+(v-0.3)* (v - 0.3)<0.01)
+                noise = 1;
+            else
+                noise = perlin(scaling * u, scaling * v, octave, persistency);
+
+            // 3D vertex coordinates
+            vec3 p = evaluate_terrain(u, v);
+            const float x = p.x;
+            const float y = p.y;
+            const float z = p.z * noise;
+
+            const float c = 0.3f + 0.7f * noise;
+
             // Compute coordinates
-            terrain.position[kv + N * ku] = evaluate_terrain(u, v);
+            terrain.position[kv + N * ku] = { x,y,z };
+            terrain.color[kv + N * ku] = { c,c,c,1.0f };
 
             // Add texture
             int tiles_param = 10;
