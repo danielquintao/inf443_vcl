@@ -16,7 +16,13 @@ mesh create_terrain();
 mesh create_pyramid(float radius, float height, float z_offset, float rot);
 mesh create_tronc(float radius, float height);
 mesh create_foliage(float radius, float height, float z_offset);
+<<<<<<< HEAD
 mesh mesh_skybox();
+=======
+float neck_position(float t, float& t_max);
+float leg_position(float t, float& t_max);
+float camel_position(float t, float& t_max);
+>>>>>>> cce8a154567edaedd369f6e98853b79cccf93d7e
 
 
 /** This function is called before the beginning of the animation loop
@@ -39,9 +45,9 @@ void scene_model::setup_data(std::map<std::string,GLuint>& shaders , scene_struc
 
     // oasis small lake :
     water = mesh_drawable(mesh_primitive_quad({ -3.f, -3.f, 0 }, { -3.f, 3.f, 0 }, { 3.f, 3.f, 0 }, { 3.f, -3.f, 0 }));
-    water.uniform.color = { 0.6f, 0.6f, 0.9f };
+    water.uniform.color = { 0.0f, 0.5f, 1.0f };
     water.uniform.color_alpha = 0.5f; // transparency
-    water.uniform.shading.specular = 0.8f;
+    water.uniform.shading.specular = 0.9f;
 
     // Pyramid :
     // GEOMETRIC PYRAMID:
@@ -54,23 +60,23 @@ void scene_model::setup_data(std::map<std::string,GLuint>& shaders , scene_struc
     pyramid.uniform.transform.scaling = 1.5; // only in case of imported object
     pyramid.uniform.transform.translation = { 5,5,1.4f }; // only in case of imported object
     // GENERAL PYRAMID SETTINGS:
-    pyramid.uniform.color = { 241 / 255.0f,175 / 255.0f,0.0f };
+    pyramid.uniform.color = {0.86f, 0.65f, 0.30f};
     pyramid.uniform.shading.specular = 0.0f;
-    pyramid.uniform.shading.ambiant = 0.5f; // MUDEI ISSO PQ TAVA MT ESCURO MAS PODEMOS DEIXAR OUTRO VALOR SE PREFERIR
+    pyramid.uniform.shading.ambiant = 0.5f;
     
 
     // Camel
     // main part of camel:
     mesh_drawable camel_trunk = mesh_drawable(mesh_load_file_obj("scenes/3D_graphics/01_modeling/assets/camelo_trunk.obj"));
-    mesh_drawable camel_head = mesh_drawable(mesh_load_file_obj("scenes/3D_graphics/01_modeling/assets/camelo_head.obj")); ////
+    mesh_drawable camel_head = mesh_drawable(mesh_load_file_obj("scenes/3D_graphics/01_modeling/assets/camelo_head.obj"));
     camel_trunk.uniform.color = { 1.0f, 0.75f, 0.2f };
     camel_trunk.uniform.shading.specular = 0.01f;
-    camel_head.uniform.color = { 1.0f, 0.75f, 0.2f }; ////
-    camel_head.uniform.shading.specular = 0.01f; ////
+    camel_head.uniform.color = { 1.0f, 0.75f, 0.2f };
+    camel_head.uniform.shading.specular = 0.01f;
     vcl::mat3 R_camel = vcl::rotation_from_axis_angle_mat3({ 1,0,0 }, 3.14f / 2);
     camel_trunk.uniform.transform.rotation = R_camel;
-    camel_head.uniform.transform.rotation = R_camel; ////
-    camel_head.uniform.transform.translation = { 0, 0.17f, 0 }; ////
+    camel_head.uniform.transform.rotation = R_camel;
+    camel_head.uniform.transform.translation = { 0, 0.17f, 0 };
     // leg:
     mesh_drawable articulation_point = mesh_primitive_sphere(0.02f, { 0,0,0 }, 10, 10);
     mesh_drawable thigh = mesh_primitive_cylinder(0.025f, { 0,0,-0.2f }, { 0,0,0 }, 10, 10);
@@ -91,7 +97,7 @@ void scene_model::setup_data(std::map<std::string,GLuint>& shaders , scene_struc
     foot.uniform.transform.scaling = 2.0f;
     // assembling camel parts:
     camel.add(camel_trunk, "trunk");
-    camel.add(camel_head, "head", "trunk", { 0, -0.17f, 0 }); ////
+    camel.add(camel_head, "head", "trunk", { 0, -0.17f, 0 });
     camel.add(articulation_point, "articulation_point_back_right", "trunk", { -0.08f, 0.1f, -0.1f });
     camel.add(articulation_point, "articulation_point_back_left", "trunk", { 0.08f, 0.1f, -0.1f });
     camel.add(articulation_point, "articulation_point_front_right", "trunk", { -0.08f, -0.1f, -0.1f });
@@ -139,7 +145,6 @@ void scene_model::setup_data(std::map<std::string,GLuint>& shaders , scene_struc
     vcl::mat3 R2 = vcl::rotation_from_axis_angle_mat3({ 0,0,1 }, 2 * 3.14f / 6);
     vcl::mat3 R3 = vcl::rotation_from_axis_angle_mat3({ 0,0,1 }, 2 * 3.14f / 12);
     vcl::mat3 Ry = vcl::rotation_from_axis_angle_mat3({ 0,1,0 }, 2 * 3.14f / 24);
-    vcl::mat3 Ry2 = vcl::rotation_from_axis_angle_mat3({ 0,1,0 }, -2 * 3.14f / 24);
     //----------------
     tree.add(tronc, "tronc");
     tree.add(haut, "haut", "tronc", { 3 * tree_r_param,0,tree_height });
@@ -156,11 +161,11 @@ void scene_model::setup_data(std::map<std::string,GLuint>& shaders , scene_struc
     tree.add(folliage, "feuille_5", "tronc", { { 3 * tree_r_param,0,tree_height } , R1 * R2 * Ry });
     tree.add(folliage, "feuille_6", "tronc", { { 3 * tree_r_param,0,tree_height } , R1 * R1 * R2 * Ry });
     tree.add(folliage, "feuille_7", "tronc", { { 3 * tree_r_param,0,tree_height } , R3 * Ry * Ry});
-    tree.add(folliage, "feuille_8", "tronc", { { 3 * tree_r_param,0,tree_height } , R3 * R3 * R3 * Ry2 });
+    tree.add(folliage, "feuille_8", "tronc", { { 3 * tree_r_param,0,tree_height } , R3 * R3 * R3 * Ry * Ry });
     tree.add(folliage, "feuille_9", "tronc", { { 3 * tree_r_param,0,tree_height } , R1 * R3 * Ry * Ry });
-    tree.add(folliage, "feuille_10", "tronc", { { 3 * tree_r_param,0,tree_height } , R1 * R3 * R3 * R3 * Ry2 });
+    tree.add(folliage, "feuille_10", "tronc", { { 3 * tree_r_param,0,tree_height } , R1 * R3 * R3 * R3 * Ry * Ry });
     tree.add(folliage, "feuille_11", "tronc", { { 3 * tree_r_param,0,tree_height } , R1 * R1 * R3 * Ry * Ry });
-    tree.add(folliage, "feuille_12", "tronc", { { 3 * tree_r_param,0,tree_height } , R1 * R1 * R3 * R3 * R3 * Ry2 });
+    tree.add(folliage, "feuille_12", "tronc", { { 3 * tree_r_param,0,tree_height } , R1 * R1 * R3 * R3 * R3 * Ry * Ry });
     //----------------
     // Display Skybox
     mesh_drawable skybox = mesh_drawable(mesh_skybox());
@@ -168,6 +173,8 @@ void scene_model::setup_data(std::map<std::string,GLuint>& shaders , scene_struc
     //----------------
     tree.set_shader_for_all_elements(shaders["mesh"]);
 
+    //timer.scale = 0.5f; // speed in which t varies
+    timer.t_max = 10.0f; // t goes from 0 to 10 and restart in 0
 }
 
 
@@ -176,9 +183,12 @@ void scene_model::setup_data(std::map<std::string,GLuint>& shaders , scene_struc
     It is used to compute time-varying argument and perform data data drawing */
 void scene_model::frame_draw(std::map<std::string,GLuint>& shaders, scene_structure& scene, gui_structure& )
 {
+    timer.update();
     set_gui();
 
     gui_scene.wireframe = false;
+
+    const float t = timer.t;
 
     glEnable( GL_POLYGON_OFFSET_FILL ); // avoids z-fighting when displaying wireframe
     //---------------------------------
@@ -197,8 +207,18 @@ void scene_model::frame_draw(std::map<std::string,GLuint>& shaders, scene_struct
     //------------------------------------
     //Display Elements of the scene:
     draw(pyramid, scene.camera, shaders["mesh"]);
-    camel["trunk"].transform.translation = { 4.0f, -2.5f, 0.48f };
-    camel["head"].transform.rotation = vcl::rotation_from_axis_angle_mat3({ 1,0,0 }, 3.14f / 3); ////
+    vcl::mat3 small_inclination_matrix = vcl::rotation_from_axis_angle_mat3({ 1,0,0 }, 3.14f / 24);
+    camel["trunk"].transform.rotation = small_inclination_matrix; // border of oasis
+    camel["trunk"].transform.translation = { 4.4f, -2.5f, 0.48f - 0.4f * camel_position(t, timer.t_max)};
+    camel["head"].transform.rotation = vcl::rotation_from_axis_angle_mat3({ 1,0,0 }, 5 * 3.14f / 12 * neck_position(t, timer.t_max));
+    camel["shank_back_right"].transform.rotation = vcl::rotation_from_axis_angle_mat3({ 1,0,0 }, 3.14f * leg_position(t, timer.t_max));
+    camel["shank_back_left"].transform.rotation = vcl::rotation_from_axis_angle_mat3({ 1,0,0 }, 3.14f * leg_position(t, timer.t_max));
+    camel["shank_front_right"].transform.rotation = vcl::rotation_from_axis_angle_mat3({ 1,0,0 }, 3.14f * leg_position(t, timer.t_max));
+    camel["shank_front_left"].transform.rotation = vcl::rotation_from_axis_angle_mat3({ 1,0,0 }, 3.14f * leg_position(t, timer.t_max));
+    camel["thigh_back_right"].transform.rotation = vcl::rotation_from_axis_angle_mat3({ 1,0,0 }, -3.14f / 2 * leg_position(t, timer.t_max));
+    camel["thigh_back_left"].transform.rotation = vcl::rotation_from_axis_angle_mat3({ 1,0,0 }, -3.14f / 2 * leg_position(t, timer.t_max));
+    camel["thigh_front_right"].transform.rotation = vcl::rotation_from_axis_angle_mat3({ 1,0,0 }, -3.14f / 2 * leg_position(t, timer.t_max));
+    camel["thigh_front_left"].transform.rotation = vcl::rotation_from_axis_angle_mat3({ 1,0,0 }, -3.14f / 2 * leg_position(t, timer.t_max));
     camel.update_local_to_global_coordinates();
     draw(camel, scene.camera);
     tree["tronc"].transform.translation = { 4.6f, -2.6f, -0.2f };
@@ -569,9 +589,82 @@ mesh create_foliage(float radius, float height, float z_offset)
     return m;
 }
 
+float camel_position(float t, float& t_max)
+{
+    if (t < t_max / 6) // 0 -> t_max/6: camel stands up
+        return 0;
+
+    if (t_max / 6 <= t && t < t_max / 3) // t_max/6 -> 2*t_max/6 : camel ITSELF is bending down
+        return std::sin(3.14f/2 * std::sin((t - t_max / 6) * 3 * 3.14f / t_max) );
+
+    if (t_max / 3 <= t && t < t_max / 2) // 2*t_max/6 -> 3*t_max/6 : camel's HEAD is bending down to drink water
+        return 1;
+
+    if (t_max / 2 <= t && t < 2 * t_max / 3) // 3*t_max/6 -> 4*t_max/6 : camel fixes his head down to drink water
+        return 1;
+
+    if (2 * t_max / 3 <= t && t < 5 * t_max / 6) // 4*t_max/6 -> 5*t_max/6 : camel's HEAD is bending up
+        return 1;
+
+    if (5 * t_max / 6 <= t && t <= t_max) // t_max/6 -> 2*t_max/6 : camel ITSELF is bending up
+        return std::sin(3.14f/2 * std::sin((t - 5 * t_max / 6) * (-3) * 3.14f / t_max + 3.14f / 2) );
+
+    return 0; // au cas ou
+}
+
+float neck_position(float t, float &t_max)
+{
+    if (t < t_max / 6) // 0 -> t_max/6: camel stands up
+        return 0;
+    
+    if (t_max / 6 <= t && t < t_max / 3) // t_max/6 -> 2*t_max/6 : camel ITSELF is bending down
+        return 0;
+    
+    if (t_max / 3 <= t && t < t_max / 2) // 2*t_max/6 -> 3*t_max/6 : camel's HEAD is bending down to drink water
+        return std::sin((t - t_max / 3) * 3 * 3.14f / t_max);
+
+    if (t_max / 2 <= t && t < 2 * t_max / 3) // 3*t_max/6 -> 4*t_max/6 : camel fixes his head down to drink water
+        return 1;
+
+    if (2 * t_max / 3 <= t && t < 5 * t_max / 6) // 4*t_max/6 -> 5*t_max/6 : camel's HEAD is bending up
+        return std::sin((t - 2 * t_max / 3) * (-3) * 3.14f / t_max + 3.14f / 2);
+
+    if (5 * t_max / 6 <= t && t <= t_max) // t_max/6 -> 2*t_max/6 : camel ITSELF is bending up
+        return 0;
+
+    return 0; // au cas ou
+}
+
+float leg_position(float t, float& t_max)
+{
+    if (t < t_max / 6) // 0 -> t_max/6: camel stands up
+        return 0;
+
+    if (t_max / 6 <= t && t < t_max / 3) // t_max/6 -> 2*t_max/6 : camel ITSELF is bending down
+        return std::sin((t - t_max / 6) * 3 * 3.14f / t_max);
+
+    if (t_max / 3 <= t && t < t_max / 2) // 2*t_max/6 -> 3*t_max/6 : camel's HEAD is bending down to drink water
+        return 1;
+
+    if (t_max / 2 <= t && t < 2 * t_max / 3) // 3*t_max/6 -> 4*t_max/6 : camel fixes his head down to drink water
+        return 1;
+
+    if (2 * t_max / 3 <= t && t < 5 * t_max / 6) // 4*t_max/6 -> 5*t_max/6 : camel's HEAD is bending up
+        return 1;
+
+    if (5 * t_max / 6 <= t && t <= t_max) // t_max/6 -> 2*t_max/6 : camel ITSELF is bending up
+        return std::sin((t - 5 * t_max / 6) * (-3) * 3.14f / t_max + 3.14f / 2);
+
+    return 0; // au cas ou
+}
+
 void scene_model::set_gui()
 {
     ImGui::Checkbox("Wireframe", &gui_scene.wireframe);
+
+    ImGui::Spacing();
+    ImGui::SliderFloat("Time", &timer.t, timer.t_min, timer.t_max);
+    ImGui::SliderFloat("Time scale", &timer.scale, 0.1f, 3.0f);
 }
 
 
