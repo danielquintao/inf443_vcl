@@ -39,11 +39,9 @@ struct scene_model : scene_base
 
     vcl::hierarchy_mesh_drawable camel;
 
-    vcl::mesh_drawable tronc;
-
-    vcl::mesh_drawable folliage;
-
     vcl::hierarchy_mesh_drawable tree;
+
+    vcl::hierarchy_mesh_drawable tree2;
 
     vcl::mesh_drawable skybox;
 

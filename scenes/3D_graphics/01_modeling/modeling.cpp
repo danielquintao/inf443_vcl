@@ -16,6 +16,7 @@ mesh create_terrain();
 mesh create_pyramid(float radius, float height, float z_offset, float rot);
 mesh create_tronc(float radius, float height);
 mesh create_foliage(float radius, float height, float z_offset);
+hierarchy_mesh_drawable create_tree();
 mesh mesh_skybox();
 float neck_position(float t, float& t_max);
 float leg_position(float t, float& t_max);
@@ -120,57 +121,16 @@ void scene_model::setup_data(std::map<std::string,GLuint>& shaders , scene_struc
     // camel settings   
 
     // ****** tree ******************
-    //Tronc cocotiers:
-    float tree_r_param = 0.1f;
-    float tree_height = 2.0f;
-    tronc = mesh_drawable(create_tronc(tree_r_param, tree_height));
-    tronc.uniform.color = { 0.5f, 0.25f, 0 };
-    //Folliage cocotiers:
-    folliage = mesh_drawable(create_foliage(1.0, 0, 0.1));
-    folliage.uniform.color = { 0, 0.25f, 0 };
-    // détail : haut du tronc:
-    mesh_drawable haut = mesh_drawable(mesh_primitive_sphere(tree_r_param / 2, { 0,0,0 }, 20, 20));
-    haut.uniform.color = { 0.5f, 0.25f, 0 };
-    haut.uniform.shading.specular = tronc.uniform.shading.specular;
-    haut.uniform.shading.diffuse = tronc.uniform.shading.diffuse;
-    // cocos
-    mesh_drawable coco = mesh_drawable(mesh_primitive_sphere(3.0f*tree_r_param/4, { 0,0,0 }, 20, 20));
-    coco.uniform.color = { 111.0f/255,138.0f/255,37.0f/255 };
-    coco.uniform.shading.specular = 0.1f;
-    coco.uniform.shading.diffuse = tronc.uniform.shading.diffuse;
-    //----------------
-    vcl::mat3 R1 = vcl::rotation_from_axis_angle_mat3({ 0,0,1 }, 2 * 3.14f / 3);
-    vcl::mat3 R2 = vcl::rotation_from_axis_angle_mat3({ 0,0,1 }, 2 * 3.14f / 6);
-    vcl::mat3 R3 = vcl::rotation_from_axis_angle_mat3({ 0,0,1 }, 2 * 3.14f / 12);
-    vcl::mat3 Ry = vcl::rotation_from_axis_angle_mat3({ 0,1,0 }, 2 * 3.14f / 24);
-    //----------------
-    tree.add(tronc, "tronc");
-    tree.add(haut, "haut", "tronc", { 3 * tree_r_param,0,tree_height });
-    tree.add(coco, "coco1", "tronc", { 1.5f * tree_r_param,0,9 * tree_height / 10 });
-    tree.add(coco, "coco2", "tronc", { 4.5f * tree_r_param,0,9 * tree_height / 10 });
-    tree.add(coco, "coco3", "tronc", { 3.0f * tree_r_param,1.5f*tree_r_param,9 * tree_height / 10 });
-    tree.add(coco, "coco4", "tronc", { 3.0f * tree_r_param,-1.5f * tree_r_param,9 * tree_height / 10 });
-    tree.add(coco, "coco5", "tronc", { 4.5f * tree_r_param,0,0 });
-    tree.add(coco, "coco6", "tronc", { tree_r_param,-1.5f*tree_r_param,tree_r_param });
-    tree.add(folliage, "feuille_1", "tronc", { 3 * tree_r_param,0,tree_height });
-    tree.add(folliage, "feuille_2", "tronc", { { 3 * tree_r_param,0,tree_height } , R1 });
-    tree.add(folliage, "feuille_3", "tronc", { { 3 * tree_r_param,0,tree_height } , R1 * R1 });
-    tree.add(folliage, "feuille_4", "tronc", { { 3 * tree_r_param,0,tree_height } , R2 * Ry });
-    tree.add(folliage, "feuille_5", "tronc", { { 3 * tree_r_param,0,tree_height } , R1 * R2 * Ry });
-    tree.add(folliage, "feuille_6", "tronc", { { 3 * tree_r_param,0,tree_height } , R1 * R1 * R2 * Ry });
-    tree.add(folliage, "feuille_7", "tronc", { { 3 * tree_r_param,0,tree_height } , R3 * Ry * Ry});
-    tree.add(folliage, "feuille_8", "tronc", { { 3 * tree_r_param,0,tree_height } , R3 * R3 * R3 * Ry * Ry });
-    tree.add(folliage, "feuille_9", "tronc", { { 3 * tree_r_param,0,tree_height } , R1 * R3 * Ry * Ry });
-    tree.add(folliage, "feuille_10", "tronc", { { 3 * tree_r_param,0,tree_height } , R1 * R3 * R3 * R3 * Ry * Ry });
-    tree.add(folliage, "feuille_11", "tronc", { { 3 * tree_r_param,0,tree_height } , R1 * R1 * R3 * Ry * Ry });
-    tree.add(folliage, "feuille_12", "tronc", { { 3 * tree_r_param,0,tree_height } , R1 * R1 * R3 * R3 * R3 * Ry * Ry });
-    //----------------
+    tree = create_tree();
+    tree2 = create_tree();
+    
     // Display Skybox
     skybox = mesh_drawable(mesh_skybox());
     skybox.uniform.shading.specular = 0;
     skybox.texture_id = create_texture_gpu(image_load_png("scenes/3D_graphics/01_modeling/sunset/sunset_hipshot.png"));
     //----------------
     tree.set_shader_for_all_elements(shaders["mesh"]);
+    tree2.set_shader_for_all_elements(shaders["mesh"]);
 
     //timer.scale = 0.5f; // speed in which t varies
     timer.t_max = 10.0f; // t goes from 0 to 10 and restart in 0
@@ -218,8 +178,9 @@ void scene_model::frame_draw(std::map<std::string,GLuint>& shaders, scene_struct
     // Pyramid:
     draw(pyramid, scene.camera, shaders["mesh"]);
     // Camel:
-    vcl::mat3 small_inclination_matrix = vcl::rotation_from_axis_angle_mat3({ 1,0,0 }, 3.14f / 24);
-    camel["trunk"].transform.rotation = small_inclination_matrix; // border of oasis
+    mat3 change_of_orientation = vcl::rotation_from_axis_angle_mat3({ 0,0,1 }, 3.14f / 12);
+    mat3 small_inclination_matrix = vcl::rotation_from_axis_angle_mat3({ 1,0,0 }, 3.14f / 24);
+    camel["trunk"].transform.rotation = small_inclination_matrix * change_of_orientation; // border of oasis
     camel["trunk"].transform.translation = { 4.4f, -2.5f, 0.48f - 0.4f * camel_position(t, timer.t_max)};
     camel["head"].transform.rotation = vcl::rotation_from_axis_angle_mat3({ 1,0,0 }, 5 * 3.14f / 12 * neck_position(t, timer.t_max));
     camel["shank_back_right"].transform.rotation = vcl::rotation_from_axis_angle_mat3({ 1,0,0 }, 3.14f * leg_position(t, timer.t_max));
@@ -235,14 +196,18 @@ void scene_model::frame_draw(std::map<std::string,GLuint>& shaders, scene_struct
     // Tree:
     tree["tronc"].transform.translation = { 4.6f, -2.6f, -0.2f };
     tree.update_local_to_global_coordinates();
-    draw(tree, scene.camera);   
+    draw(tree, scene.camera);
+    tree2["tronc"].transform.rotation = vcl::rotation_from_axis_angle_mat3({ 0,0,1 }, 3.14f / 2);
+    tree2["tronc"].transform.translation = { 4.3f, -4.8f, -0.2f };
+    tree2.update_local_to_global_coordinates();
+    draw(tree2, scene.camera);
     
     //------------------------------------
     if (gui_scene.wireframe) { // wireframe if asked from the GUI
         glPolygonOffset(1.0, 1.0);
         draw(terrain, scene.camera, shaders["wireframe"]);
         draw(pyramid, scene.camera, shaders["wireframe"]);
-        draw(tronc, scene.camera, shaders["wireframe"]);
+        draw(tree, scene.camera, shaders["wireframe"]);
     }
 
     // (Transparent element at the end)
@@ -532,6 +497,57 @@ mesh create_foliage(float radius, float height, float z_offset)
     }
 
     return m;
+}
+
+hierarchy_mesh_drawable create_tree()
+{
+    //Tronc cocotiers:
+    float tree_r_param = 0.1f;
+    float tree_height = 2.0f;
+    mesh_drawable tronc = mesh_drawable(create_tronc(tree_r_param, tree_height));
+    tronc.uniform.color = { 0.5f, 0.25f, 0 };
+    //Folliage cocotiers:
+    mesh_drawable folliage = mesh_drawable(create_foliage(1.0, 0, 0.1));
+    folliage.uniform.color = { 0, 0.25f, 0 };
+    // détail : haut du tronc:
+    mesh_drawable haut = mesh_drawable(mesh_primitive_sphere(tree_r_param / 2, { 0,0,0 }, 20, 20));
+    haut.uniform.color = { 0.5f, 0.25f, 0 };
+    haut.uniform.shading.specular = tronc.uniform.shading.specular;
+    haut.uniform.shading.diffuse = tronc.uniform.shading.diffuse;
+    // cocos
+    mesh_drawable coco = mesh_drawable(mesh_primitive_sphere(3.0f * tree_r_param / 4, { 0,0,0 }, 20, 20));
+    coco.uniform.color = { 111.0f / 255,138.0f / 255,37.0f / 255 };
+    coco.uniform.shading.specular = 0.1f;
+    coco.uniform.shading.diffuse = tronc.uniform.shading.diffuse;
+    //----------------
+    mat3 R1 = vcl::rotation_from_axis_angle_mat3({ 0,0,1 }, 2 * 3.14f / 3);
+    mat3 R2 = vcl::rotation_from_axis_angle_mat3({ 0,0,1 }, 2 * 3.14f / 6);
+    mat3 R3 = vcl::rotation_from_axis_angle_mat3({ 0,0,1 }, 2 * 3.14f / 12);
+    mat3 Ry = vcl::rotation_from_axis_angle_mat3({ 0,1,0 }, 2 * 3.14f / 24);
+    //----------------
+    hierarchy_mesh_drawable tree;
+    tree.add(tronc, "tronc");
+    tree.add(haut, "haut", "tronc", { 3 * tree_r_param,0,tree_height });
+    tree.add(coco, "coco1", "tronc", { 1.5f * tree_r_param,0,9 * tree_height / 10 });
+    tree.add(coco, "coco2", "tronc", { 4.5f * tree_r_param,0,9 * tree_height / 10 });
+    tree.add(coco, "coco3", "tronc", { 3.0f * tree_r_param,1.5f * tree_r_param,9 * tree_height / 10 });
+    tree.add(coco, "coco4", "tronc", { 3.0f * tree_r_param,-1.5f * tree_r_param,9 * tree_height / 10 });
+    tree.add(coco, "coco5", "tronc", { 4.5f * tree_r_param,0,0 });
+    tree.add(coco, "coco6", "tronc", { tree_r_param,-1.5f * tree_r_param,tree_r_param });
+    tree.add(folliage, "feuille_1", "tronc", { 3 * tree_r_param,0,tree_height });
+    tree.add(folliage, "feuille_2", "tronc", { { 3 * tree_r_param,0,tree_height } , R1 });
+    tree.add(folliage, "feuille_3", "tronc", { { 3 * tree_r_param,0,tree_height } , R1 * R1 });
+    tree.add(folliage, "feuille_4", "tronc", { { 3 * tree_r_param,0,tree_height } , R2 * Ry });
+    tree.add(folliage, "feuille_5", "tronc", { { 3 * tree_r_param,0,tree_height } , R1 * R2 * Ry });
+    tree.add(folliage, "feuille_6", "tronc", { { 3 * tree_r_param,0,tree_height } , R1 * R1 * R2 * Ry });
+    tree.add(folliage, "feuille_7", "tronc", { { 3 * tree_r_param,0,tree_height } , R3 * Ry * Ry });
+    tree.add(folliage, "feuille_8", "tronc", { { 3 * tree_r_param,0,tree_height } , R3 * R3 * R3 * Ry * Ry });
+    tree.add(folliage, "feuille_9", "tronc", { { 3 * tree_r_param,0,tree_height } , R1 * R3 * Ry * Ry });
+    tree.add(folliage, "feuille_10", "tronc", { { 3 * tree_r_param,0,tree_height } , R1 * R3 * R3 * R3 * Ry * Ry });
+    tree.add(folliage, "feuille_11", "tronc", { { 3 * tree_r_param,0,tree_height } , R1 * R1 * R3 * Ry * Ry });
+    tree.add(folliage, "feuille_12", "tronc", { { 3 * tree_r_param,0,tree_height } , R1 * R1 * R3 * R3 * R3 * Ry * Ry });
+
+    return tree;
 }
 
 float camel_position(float t, float& t_max)
