@@ -39,7 +39,7 @@ void scene_model::setup_data(std::map<std::string,GLuint>& shaders , scene_struc
     // Setup initial camera mode and position
     scene.camera.camera_type = camera_control_spherical_coordinates;
     scene.camera.scale = 10.0f;
-    scene.camera.apply_rotation(0,0,0,1.2f);
+    scene.camera.apply_rotation(0.8,0,0,1.5f);
 
     // oasis small lake :
     water = mesh_drawable(mesh_primitive_quad({ -3.f, -3.f, 0 }, { -3.f, 3.f, 0 }, { 3.f, 3.f, 0 }, { 3.f, -3.f, 0 }));
@@ -320,53 +320,11 @@ float evaluate_terrain_z(float u, float v)
 {
     float z = 0;
 
-    build_dune({ 0.05f, 0.95f }, 0.20f, 0.07, u, v, z);
-    build_dune({ 0.15f, 0.95f }, 0.22f, 0.08, u, v, z);
-    build_dune({ 0.25f, 0.90f }, 0.24f, 0.07, u, v, z);
-    build_dune({ 0.10f, 0.80f }, 0.25f, 0.10, u, v, z);
-    build_dune({ 0.40f, 0.80f }, 0.22f, 0.10, u, v, z);
-    build_dune({ 0.25f, 0.75f }, 0.26f, 0.10, u, v, z);
-    build_dune({ 0.08f, 0.65f }, 0.22f, 0.08, u, v, z);
-    build_dune({ 0.45f, 0.65f }, 0.25f, 0.07, u, v, z);
-    build_dune({ 0.20f, 0.60f }, 0.25f, 0.10, u, v, z);
-    build_dune({ 0.35f, 0.60f }, 0.27f, 0.08, u, v, z);
-    build_dune({ 0.08f, 0.55f }, 0.22f, 0.07, u, v, z);
-    build_dune({ 0.15f, 0.50f }, 0.25f, 0.08, u, v, z);
-    build_dune({ 0.40f, 0.50f }, 0.25f, 0.10, u, v, z);
-    build_dune({ 0.25f, 0.45f }, 0.29f, 0.07, u, v, z);
-    build_dune({ 0.10f, 0.40f }, 0.25f, 0.10, u, v, z);
-    build_dune({ 0.30f, 0.40f }, 0.23f, 0.07, u, v, z);
-    build_dune({ 0.45f, 0.35f }, 0.27f, 0.08, u, v, z);
-    build_dune({ 0.20f, 0.30f }, 0.22f, 0.07, u, v, z);
-    build_dune({ 0.30f, 0.30f }, 0.23f, 0.07, u, v, z);
-    build_dune({ 0.40f, 0.20f }, 0.28f, 0.10, u, v, z);
-    build_dune({ 0.25f, 0.15f }, 0.24f, 0.07, u, v, z);
-    build_dune({ 0.10f, 0.10f }, 0.23f, 0.10, u, v, z);
-    build_dune({ 0.30f, 0.05f }, 0.27f, 0.08, u, v, z);
-    
-    // ONE SINGLE BIG DUNE:
-    /*
-    const vec2 u0 = { 0.5f, 0.5f };
-    const float h0 = 2.0f;
-    const float M = 3;
-    const float v_curve = 2 * (u - 0.5) * (u - 0.5) + 0.5;
-    float z = 0;
-    float z_curve = 0;
-
-    if (v - v_curve > 0) {
-        z_curve = M - 4 * M * (v_curve - 0.5) * (v_curve - 0.5);
-        z = z_curve * (v - 1) * (v - 1) / ((1 - v_curve) * (1 - v_curve));
-    }
-    else {
-        z_curve = M - 4 * M * (v_curve - 0.5) * (v_curve - 0.5);
-        z = -z_curve * v * (v - 2 * v_curve) / (v_curve * v_curve);
-    }*/
-
-    // smooth irregularitues under the dunes :
-    float d1 = norm(vec2(u, v) - vec2(0.15, 0.3)) / 0.2f;
-    float d2 = norm(vec2(u, v) - vec2(0.1, 0.8)) / 0.1f;
-    float d3 = norm(vec2(u, v) - vec2(0.3, 0.5)) / 0.2f;
-    z += 0.5 * exp(-d1 * d1) + 0.3 * exp(-d2 * d2) + 0.6 * exp(-d3 * d3);
+    // Changed direction // I have used a rotation of 90 degrees 
+    build_dune({ 0.25f, 0.25f }, 2.0f, 0.5, v, u, z);
+    build_dune({ 0.5f, 0.25f }, 1.0f, 0.5, v, u, z);
+    build_dune({ 0.4f, 0.4f }, 0.5f, 0.8, v, u, z);
+    build_dune({ 0.75f, 0.25f }, 0.8f, 0.5, v, u, z);
 
     // oasis - hole for the lake
     float d = norm(vec2(u, v) - vec2(0.8, 0.3))/0.08f;
@@ -393,6 +351,7 @@ mesh create_terrain()
 
     mesh terrain; // temporary terrain storage (CPU only)
     terrain.position.resize(N * N);
+    terrain.color.resize(N * N);
     terrain.texture_uv.resize(N * N);
 
     // Fill terrain geometry
@@ -404,8 +363,30 @@ mesh create_terrain()
             const float u = ku / (N - 1.0f);
             const float v = kv / (N - 1.0f);
 
+            // get gui parameters
+            const float scaling = 1.2f;
+            const int octave = 4;
+            const float persistency = 0.5f;
+            
+            // Evaluate Perlin noise
+            //0.8, 0.3
+            float noise;
+            if ((u-0.8)* (u - 0.8)+(v-0.3)* (v - 0.3)<0.01)
+                noise = 1;
+            else
+                noise = perlin(scaling * u, scaling * v, octave, persistency);
+
+            // 3D vertex coordinates
+            vec3 p = evaluate_terrain(u, v);
+            const float x = p.x;
+            const float y = p.y;
+            const float z = p.z * noise;
+
+            const float c = 0.3f + 0.7f * noise;
+
             // Compute coordinates
-            terrain.position[kv + N * ku] = evaluate_terrain(u, v);
+            terrain.position[kv + N * ku] = { x,y,z };
+            terrain.color[kv + N * ku] = { c,c,c,1.0f };
 
             // Add texture
             int tiles_param = 10;
@@ -433,51 +414,6 @@ mesh create_terrain()
 
     return terrain;
 }
-
-/* mesh create_pyramid(float side, float height, float z_offset, float rot)
-{
-    mesh m;
-
-    // Pyramidal structure
-    // *************************** //
-
-    const size_t N = 4;
-
-    // geometry
-    for (size_t k = 0; k < N; ++k)
-    {
-        const float u = k / float(N);
-        const vec3 p = { (side/(float)sqrt(2)) * std::cos(2 * 3.14f * (u-rot)), (side / (float)sqrt(2)) * std::sin(2 * 3.14f * (u-rot)), 0.0f };
-        m.position.push_back(p + vec3{ 0,0,z_offset });
-    }
-    // apex
-    m.position.push_back({ 0,0,height + z_offset });
-
-    // connectivity
-    const unsigned int Ns = N;
-    for (unsigned int k = 0; k < Ns; ++k) {
-        m.connectivity.push_back({ k , (k + 1) % Ns, Ns });
-    }
-
-    // close the bottom of the cone
-    // *************************** //
-
-    // Geometry
-    for (size_t k = 0; k < N; ++k)
-    {
-        const float u = k / float(N);
-        const vec3 p = { (side / (float)sqrt(2)) * std::cos(2 * 3.14f * (u-rot)), (side / (float)sqrt(2)) * std::sin(2 * 3.14f * (u-rot)), 0.0f };
-        m.position.push_back(p + vec3{ 0,0,z_offset });
-    }
-    // central position
-    m.position.push_back({ 0,0,z_offset });
-
-    // connectivity
-    for (unsigned int k = 0; k < Ns; ++k)
-        m.connectivity.push_back({ k + Ns + 1, (k + 1) % Ns + Ns + 1, 2 * Ns + 1 });
-
-    return m;
-}*/
 
 mesh create_pyramid(float side, float height, float z_offset, float rot) {
     const vec3 p0 = { (side / (float)sqrt(2)) * std::cos(2 * 3.14f * (0.0f/4 - rot)), (side / (float)sqrt(2)) * std::sin(2 * 3.14f * (0.0f/4 - rot)), z_offset };
