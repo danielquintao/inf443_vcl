@@ -66,7 +66,7 @@ void scene_model::setup_data(std::map<std::string,GLuint>& shaders , scene_struc
 
     // Camel
     // main part of camel:
-    mesh_drawable camel_trunk = mesh_drawable(mesh_load_file_obj("scenes/3D_graphics/01_modeling/assets/camelo_trunk.obj"));
+    mesh_drawable camel_trunk = mesh_drawable(mesh_load_file_obj("scenes/3D_graphics/01_modeling/assets/camelo_trunk_with_tail.obj"));
     mesh_drawable camel_head = mesh_drawable(mesh_load_file_obj("scenes/3D_graphics/01_modeling/assets/camelo_head.obj"));
     camel_trunk.uniform.color = { 1.0f, 0.75f, 0.2f };
     camel_trunk.uniform.shading.specular = 0.01f;
