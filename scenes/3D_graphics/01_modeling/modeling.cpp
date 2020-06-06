@@ -66,7 +66,7 @@ void scene_model::setup_data(std::map<std::string,GLuint>& shaders , scene_struc
 
     // Camel
     // main part of camel:
-    mesh_drawable camel_trunk = mesh_drawable(mesh_load_file_obj("scenes/3D_graphics/01_modeling/assets/camelo_trunk_with_tail.obj"));
+    mesh_drawable camel_trunk = mesh_drawable(mesh_load_file_obj("scenes/3D_graphics/01_modeling/assets/camelo_trunk_v7.obj"));
     mesh_drawable camel_head = mesh_drawable(mesh_load_file_obj("scenes/3D_graphics/01_modeling/assets/camelo_head.obj"));
     camel_trunk.uniform.color = { 1.0f, 0.75f, 0.2f };
     camel_trunk.uniform.shading.specular = 0.01f;
@@ -136,7 +136,6 @@ void scene_model::setup_data(std::map<std::string,GLuint>& shaders , scene_struc
     tree.set_shader_for_all_elements(shaders["mesh"]);
     tree2.set_shader_for_all_elements(shaders["mesh"]);
 
-    //timer.scale = 0.5f; // speed in which t varies
     timer.t_max = 10.0f; // t goes from 0 to 10 and restart in 0
 }
 
