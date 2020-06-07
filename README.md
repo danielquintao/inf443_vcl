@@ -1,3 +1,11 @@
+# Project "Egyptien" based on VCL library ([drohmer](https://github.com/drohmer/inf443_vcl))
+## Lucas Maia, Daniel Quintão
+### [github link](https://github.com/danielquintao/inf443_vcl)
+PS. We did not pulled the "out/" folder. If the project does not compile, we may need to generate it. It depends on the OS.
+
+
+## original drohmer's readMe :
+
 # VCL
 
 - [Introduction](#Introduction)

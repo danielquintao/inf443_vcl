@@ -4,6 +4,5 @@ doc/
 lib_windows/
 out/
 /update_scene_include.py
-/README.md
 /Makefile
 /CMakeLists
